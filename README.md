@@ -8,7 +8,7 @@ Through the C# UI, you can easily perform time series forecasting with the
 At the core of this application, tft is ![](./images/554068490.png) https://github.com/mlverse.  
 It relies heavily on https://github.com/mlverse/tft, a wonderful library implemented in R developed at  
 
-<img src="./images/image02.gif" width=70%>  
+<img src="./images/image03.gif" width=70%>  
 
 # Requirements  
 
