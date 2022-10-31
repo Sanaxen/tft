@@ -471,6 +471,16 @@ namespace tft
             if (checkBox14.Checked) cmd += "use_date_sincosD = TRUE\r\n";
             else cmd += "use_date_sincosD = FALSE\r\n";
 
+            if (checkBox18.Checked) cmd += "use_date_lag = TRUE\r\n";
+            else cmd += "use_date_lag = FALSE\r\n";
+            if (checkBox19.Checked) cmd += "use_date_mean = TRUE\r\n";
+            else cmd += "use_date_mean = FALSE\r\n";
+            if (checkBox20.Checked) cmd += "use_date_sd = TRUE\r\n";
+            else cmd += "use_date_sd = FALSE\r\n";
+            if (checkBox21.Checked) cmd += "use_date_quantile = TRUE\r\n";
+            else cmd += "use_date_quantile = FALSE\r\n";
+            cmd += "window_size=" + numericUpDown7.Value.ToString()+"\r\n";
+
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "df <- read.csv(\"" + base_name + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
@@ -522,7 +532,7 @@ namespace tft
             cmd += "print(p_input_plot)\r\n";
             cmd += "htmlwidgets::saveWidget(as_widget(p_input_plot), \"tft_" + base_name + "_p_input_plot.html\", selfcontained = F)\r\n";
 
-            cmd += "data_tbl <- tft_data_split(input_df, unit=unit, lookback, future_test_len, validation)\r\n";
+            cmd += "data_tbl <- tft_data_split(input_df, unit=unit, lookback, pred_len, future_test_len, validation)\r\n";
             cmd += "source('tmp_tft_data_split.r')\r\n";
             cmd += "\r\n";
             cmd += "\r\n";
@@ -559,6 +569,7 @@ namespace tft
             //
             cmd += ")\r\n";
             cmd += "source('tmp_tft_make_spec.r')\r\n";
+            cmd += "print(spec)\r\n";
             cmd += "save.image(\"tft_" + base_name + ".RData\")\r\n";
             cmd += "\r\n";
 
@@ -622,6 +633,7 @@ namespace tft
                     sw.Write("time_colname," + comboBox3.Text + "\n");
                     sw.Write("target_colname," + comboBox4.Text + "\n");
                     sw.Write("key," + comboBox5.Text + "\n");
+                    sw.Write("plot unit," + comboBox2.Text + "\n");
                     sw.Write("unit," + comboBox1.Text + "\n");
                     sw.Write("time compression," + comboBox7.Text + "\n");
 
@@ -680,6 +692,20 @@ namespace tft
                     if (checkBox17.Checked) sw.Write("true\n");
                     else sw.Write("false\n");
                     sw.Write("GPU id," + comboBox6.Text + "\n");
+
+                    sw.Write("use_date_lag,");
+                    if (checkBox18.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("use_date_mean,");
+                    if (checkBox19.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("use_date_sd,");
+                    if (checkBox20.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("use_date_quantile,");
+                    if (checkBox21.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("window_size," + numericUpDown7.Value.ToString() + "\n");
 
                     sw.Write("link1,");
                     sw.Write(link1 + "\n");
@@ -872,6 +898,11 @@ namespace tft
                         if (ss[0].IndexOf("key") >= 0)
                         {
                             comboBox5.Text = ss[1].Replace("\r\n", "");
+                            continue;
+                        }
+                        if (ss[0].IndexOf("plot unit") >= 0)
+                        {
+                            comboBox2.Text = ss[1].Replace("\r\n", "");
                             continue;
                         }
                         if (ss[0].IndexOf("unit") >= 0)
@@ -1098,6 +1129,59 @@ namespace tft
                         if (ss[0].IndexOf("GPU id") >= 0)
                         {
                             comboBox6.Text = ss[1].Replace("\r\n", "");
+                            continue;
+                        }
+                        if (ss[0].IndexOf("use_date_lag") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox18.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox18.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("use_date_mean") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox19.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox19.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("use_date_sd") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox20.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox20.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("use_date_quantile") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox21.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox21.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("window_size") >= 0)
+                        {
+                            numericUpDown7.Value = int.Parse(ss[1].Replace("\r\n", ""));
                             continue;
                         }
                     }

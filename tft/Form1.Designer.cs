@@ -88,6 +88,7 @@ namespace tft
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.button17 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
+            this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -106,7 +107,6 @@ namespace tft
             this.checkBox14 = new System.Windows.Forms.CheckBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.button14 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -170,6 +170,13 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
+            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.checkBox19 = new System.Windows.Forms.CheckBox();
+            this.checkBox20 = new System.Windows.Forms.CheckBox();
+            this.checkBox21 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -222,14 +229,15 @@ namespace tft
             this.panel18.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel19.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(2, 4);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(2, 3);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(425, 22);
+            this.textBox1.Size = new System.Drawing.Size(320, 19);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "c:\\Program Files\\R\\R-4.1.2\\bin";
             this.toolTip1.SetToolTip(this.textBox1, "R installation path");
@@ -242,10 +250,9 @@ namespace tft
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(2, 36);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(2, 29);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "csv";
             this.toolTip1.SetToolTip(this.button1, "Specify the input csv file");
@@ -256,43 +263,39 @@ namespace tft
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(0, 38);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(0, 30);
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox1.Size = new System.Drawing.Size(241, 645);
+            this.listBox1.Size = new System.Drawing.Size(181, 516);
             this.listBox1.TabIndex = 2;
             // 
             // listBox2
             // 
             this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 15;
-            this.listBox2.Location = new System.Drawing.Point(0, 38);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox2.ItemHeight = 12;
+            this.listBox2.Location = new System.Drawing.Point(0, 30);
             this.listBox2.Name = "listBox2";
             this.listBox2.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox2.Size = new System.Drawing.Size(241, 645);
+            this.listBox2.Size = new System.Drawing.Size(181, 516);
             this.listBox2.TabIndex = 3;
             // 
             // listBox3
             // 
             this.listBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 15;
-            this.listBox3.Location = new System.Drawing.Point(0, 38);
-            this.listBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox3.ItemHeight = 12;
+            this.listBox3.Location = new System.Drawing.Point(0, 30);
             this.listBox3.Name = "listBox3";
             this.listBox3.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox3.Size = new System.Drawing.Size(240, 645);
+            this.listBox3.Size = new System.Drawing.Size(180, 516);
             this.listBox3.TabIndex = 4;
             // 
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDown1.Location = new System.Drawing.Point(136, 4);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown1.Location = new System.Drawing.Point(102, 3);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -304,7 +307,7 @@ namespace tft
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown1.TabIndex = 5;
             this.numericUpDown1.Value = new decimal(new int[] {
             10,
@@ -315,8 +318,7 @@ namespace tft
             // numericUpDown2
             // 
             this.numericUpDown2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDown2.Location = new System.Drawing.Point(136, 35);
-            this.numericUpDown2.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown2.Location = new System.Drawing.Point(102, 28);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -328,7 +330,7 @@ namespace tft
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown2.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown2.TabIndex = 6;
             this.numericUpDown2.Value = new decimal(new int[] {
             64,
@@ -339,15 +341,14 @@ namespace tft
             // numericUpDown3
             // 
             this.numericUpDown3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDown3.Location = new System.Drawing.Point(136, 66);
-            this.numericUpDown3.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown3.Location = new System.Drawing.Point(102, 53);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown3.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown3.TabIndex = 7;
             this.numericUpDown3.Value = new decimal(new int[] {
             4,
@@ -358,8 +359,7 @@ namespace tft
             // numericUpDown4
             // 
             this.numericUpDown4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDown4.Location = new System.Drawing.Point(136, 99);
-            this.numericUpDown4.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown4.Location = new System.Drawing.Point(102, 79);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -371,7 +371,7 @@ namespace tft
             0,
             0});
             this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown4.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown4.TabIndex = 8;
             this.numericUpDown4.Value = new decimal(new int[] {
             12,
@@ -382,8 +382,7 @@ namespace tft
             // numericUpDown5
             // 
             this.numericUpDown5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numericUpDown5.Location = new System.Drawing.Point(136, 129);
-            this.numericUpDown5.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown5.Location = new System.Drawing.Point(102, 103);
             this.numericUpDown5.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -395,7 +394,7 @@ namespace tft
             0,
             0});
             this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown5.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown5.TabIndex = 9;
             this.toolTip1.SetToolTip(this.numericUpDown5, "The lookback usually works like any other hyperparameter and we in general choose" +
         " values between 10 and 1000 depending on the time series period.");
@@ -409,10 +408,9 @@ namespace tft
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(48, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(36, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 15);
+            this.label1.Size = new System.Drawing.Size(59, 12);
             this.label1.TabIndex = 10;
             this.label1.Text = "n_epochs";
             // 
@@ -420,10 +418,9 @@ namespace tft
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(27, 35);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(20, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 15);
+            this.label2.Size = new System.Drawing.Size(79, 12);
             this.label2.TabIndex = 11;
             this.label2.Text = "n_batch_size";
             // 
@@ -431,10 +428,9 @@ namespace tft
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(8, 69);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(6, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 15);
+            this.label3.Size = new System.Drawing.Size(93, 12);
             this.label3.TabIndex = 12;
             this.label3.Text = "n_num_workers";
             // 
@@ -442,10 +438,9 @@ namespace tft
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(48, 100);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(36, 80);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 15);
+            this.label4.Size = new System.Drawing.Size(54, 12);
             this.label4.TabIndex = 13;
             this.label4.Text = "pred_len";
             this.toolTip1.SetToolTip(this.label4, "horizon");
@@ -454,10 +449,9 @@ namespace tft
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(43, 131);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(32, 105);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 15);
+            this.label5.Size = new System.Drawing.Size(58, 12);
             this.label5.TabIndex = 14;
             this.label5.Text = "lookback";
             this.toolTip1.SetToolTip(this.label5, "The lookback usually works like any other hyperparameter and we in general choose" +
@@ -474,10 +468,9 @@ namespace tft
             "hour",
             "minute",
             "second"});
-            this.comboBox1.Location = new System.Drawing.Point(163, 162);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Location = new System.Drawing.Point(122, 130);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(81, 23);
+            this.comboBox1.Size = new System.Drawing.Size(62, 20);
             this.comboBox1.TabIndex = 15;
             this.comboBox1.Text = "month";
             // 
@@ -485,10 +478,9 @@ namespace tft
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(11, 166);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(8, 133);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 15);
+            this.label6.Size = new System.Drawing.Size(59, 12);
             this.label6.TabIndex = 16;
             this.label6.Text = "time unit";
             this.toolTip1.SetToolTip(this.label6, "time unit of input data(unit of time for training)\r\nUse \"time compression\" if the" +
@@ -499,10 +491,9 @@ namespace tft
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(285, 29);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox1.Location = new System.Drawing.Point(214, 23);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(97, 19);
+            this.checkBox1.Size = new System.Drawing.Size(83, 16);
             this.checkBox1.TabIndex = 17;
             this.checkBox1.Text = "validation";
             this.toolTip1.SetToolTip(this.checkBox1, "perform validation");
@@ -511,10 +502,9 @@ namespace tft
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(16, 22);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox2.Location = new System.Drawing.Point(12, 18);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(60, 19);
+            this.checkBox2.Size = new System.Drawing.Size(50, 16);
             this.checkBox2.TabIndex = 18;
             this.checkBox2.Text = "year";
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -522,10 +512,9 @@ namespace tft
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(16, 49);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox3.Location = new System.Drawing.Point(12, 39);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(74, 19);
+            this.checkBox3.Size = new System.Drawing.Size(60, 16);
             this.checkBox3.TabIndex = 19;
             this.checkBox3.Text = "month";
             this.checkBox3.UseVisualStyleBackColor = true;
@@ -533,10 +522,9 @@ namespace tft
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(16, 108);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox4.Location = new System.Drawing.Point(12, 86);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(53, 19);
+            this.checkBox4.Size = new System.Drawing.Size(45, 16);
             this.checkBox4.TabIndex = 20;
             this.checkBox4.Text = "day";
             this.checkBox4.UseVisualStyleBackColor = true;
@@ -544,10 +532,9 @@ namespace tft
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(16, 79);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox5.Location = new System.Drawing.Point(12, 63);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(66, 19);
+            this.checkBox5.Size = new System.Drawing.Size(54, 16);
             this.checkBox5.TabIndex = 21;
             this.checkBox5.Text = "week";
             this.checkBox5.UseVisualStyleBackColor = true;
@@ -555,10 +542,9 @@ namespace tft
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(91, 79);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox6.Location = new System.Drawing.Point(68, 63);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(64, 19);
+            this.checkBox6.Size = new System.Drawing.Size(54, 16);
             this.checkBox6.TabIndex = 22;
             this.checkBox6.Text = "wday";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -566,10 +552,9 @@ namespace tft
             // checkBox7
             // 
             this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(91, 108);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox7.Location = new System.Drawing.Point(68, 86);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(61, 19);
+            this.checkBox7.Size = new System.Drawing.Size(52, 16);
             this.checkBox7.TabIndex = 23;
             this.checkBox7.Text = "yday";
             this.checkBox7.UseVisualStyleBackColor = true;
@@ -577,10 +562,9 @@ namespace tft
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(16, 135);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox8.Location = new System.Drawing.Point(12, 108);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(62, 19);
+            this.checkBox8.Size = new System.Drawing.Size(50, 16);
             this.checkBox8.TabIndex = 24;
             this.checkBox8.Text = "hour";
             this.checkBox8.UseVisualStyleBackColor = true;
@@ -588,10 +572,9 @@ namespace tft
             // checkBox9
             // 
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(91, 135);
-            this.checkBox9.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox9.Location = new System.Drawing.Point(68, 108);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(49, 19);
+            this.checkBox9.Size = new System.Drawing.Size(41, 16);
             this.checkBox9.TabIndex = 25;
             this.checkBox9.Text = "am";
             this.checkBox9.UseVisualStyleBackColor = true;
@@ -599,10 +582,9 @@ namespace tft
             // checkBox10
             // 
             this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(156, 135);
-            this.checkBox10.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox10.Location = new System.Drawing.Point(117, 108);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(49, 19);
+            this.checkBox10.Size = new System.Drawing.Size(41, 16);
             this.checkBox10.TabIndex = 26;
             this.checkBox10.Text = "pm";
             this.checkBox10.UseVisualStyleBackColor = true;
@@ -610,10 +592,9 @@ namespace tft
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 200);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(8, 160);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(129, 15);
+            this.label7.Size = new System.Drawing.Size(107, 12);
             this.label7.TabIndex = 28;
             this.label7.Text = "Time unit at plot";
             this.toolTip1.SetToolTip(this.label7, "If the time scale is too fine, please change it.");
@@ -629,39 +610,35 @@ namespace tft
             "hour",
             "minute",
             "second"});
-            this.comboBox2.Location = new System.Drawing.Point(163, 198);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox2.Location = new System.Drawing.Point(122, 158);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(81, 23);
+            this.comboBox2.Size = new System.Drawing.Size(62, 20);
             this.comboBox2.TabIndex = 27;
             this.comboBox2.Text = "month";
             // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(155, 11);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox3.Location = new System.Drawing.Point(116, 9);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(160, 23);
+            this.comboBox3.Size = new System.Drawing.Size(121, 20);
             this.comboBox3.TabIndex = 29;
             // 
             // comboBox4
             // 
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(155, 55);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox4.Location = new System.Drawing.Point(116, 44);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(160, 23);
+            this.comboBox4.Size = new System.Drawing.Size(121, 20);
             this.comboBox4.TabIndex = 30;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(13, 21);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(10, 17);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 15);
+            this.label8.Size = new System.Drawing.Size(85, 12);
             this.label8.TabIndex = 31;
             this.label8.Text = "time_colname";
             this.toolTip1.SetToolTip(this.label8, "Column name where time is recorded");
@@ -670,10 +647,9 @@ namespace tft
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label9.Location = new System.Drawing.Point(13, 65);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(10, 52);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 15);
+            this.label9.Size = new System.Drawing.Size(95, 12);
             this.label9.TabIndex = 32;
             this.label9.Text = "target_colname";
             this.toolTip1.SetToolTip(this.label9, "Target column name you want to predict");
@@ -682,10 +658,9 @@ namespace tft
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label10.Location = new System.Drawing.Point(13, 102);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(10, 82);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(32, 15);
+            this.label10.Size = new System.Drawing.Size(26, 12);
             this.label10.TabIndex = 34;
             this.label10.Text = "key";
             this.toolTip1.SetToolTip(this.label10, "‘key’: are groups of columns that identify a single time series. \r\nKeys are neces" +
@@ -695,19 +670,17 @@ namespace tft
             // comboBox5
             // 
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(155, 92);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox5.Location = new System.Drawing.Point(116, 74);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(160, 23);
+            this.comboBox5.Size = new System.Drawing.Size(121, 20);
             this.comboBox5.TabIndex = 33;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(264, 166);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(198, 133);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(135, 15);
+            this.label12.Size = new System.Drawing.Size(111, 12);
             this.label12.TabIndex = 39;
             this.label12.Text = "time compression";
             this.toolTip1.SetToolTip(this.label12, "If the time step of the input data is too fine, it can be roughened.\r\nSimplifying" +
@@ -725,10 +698,9 @@ namespace tft
             "hour",
             "minute",
             "second"});
-            this.comboBox7.Location = new System.Drawing.Point(407, 162);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox7.Location = new System.Drawing.Point(305, 130);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(81, 23);
+            this.comboBox7.Size = new System.Drawing.Size(62, 20);
             this.comboBox7.TabIndex = 38;
             // 
             // checkBox11
@@ -736,10 +708,9 @@ namespace tft
             this.checkBox11.AutoSize = true;
             this.checkBox11.Checked = true;
             this.checkBox11.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox11.Location = new System.Drawing.Point(285, 9);
-            this.checkBox11.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox11.Location = new System.Drawing.Point(214, 7);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(208, 19);
+            this.checkBox11.Size = new System.Drawing.Size(174, 16);
             this.checkBox11.TabIndex = 40;
             this.checkBox11.Text = "Finding the learning rate";
             this.toolTip1.SetToolTip(this.checkBox11, "Search for optimal learning rate");
@@ -749,10 +720,9 @@ namespace tft
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(8, 7);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(6, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(161, 29);
+            this.button2.Size = new System.Drawing.Size(121, 23);
             this.button2.TabIndex = 41;
             this.button2.Text = "train + prediction";
             this.button2.UseVisualStyleBackColor = true;
@@ -769,9 +739,10 @@ namespace tft
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label11.Location = new System.Drawing.Point(9, 9);
+            this.label11.Location = new System.Drawing.Point(7, 7);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 17);
+            this.label11.Size = new System.Drawing.Size(47, 13);
             this.label11.TabIndex = 43;
             this.label11.Text = "known";
             this.toolTip1.SetToolTip(this.label11, resources.GetString("label11.ToolTip"));
@@ -780,9 +751,10 @@ namespace tft
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label14.Location = new System.Drawing.Point(11, 11);
+            this.label14.Location = new System.Drawing.Point(8, 9);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(55, 17);
+            this.label14.Size = new System.Drawing.Size(45, 13);
             this.label14.TabIndex = 45;
             this.label14.Text = "static";
             this.toolTip1.SetToolTip(this.label14, "predictors are considered ‘static’ when they don’t vary over time, \r\nthey are inf" +
@@ -792,10 +764,10 @@ namespace tft
             // 
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(127, 36);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button4.Location = new System.Drawing.Point(95, 29);
+            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(125, 29);
+            this.button4.Size = new System.Drawing.Size(94, 23);
             this.button4.TabIndex = 47;
             this.button4.Text = "setting save";
             this.toolTip1.SetToolTip(this.button4, "Save the configuration");
@@ -806,10 +778,10 @@ namespace tft
             // 
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button5.Location = new System.Drawing.Point(282, 36);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Location = new System.Drawing.Point(212, 29);
+            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(120, 29);
+            this.button5.Size = new System.Drawing.Size(90, 23);
             this.button5.TabIndex = 48;
             this.button5.Text = "setting load";
             this.toolTip1.SetToolTip(this.button5, "Load configuration");
@@ -820,10 +792,9 @@ namespace tft
             // 
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(4, 4);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Location = new System.Drawing.Point(3, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(81, 29);
+            this.button3.Size = new System.Drawing.Size(61, 23);
             this.button3.TabIndex = 49;
             this.button3.Text = "predict";
             this.toolTip1.SetToolTip(this.button3, "predict");
@@ -833,10 +804,9 @@ namespace tft
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(95, 11);
-            this.linkLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel2.Location = new System.Drawing.Point(71, 9);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(81, 15);
+            this.linkLabel2.Size = new System.Drawing.Size(65, 12);
             this.linkLabel2.TabIndex = 53;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "predict+real";
@@ -847,10 +817,9 @@ namespace tft
             // 
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button7.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button7.Location = new System.Drawing.Point(4, 4);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
+            this.button7.Location = new System.Drawing.Point(3, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(81, 29);
+            this.button7.Size = new System.Drawing.Size(61, 23);
             this.button7.TabIndex = 55;
             this.button7.Text = "input";
             this.toolTip1.SetToolTip(this.button7, "input");
@@ -861,10 +830,9 @@ namespace tft
             // 
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button8.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button8.Location = new System.Drawing.Point(9, 8);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Location = new System.Drawing.Point(7, 6);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(81, 29);
+            this.button8.Size = new System.Drawing.Size(61, 23);
             this.button8.TabIndex = 57;
             this.button8.Text = "learning rate";
             this.toolTip1.SetToolTip(this.button8, "learning rate");
@@ -875,10 +843,9 @@ namespace tft
             // 
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button9.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button9.Location = new System.Drawing.Point(5, 4);
-            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Location = new System.Drawing.Point(4, 3);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(81, 29);
+            this.button9.Size = new System.Drawing.Size(61, 23);
             this.button9.TabIndex = 59;
             this.button9.Text = "loss";
             this.toolTip1.SetToolTip(this.button9, "loss");
@@ -889,19 +856,19 @@ namespace tft
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label16.Location = new System.Drawing.Point(8, 9);
+            this.label16.Location = new System.Drawing.Point(6, 7);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 17);
+            this.label16.Size = new System.Drawing.Size(30, 13);
             this.label16.TabIndex = 62;
             this.label16.Text = "use";
             this.toolTip1.SetToolTip(this.label16, "Select columns to use");
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(55, 0);
-            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Location = new System.Drawing.Point(41, 0);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(64, 29);
+            this.button10.Size = new System.Drawing.Size(48, 23);
             this.button10.TabIndex = 63;
             this.button10.Text = "1";
             this.toolTip1.SetToolTip(this.button10, "Select All");
@@ -910,10 +877,9 @@ namespace tft
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(78, 4);
-            this.button11.Margin = new System.Windows.Forms.Padding(4);
+            this.button11.Location = new System.Drawing.Point(58, 3);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(64, 29);
+            this.button11.Size = new System.Drawing.Size(48, 23);
             this.button11.TabIndex = 64;
             this.button11.Text = "2";
             this.toolTip1.SetToolTip(this.button11, "Specify all columns to be used as \"known\"\r\nUnselect columns indicating time and p" +
@@ -923,10 +889,9 @@ namespace tft
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(93, 2);
-            this.button12.Margin = new System.Windows.Forms.Padding(4);
+            this.button12.Location = new System.Drawing.Point(70, 2);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(64, 29);
+            this.button12.Size = new System.Drawing.Size(48, 23);
             this.button12.TabIndex = 65;
             this.button12.Text = "3";
             this.toolTip1.SetToolTip(this.button12, "Select columns not specified as\" known\" in the columns to be used\r\nUnselect colum" +
@@ -948,10 +913,9 @@ namespace tft
             "6",
             "7",
             "8"});
-            this.comboBox6.Location = new System.Drawing.Point(549, 4);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox6.Location = new System.Drawing.Point(412, 3);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(80, 23);
+            this.comboBox6.Size = new System.Drawing.Size(61, 20);
             this.comboBox6.TabIndex = 70;
             this.comboBox6.Text = "default";
             this.toolTip1.SetToolTip(this.comboBox6, " index of the CUDA device to use if multiple GPUs are available. \r\nDefault: the r" +
@@ -959,10 +923,10 @@ namespace tft
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(332, 56);
-            this.button17.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button17.Location = new System.Drawing.Point(249, 45);
+            this.button17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(233, 24);
+            this.button17.Size = new System.Drawing.Size(175, 19);
             this.button17.TabIndex = 40;
             this.button17.Text = "Target multiple columns";
             this.toolTip1.SetToolTip(this.button17, "If there are targets in multiple columns, edit to a data frame keyed to those col" +
@@ -974,31 +938,43 @@ namespace tft
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label18.Location = new System.Drawing.Point(8, 184);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(6, 147);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(115, 15);
+            this.label18.Size = new System.Drawing.Size(93, 12);
             this.label18.TabIndex = 42;
             this.label18.Text = "future test len";
             this.toolTip1.SetToolTip(this.label18, "The length of the actual prediction using the model to be predicted by pred_len.\r" +
         "\nPredictions made over pred_len");
             // 
+            // checkBox17
+            // 
+            this.checkBox17.AutoSize = true;
+            this.checkBox17.Location = new System.Drawing.Point(358, 5);
+            this.checkBox17.Name = "checkBox17";
+            this.checkBox17.Size = new System.Drawing.Size(48, 16);
+            this.checkBox17.TabIndex = 69;
+            this.checkBox17.Text = "cuda";
+            this.toolTip1.SetToolTip(this.checkBox17, "If an NVIDIA GPU is available, you can check the box to increase calculation spee" +
+        "d.");
+            this.checkBox17.UseVisualStyleBackColor = true;
+            this.checkBox17.CheckedChanged += new System.EventHandler(this.checkBox17_CheckedChanged);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label13.Location = new System.Drawing.Point(4, 13);
+            this.label13.Location = new System.Drawing.Point(3, 10);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 17);
+            this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 44;
             this.label13.Text = "factor";
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(95, 4);
-            this.button13.Margin = new System.Windows.Forms.Padding(4);
+            this.button13.Location = new System.Drawing.Point(71, 3);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(64, 29);
+            this.button13.Size = new System.Drawing.Size(48, 23);
             this.button13.TabIndex = 66;
             this.button13.Text = "4";
             this.button13.UseVisualStyleBackColor = true;
@@ -1017,11 +993,11 @@ namespace tft
             this.groupBox1.Controls.Add(this.checkBox8);
             this.groupBox1.Controls.Add(this.checkBox9);
             this.groupBox1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox1.Location = new System.Drawing.Point(20, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(15, 12);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(413, 174);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(230, 165);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Features to add";
@@ -1029,10 +1005,9 @@ namespace tft
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(156, 21);
-            this.checkBox16.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox16.Location = new System.Drawing.Point(117, 17);
             this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(81, 19);
+            this.checkBox16.Size = new System.Drawing.Size(67, 16);
             this.checkBox16.TabIndex = 27;
             this.checkBox16.Text = "quarter";
             this.checkBox16.UseVisualStyleBackColor = true;
@@ -1040,10 +1015,9 @@ namespace tft
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(93, 9);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(70, 7);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(50, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(40, 12);
             this.linkLabel1.TabIndex = 50;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "predict";
@@ -1054,10 +1028,9 @@ namespace tft
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("MS UI Gothic", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label15.ForeColor = System.Drawing.Color.Green;
-            this.label15.Location = new System.Drawing.Point(9, 51);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(7, 41);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(124, 15);
+            this.label15.Size = new System.Drawing.Size(96, 12);
             this.label15.TabIndex = 51;
             this.label15.Text = "-------------";
             // 
@@ -1065,10 +1038,9 @@ namespace tft
             // 
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button6.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button6.Location = new System.Drawing.Point(5, 4);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Location = new System.Drawing.Point(4, 3);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(81, 29);
+            this.button6.Size = new System.Drawing.Size(61, 23);
             this.button6.TabIndex = 52;
             this.button6.Text = "predict + real";
             this.button6.UseVisualStyleBackColor = true;
@@ -1079,19 +1051,17 @@ namespace tft
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox2.Font = new System.Drawing.Font("ＭＳ ゴシック", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox2.Location = new System.Drawing.Point(0, 0);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox2.Size = new System.Drawing.Size(926, 265);
+            this.textBox2.Size = new System.Drawing.Size(692, 209);
             this.textBox2.TabIndex = 54;
             // 
             // linkLabel3
             // 
-            this.linkLabel3.Location = new System.Drawing.Point(93, 11);
-            this.linkLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel3.Location = new System.Drawing.Point(70, 9);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(69, 15);
+            this.linkLabel3.Size = new System.Drawing.Size(52, 12);
             this.linkLabel3.TabIndex = 56;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "input";
@@ -1100,10 +1070,9 @@ namespace tft
             // linkLabel4
             // 
             this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(99, 16);
-            this.linkLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel4.Location = new System.Drawing.Point(74, 13);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(86, 15);
+            this.linkLabel4.Size = new System.Drawing.Size(69, 12);
             this.linkLabel4.TabIndex = 58;
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = "learning rate";
@@ -1114,10 +1083,9 @@ namespace tft
             this.linkLabel5.AutoSize = true;
             this.linkLabel5.LinkColor = System.Drawing.Color.Black;
             this.linkLabel5.LinkVisited = true;
-            this.linkLabel5.Location = new System.Drawing.Point(95, 10);
-            this.linkLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.linkLabel5.Location = new System.Drawing.Point(71, 8);
             this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(32, 15);
+            this.linkLabel5.Size = new System.Drawing.Size(26, 12);
             this.linkLabel5.TabIndex = 60;
             this.linkLabel5.TabStop = true;
             this.linkLabel5.Text = "loss";
@@ -1127,12 +1095,11 @@ namespace tft
             // 
             this.listBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox4.FormattingEnabled = true;
-            this.listBox4.ItemHeight = 15;
-            this.listBox4.Location = new System.Drawing.Point(0, 38);
-            this.listBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox4.ItemHeight = 12;
+            this.listBox4.Location = new System.Drawing.Point(0, 30);
             this.listBox4.Name = "listBox4";
             this.listBox4.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBox4.Size = new System.Drawing.Size(246, 645);
+            this.listBox4.Size = new System.Drawing.Size(184, 516);
             this.listBox4.TabIndex = 61;
             // 
             // groupBox2
@@ -1141,11 +1108,9 @@ namespace tft
             this.groupBox2.Controls.Add(this.checkBox13);
             this.groupBox2.Controls.Add(this.checkBox14);
             this.groupBox2.Controls.Add(this.checkBox15);
-            this.groupBox2.Location = new System.Drawing.Point(7, 12);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(5, 10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(267, 132);
+            this.groupBox2.Size = new System.Drawing.Size(200, 106);
             this.groupBox2.TabIndex = 67;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "period";
@@ -1153,10 +1118,9 @@ namespace tft
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(21, 21);
-            this.checkBox12.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox12.Location = new System.Drawing.Point(16, 17);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(60, 19);
+            this.checkBox12.Size = new System.Drawing.Size(50, 16);
             this.checkBox12.TabIndex = 22;
             this.checkBox12.Text = "year";
             this.checkBox12.UseVisualStyleBackColor = true;
@@ -1164,10 +1128,9 @@ namespace tft
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(21, 48);
-            this.checkBox13.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox13.Location = new System.Drawing.Point(16, 38);
             this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(74, 19);
+            this.checkBox13.Size = new System.Drawing.Size(60, 16);
             this.checkBox13.TabIndex = 23;
             this.checkBox13.Text = "month";
             this.checkBox13.UseVisualStyleBackColor = true;
@@ -1175,10 +1138,9 @@ namespace tft
             // checkBox14
             // 
             this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(21, 106);
-            this.checkBox14.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox14.Location = new System.Drawing.Point(16, 85);
             this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(53, 19);
+            this.checkBox14.Size = new System.Drawing.Size(45, 16);
             this.checkBox14.TabIndex = 24;
             this.checkBox14.Text = "day";
             this.checkBox14.UseVisualStyleBackColor = true;
@@ -1186,10 +1148,9 @@ namespace tft
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(21, 78);
-            this.checkBox15.Margin = new System.Windows.Forms.Padding(4);
+            this.checkBox15.Location = new System.Drawing.Point(16, 62);
             this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(66, 19);
+            this.checkBox15.Size = new System.Drawing.Size(54, 16);
             this.checkBox15.TabIndex = 25;
             this.checkBox15.Text = "week";
             this.checkBox15.UseVisualStyleBackColor = true;
@@ -1199,33 +1160,17 @@ namespace tft
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label17.ForeColor = System.Drawing.Color.DeepPink;
-            this.label17.Location = new System.Drawing.Point(422, 48);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(316, 38);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(138, 17);
+            this.label17.Size = new System.Drawing.Size(111, 13);
             this.label17.TabIndex = 68;
             this.label17.Text = "-------------";
             // 
-            // checkBox17
-            // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(477, 6);
-            this.checkBox17.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(59, 19);
-            this.checkBox17.TabIndex = 69;
-            this.checkBox17.Text = "cuda";
-            this.toolTip1.SetToolTip(this.checkBox17, "If an NVIDIA GPU is available, you can check the box to increase calculation spee" +
-        "d.");
-            this.checkBox17.UseVisualStyleBackColor = true;
-            this.checkBox17.CheckedChanged += new System.EventHandler(this.checkBox17_CheckedChanged);
-            // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(204, 7);
-            this.button14.Margin = new System.Windows.Forms.Padding(4);
+            this.button14.Location = new System.Drawing.Point(153, 6);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(148, 29);
+            this.button14.Size = new System.Drawing.Size(111, 23);
             this.button14.TabIndex = 71;
             this.button14.Text = "test";
             this.button14.UseVisualStyleBackColor = true;
@@ -1233,10 +1178,9 @@ namespace tft
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(127, -1);
-            this.button15.Margin = new System.Windows.Forms.Padding(4);
+            this.button15.Location = new System.Drawing.Point(95, -1);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(100, 29);
+            this.button15.Size = new System.Drawing.Size(75, 23);
             this.button15.TabIndex = 72;
             this.button15.Text = "Exclusive";
             this.button15.UseVisualStyleBackColor = true;
@@ -1245,10 +1189,9 @@ namespace tft
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 52);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 41);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(918, 305);
+            this.pictureBox1.Size = new System.Drawing.Size(686, 243);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 73;
             this.pictureBox1.TabStop = false;
@@ -1262,11 +1205,10 @@ namespace tft
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 390);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabControl1.Location = new System.Drawing.Point(0, 311);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(934, 390);
+            this.tabControl1.Size = new System.Drawing.Size(700, 313);
             this.tabControl1.TabIndex = 74;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -1276,11 +1218,10 @@ namespace tft
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.splitter1);
             this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(926, 361);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(692, 287);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "input";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1290,10 +1231,9 @@ namespace tft
             this.webView21.CreationProperties = null;
             this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
             this.webView21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView21.Location = new System.Drawing.Point(4, 52);
-            this.webView21.Margin = new System.Windows.Forms.Padding(4);
+            this.webView21.Location = new System.Drawing.Point(3, 41);
             this.webView21.Name = "webView21";
-            this.webView21.Size = new System.Drawing.Size(918, 305);
+            this.webView21.Size = new System.Drawing.Size(686, 243);
             this.webView21.TabIndex = 76;
             this.webView21.ZoomFactor = 1D;
             // 
@@ -1301,10 +1241,10 @@ namespace tft
             // 
             this.splitter1.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(4, 44);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitter1.Location = new System.Drawing.Point(3, 35);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(918, 8);
+            this.splitter1.Size = new System.Drawing.Size(686, 6);
             this.splitter1.TabIndex = 75;
             this.splitter1.TabStop = false;
             // 
@@ -1313,10 +1253,10 @@ namespace tft
             this.panel1.Controls.Add(this.button7);
             this.panel1.Controls.Add(this.linkLabel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(4, 4);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(918, 40);
+            this.panel1.Size = new System.Drawing.Size(686, 32);
             this.panel1.TabIndex = 74;
             // 
             // tabPage2
@@ -1325,11 +1265,10 @@ namespace tft
             this.tabPage2.Controls.Add(this.pictureBox2);
             this.tabPage2.Controls.Add(this.splitter2);
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(926, 361);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(692, 286);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "learning_rate";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1339,20 +1278,18 @@ namespace tft
             this.webView22.CreationProperties = null;
             this.webView22.DefaultBackgroundColor = System.Drawing.Color.White;
             this.webView22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView22.Location = new System.Drawing.Point(4, 48);
-            this.webView22.Margin = new System.Windows.Forms.Padding(4);
+            this.webView22.Location = new System.Drawing.Point(3, 39);
             this.webView22.Name = "webView22";
-            this.webView22.Size = new System.Drawing.Size(918, 309);
+            this.webView22.Size = new System.Drawing.Size(686, 244);
             this.webView22.TabIndex = 77;
             this.webView22.ZoomFactor = 1D;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Location = new System.Drawing.Point(4, 48);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox2.Location = new System.Drawing.Point(3, 39);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(918, 309);
+            this.pictureBox2.Size = new System.Drawing.Size(686, 244);
             this.pictureBox2.TabIndex = 74;
             this.pictureBox2.TabStop = false;
             // 
@@ -1360,10 +1297,10 @@ namespace tft
             // 
             this.splitter2.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter2.Location = new System.Drawing.Point(4, 46);
-            this.splitter2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitter2.Location = new System.Drawing.Point(3, 37);
+            this.splitter2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(918, 2);
+            this.splitter2.Size = new System.Drawing.Size(686, 2);
             this.splitter2.TabIndex = 76;
             this.splitter2.TabStop = false;
             // 
@@ -1372,10 +1309,10 @@ namespace tft
             this.panel2.Controls.Add(this.linkLabel4);
             this.panel2.Controls.Add(this.button8);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(4, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(918, 42);
+            this.panel2.Size = new System.Drawing.Size(686, 34);
             this.panel2.TabIndex = 75;
             // 
             // tabPage3
@@ -1383,10 +1320,9 @@ namespace tft
             this.tabPage3.Controls.Add(this.pictureBox3);
             this.tabPage3.Controls.Add(this.splitter3);
             this.tabPage3.Controls.Add(this.panel3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(926, 361);
+            this.tabPage3.Size = new System.Drawing.Size(692, 286);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "loss";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1394,20 +1330,19 @@ namespace tft
             // pictureBox3
             // 
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Location = new System.Drawing.Point(0, 40);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox3.Location = new System.Drawing.Point(0, 32);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(926, 321);
+            this.pictureBox3.Size = new System.Drawing.Size(692, 254);
             this.pictureBox3.TabIndex = 74;
             this.pictureBox3.TabStop = false;
             // 
             // splitter3
             // 
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter3.Location = new System.Drawing.Point(0, 38);
-            this.splitter3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitter3.Location = new System.Drawing.Point(0, 30);
+            this.splitter3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(926, 2);
+            this.splitter3.Size = new System.Drawing.Size(692, 2);
             this.splitter3.TabIndex = 76;
             this.splitter3.TabStop = false;
             // 
@@ -1417,9 +1352,9 @@ namespace tft
             this.panel3.Controls.Add(this.linkLabel5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(926, 38);
+            this.panel3.Size = new System.Drawing.Size(692, 30);
             this.panel3.TabIndex = 75;
             // 
             // tabPage4
@@ -1429,10 +1364,9 @@ namespace tft
             this.tabPage4.Controls.Add(this.pictureBox4);
             this.tabPage4.Controls.Add(this.splitter4);
             this.tabPage4.Controls.Add(this.panel4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(926, 361);
+            this.tabPage4.Size = new System.Drawing.Size(692, 286);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "predict";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1442,10 +1376,9 @@ namespace tft
             this.webView24.CreationProperties = null;
             this.webView24.DefaultBackgroundColor = System.Drawing.Color.White;
             this.webView24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView24.Location = new System.Drawing.Point(0, 46);
-            this.webView24.Margin = new System.Windows.Forms.Padding(4);
+            this.webView24.Location = new System.Drawing.Point(0, 36);
             this.webView24.Name = "webView24";
-            this.webView24.Size = new System.Drawing.Size(926, 315);
+            this.webView24.Size = new System.Drawing.Size(692, 250);
             this.webView24.TabIndex = 78;
             this.webView24.ZoomFactor = 1D;
             // 
@@ -1454,30 +1387,28 @@ namespace tft
             this.webView23.CreationProperties = null;
             this.webView23.DefaultBackgroundColor = System.Drawing.Color.White;
             this.webView23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView23.Location = new System.Drawing.Point(0, 46);
-            this.webView23.Margin = new System.Windows.Forms.Padding(4);
+            this.webView23.Location = new System.Drawing.Point(0, 36);
             this.webView23.Name = "webView23";
-            this.webView23.Size = new System.Drawing.Size(926, 315);
+            this.webView23.Size = new System.Drawing.Size(692, 250);
             this.webView23.TabIndex = 77;
             this.webView23.ZoomFactor = 1D;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox4.Location = new System.Drawing.Point(0, 46);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox4.Location = new System.Drawing.Point(0, 36);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(926, 315);
+            this.pictureBox4.Size = new System.Drawing.Size(692, 250);
             this.pictureBox4.TabIndex = 74;
             this.pictureBox4.TabStop = false;
             // 
             // splitter4
             // 
             this.splitter4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter4.Location = new System.Drawing.Point(0, 38);
-            this.splitter4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitter4.Location = new System.Drawing.Point(0, 30);
+            this.splitter4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter4.Name = "splitter4";
-            this.splitter4.Size = new System.Drawing.Size(926, 8);
+            this.splitter4.Size = new System.Drawing.Size(692, 6);
             this.splitter4.TabIndex = 76;
             this.splitter4.TabStop = false;
             // 
@@ -1487,9 +1418,9 @@ namespace tft
             this.panel4.Controls.Add(this.linkLabel1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(926, 38);
+            this.panel4.Size = new System.Drawing.Size(692, 30);
             this.panel4.TabIndex = 75;
             // 
             // tabPage5
@@ -1498,10 +1429,9 @@ namespace tft
             this.tabPage5.Controls.Add(this.pictureBox5);
             this.tabPage5.Controls.Add(this.splitter5);
             this.tabPage5.Controls.Add(this.panel5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(926, 361);
+            this.tabPage5.Size = new System.Drawing.Size(692, 286);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "predict+real";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1511,30 +1441,28 @@ namespace tft
             this.webView25.CreationProperties = null;
             this.webView25.DefaultBackgroundColor = System.Drawing.Color.White;
             this.webView25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webView25.Location = new System.Drawing.Point(0, 49);
-            this.webView25.Margin = new System.Windows.Forms.Padding(4);
+            this.webView25.Location = new System.Drawing.Point(0, 39);
             this.webView25.Name = "webView25";
-            this.webView25.Size = new System.Drawing.Size(926, 312);
+            this.webView25.Size = new System.Drawing.Size(692, 247);
             this.webView25.TabIndex = 77;
             this.webView25.ZoomFactor = 1D;
             // 
             // pictureBox5
             // 
             this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox5.Location = new System.Drawing.Point(0, 49);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox5.Location = new System.Drawing.Point(0, 39);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(926, 312);
+            this.pictureBox5.Size = new System.Drawing.Size(692, 247);
             this.pictureBox5.TabIndex = 74;
             this.pictureBox5.TabStop = false;
             // 
             // splitter5
             // 
             this.splitter5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter5.Location = new System.Drawing.Point(0, 41);
-            this.splitter5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitter5.Location = new System.Drawing.Point(0, 33);
+            this.splitter5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter5.Name = "splitter5";
-            this.splitter5.Size = new System.Drawing.Size(926, 8);
+            this.splitter5.Size = new System.Drawing.Size(692, 6);
             this.splitter5.TabIndex = 76;
             this.splitter5.TabStop = false;
             // 
@@ -1544,18 +1472,17 @@ namespace tft
             this.panel5.Controls.Add(this.linkLabel2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(926, 41);
+            this.panel5.Size = new System.Drawing.Size(692, 33);
             this.panel5.TabIndex = 75;
             // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.panel6);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(926, 361);
+            this.tabPage6.Size = new System.Drawing.Size(692, 286);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "measure";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1566,14 +1493,14 @@ namespace tft
             this.panel6.Controls.Add(this.pictureBox6);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(926, 361);
+            this.panel6.Size = new System.Drawing.Size(692, 286);
             this.panel6.TabIndex = 0;
             // 
             // pictureBox6
             // 
             this.pictureBox6.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(476, 258);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -1590,10 +1517,10 @@ namespace tft
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
-            this.tabControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabControl2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(934, 294);
+            this.tabControl2.Size = new System.Drawing.Size(700, 235);
             this.tabControl2.TabIndex = 75;
             // 
             // tabPage10
@@ -1611,10 +1538,10 @@ namespace tft
             this.tabPage10.Controls.Add(this.label7);
             this.tabPage10.Controls.Add(this.comboBox7);
             this.tabPage10.Controls.Add(this.label12);
-            this.tabPage10.Location = new System.Drawing.Point(4, 25);
-            this.tabPage10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(926, 265);
+            this.tabPage10.Size = new System.Drawing.Size(692, 209);
             this.tabPage10.TabIndex = 3;
             this.tabPage10.Text = "target column";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1635,35 +1562,35 @@ namespace tft
             this.tabPage9.Controls.Add(this.label5);
             this.tabPage9.Controls.Add(this.checkBox11);
             this.tabPage9.Controls.Add(this.checkBox1);
-            this.tabPage9.Location = new System.Drawing.Point(4, 25);
-            this.tabPage9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(926, 265);
+            this.tabPage9.Size = new System.Drawing.Size(692, 209);
             this.tabPage9.TabIndex = 2;
             this.tabPage9.Text = "parameter";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // numericUpDown6
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(136, 184);
-            this.numericUpDown6.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown6.Location = new System.Drawing.Point(102, 147);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(81, 22);
+            this.numericUpDown6.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown6.TabIndex = 41;
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.groupBox3);
             this.tabPage7.Controls.Add(this.groupBox1);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage7.Size = new System.Drawing.Size(926, 265);
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage7.Size = new System.Drawing.Size(692, 209);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Features ";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1671,11 +1598,11 @@ namespace tft
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.groupBox2);
-            this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage8.Size = new System.Drawing.Size(926, 265);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage8.Size = new System.Drawing.Size(692, 209);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "period";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1683,10 +1610,10 @@ namespace tft
             // tabPage11
             // 
             this.tabPage11.Controls.Add(this.textBox2);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
-            this.tabPage11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(926, 265);
+            this.tabPage11.Size = new System.Drawing.Size(692, 209);
             this.tabPage11.TabIndex = 4;
             this.tabPage11.Text = "log";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -1698,8 +1625,9 @@ namespace tft
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(980, 780);
+            this.panel7.Size = new System.Drawing.Size(735, 624);
             this.panel7.TabIndex = 76;
             // 
             // panel9
@@ -1712,9 +1640,10 @@ namespace tft
             this.panel9.Controls.Add(this.splitter7);
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(0, 97);
+            this.panel9.Location = new System.Drawing.Point(0, 78);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(980, 683);
+            this.panel9.Size = new System.Drawing.Size(735, 546);
             this.panel9.TabIndex = 1;
             // 
             // panel13
@@ -1723,17 +1652,19 @@ namespace tft
             this.panel13.Controls.Add(this.splitter13);
             this.panel13.Controls.Add(this.panel17);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel13.Location = new System.Drawing.Point(737, 0);
+            this.panel13.Location = new System.Drawing.Point(552, 0);
+            this.panel13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(240, 683);
+            this.panel13.Size = new System.Drawing.Size(180, 546);
             this.panel13.TabIndex = 6;
             // 
             // splitter13
             // 
             this.splitter13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter13.Location = new System.Drawing.Point(0, 35);
+            this.splitter13.Location = new System.Drawing.Point(0, 28);
+            this.splitter13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter13.Name = "splitter13";
-            this.splitter13.Size = new System.Drawing.Size(240, 3);
+            this.splitter13.Size = new System.Drawing.Size(180, 2);
             this.splitter13.TabIndex = 3;
             this.splitter13.TabStop = false;
             // 
@@ -1743,15 +1674,17 @@ namespace tft
             this.panel17.Controls.Add(this.label13);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel17.Location = new System.Drawing.Point(0, 0);
+            this.panel17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(240, 35);
+            this.panel17.Size = new System.Drawing.Size(180, 28);
             this.panel17.TabIndex = 2;
             // 
             // splitter9
             // 
-            this.splitter9.Location = new System.Drawing.Point(734, 0);
+            this.splitter9.Location = new System.Drawing.Point(550, 0);
+            this.splitter9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter9.Name = "splitter9";
-            this.splitter9.Size = new System.Drawing.Size(3, 683);
+            this.splitter9.Size = new System.Drawing.Size(2, 546);
             this.splitter9.TabIndex = 5;
             this.splitter9.TabStop = false;
             // 
@@ -1761,17 +1694,19 @@ namespace tft
             this.panel12.Controls.Add(this.splitter12);
             this.panel12.Controls.Add(this.panel16);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel12.Location = new System.Drawing.Point(493, 0);
+            this.panel12.Location = new System.Drawing.Point(369, 0);
+            this.panel12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(241, 683);
+            this.panel12.Size = new System.Drawing.Size(181, 546);
             this.panel12.TabIndex = 4;
             // 
             // splitter12
             // 
             this.splitter12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter12.Location = new System.Drawing.Point(0, 35);
+            this.splitter12.Location = new System.Drawing.Point(0, 28);
+            this.splitter12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter12.Name = "splitter12";
-            this.splitter12.Size = new System.Drawing.Size(241, 3);
+            this.splitter12.Size = new System.Drawing.Size(181, 2);
             this.splitter12.TabIndex = 3;
             this.splitter12.TabStop = false;
             // 
@@ -1781,15 +1716,17 @@ namespace tft
             this.panel16.Controls.Add(this.label14);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel16.Location = new System.Drawing.Point(0, 0);
+            this.panel16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(241, 35);
+            this.panel16.Size = new System.Drawing.Size(181, 28);
             this.panel16.TabIndex = 2;
             // 
             // splitter8
             // 
-            this.splitter8.Location = new System.Drawing.Point(490, 0);
+            this.splitter8.Location = new System.Drawing.Point(367, 0);
+            this.splitter8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter8.Name = "splitter8";
-            this.splitter8.Size = new System.Drawing.Size(3, 683);
+            this.splitter8.Size = new System.Drawing.Size(2, 546);
             this.splitter8.TabIndex = 3;
             this.splitter8.TabStop = false;
             // 
@@ -1799,17 +1736,19 @@ namespace tft
             this.panel11.Controls.Add(this.splitter11);
             this.panel11.Controls.Add(this.panel15);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(249, 0);
+            this.panel11.Location = new System.Drawing.Point(186, 0);
+            this.panel11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(241, 683);
+            this.panel11.Size = new System.Drawing.Size(181, 546);
             this.panel11.TabIndex = 2;
             // 
             // splitter11
             // 
             this.splitter11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter11.Location = new System.Drawing.Point(0, 35);
+            this.splitter11.Location = new System.Drawing.Point(0, 28);
+            this.splitter11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter11.Name = "splitter11";
-            this.splitter11.Size = new System.Drawing.Size(241, 3);
+            this.splitter11.Size = new System.Drawing.Size(181, 2);
             this.splitter11.TabIndex = 3;
             this.splitter11.TabStop = false;
             // 
@@ -1819,15 +1758,17 @@ namespace tft
             this.panel15.Controls.Add(this.label11);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(241, 35);
+            this.panel15.Size = new System.Drawing.Size(181, 28);
             this.panel15.TabIndex = 2;
             // 
             // splitter7
             // 
-            this.splitter7.Location = new System.Drawing.Point(246, 0);
+            this.splitter7.Location = new System.Drawing.Point(184, 0);
+            this.splitter7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter7.Name = "splitter7";
-            this.splitter7.Size = new System.Drawing.Size(3, 683);
+            this.splitter7.Size = new System.Drawing.Size(2, 546);
             this.splitter7.TabIndex = 1;
             this.splitter7.TabStop = false;
             // 
@@ -1838,16 +1779,18 @@ namespace tft
             this.panel10.Controls.Add(this.panel14);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(246, 683);
+            this.panel10.Size = new System.Drawing.Size(184, 546);
             this.panel10.TabIndex = 0;
             // 
             // splitter10
             // 
             this.splitter10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter10.Location = new System.Drawing.Point(0, 35);
+            this.splitter10.Location = new System.Drawing.Point(0, 28);
+            this.splitter10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter10.Name = "splitter10";
-            this.splitter10.Size = new System.Drawing.Size(246, 3);
+            this.splitter10.Size = new System.Drawing.Size(184, 2);
             this.splitter10.TabIndex = 1;
             this.splitter10.TabStop = false;
             // 
@@ -1858,17 +1801,19 @@ namespace tft
             this.panel14.Controls.Add(this.label16);
             this.panel14.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel14.Location = new System.Drawing.Point(0, 0);
+            this.panel14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(246, 35);
+            this.panel14.Size = new System.Drawing.Size(184, 28);
             this.panel14.TabIndex = 0;
             // 
             // splitter6
             // 
             this.splitter6.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitter6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter6.Location = new System.Drawing.Point(0, 87);
+            this.splitter6.Location = new System.Drawing.Point(0, 70);
+            this.splitter6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter6.Name = "splitter6";
-            this.splitter6.Size = new System.Drawing.Size(980, 10);
+            this.splitter6.Size = new System.Drawing.Size(735, 8);
             this.splitter6.TabIndex = 2;
             this.splitter6.TabStop = false;
             // 
@@ -1883,15 +1828,17 @@ namespace tft
             this.panel8.Controls.Add(this.checkBox17);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(980, 87);
+            this.panel8.Size = new System.Drawing.Size(735, 70);
             this.panel8.TabIndex = 0;
             // 
             // splitter14
             // 
-            this.splitter14.Location = new System.Drawing.Point(980, 0);
+            this.splitter14.Location = new System.Drawing.Point(735, 0);
+            this.splitter14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter14.Name = "splitter14";
-            this.splitter14.Size = new System.Drawing.Size(10, 780);
+            this.splitter14.Size = new System.Drawing.Size(8, 624);
             this.splitter14.TabIndex = 77;
             this.splitter14.TabStop = false;
             // 
@@ -1903,17 +1850,19 @@ namespace tft
             this.panel18.Controls.Add(this.splitter15);
             this.panel18.Controls.Add(this.panel19);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel18.Location = new System.Drawing.Point(990, 0);
+            this.panel18.Location = new System.Drawing.Point(743, 0);
+            this.panel18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(934, 780);
+            this.panel18.Size = new System.Drawing.Size(700, 624);
             this.panel18.TabIndex = 78;
             // 
             // splitter16
             // 
             this.splitter16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter16.Location = new System.Drawing.Point(0, 382);
+            this.splitter16.Location = new System.Drawing.Point(0, 305);
+            this.splitter16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter16.Name = "splitter16";
-            this.splitter16.Size = new System.Drawing.Size(934, 8);
+            this.splitter16.Size = new System.Drawing.Size(700, 6);
             this.splitter16.TabIndex = 3;
             this.splitter16.TabStop = false;
             // 
@@ -1923,17 +1872,19 @@ namespace tft
             this.panel20.Controls.Add(this.label15);
             this.panel20.Controls.Add(this.button14);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel20.Location = new System.Drawing.Point(0, 302);
+            this.panel20.Location = new System.Drawing.Point(0, 241);
+            this.panel20.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(934, 80);
+            this.panel20.Size = new System.Drawing.Size(700, 64);
             this.panel20.TabIndex = 2;
             // 
             // splitter15
             // 
             this.splitter15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter15.Location = new System.Drawing.Point(0, 294);
+            this.splitter15.Location = new System.Drawing.Point(0, 235);
+            this.splitter15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitter15.Name = "splitter15";
-            this.splitter15.Size = new System.Drawing.Size(934, 8);
+            this.splitter15.Size = new System.Drawing.Size(700, 6);
             this.splitter15.TabIndex = 1;
             this.splitter15.TabStop = false;
             // 
@@ -1942,19 +1893,105 @@ namespace tft
             this.panel19.Controls.Add(this.tabControl2);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel19.Location = new System.Drawing.Point(0, 0);
+            this.panel19.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(934, 294);
+            this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
+            // 
+            // checkBox18
+            // 
+            this.checkBox18.AutoSize = true;
+            this.checkBox18.Location = new System.Drawing.Point(6, 68);
+            this.checkBox18.Name = "checkBox18";
+            this.checkBox18.Size = new System.Drawing.Size(42, 16);
+            this.checkBox18.TabIndex = 28;
+            this.checkBox18.Text = "lag";
+            this.checkBox18.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.checkBox21);
+            this.groupBox3.Controls.Add(this.checkBox20);
+            this.groupBox3.Controls.Add(this.checkBox19);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.checkBox18);
+            this.groupBox3.Controls.Add(this.numericUpDown7);
+            this.groupBox3.Location = new System.Drawing.Point(273, 16);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(223, 161);
+            this.groupBox3.TabIndex = 43;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "basic statistic";
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.Location = new System.Drawing.Point(6, 35);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(62, 19);
+            this.numericUpDown7.TabIndex = 0;
+            this.numericUpDown7.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 17);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(48, 12);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "window";
+            // 
+            // checkBox19
+            // 
+            this.checkBox19.AutoSize = true;
+            this.checkBox19.Location = new System.Drawing.Point(6, 90);
+            this.checkBox19.Name = "checkBox19";
+            this.checkBox19.Size = new System.Drawing.Size(55, 16);
+            this.checkBox19.TabIndex = 29;
+            this.checkBox19.Text = "mean";
+            this.checkBox19.UseVisualStyleBackColor = true;
+            // 
+            // checkBox20
+            // 
+            this.checkBox20.AutoSize = true;
+            this.checkBox20.Location = new System.Drawing.Point(6, 112);
+            this.checkBox20.Name = "checkBox20";
+            this.checkBox20.Size = new System.Drawing.Size(136, 16);
+            this.checkBox20.TabIndex = 30;
+            this.checkBox20.Text = "standard deviation";
+            this.checkBox20.UseVisualStyleBackColor = true;
+            // 
+            // checkBox21
+            // 
+            this.checkBox21.AutoSize = true;
+            this.checkBox21.Location = new System.Drawing.Point(6, 134);
+            this.checkBox21.Name = "checkBox21";
+            this.checkBox21.Size = new System.Drawing.Size(127, 16);
+            this.checkBox21.TabIndex = 31;
+            this.checkBox21.Text = "quantile(25%,75%)";
+            this.checkBox21.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 780);
+            this.ClientSize = new System.Drawing.Size(1443, 624);
             this.Controls.Add(this.panel18);
             this.Controls.Add(this.splitter14);
             this.Controls.Add(this.panel7);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = " Probabilistic Time Series Forecasts Using the TFT, an Attention-Based Neural Net" +
     "work(Temporal Fusion Transformer)";
@@ -2026,6 +2063,9 @@ namespace tft
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             this.panel19.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2171,6 +2211,13 @@ namespace tft
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Splitter splitter15;
         private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox checkBox21;
+        private System.Windows.Forms.CheckBox checkBox20;
+        private System.Windows.Forms.CheckBox checkBox19;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.NumericUpDown numericUpDown7;
     }
 }
 

@@ -20,6 +20,12 @@
 # use_date_am = T
 # use_date_pm = T
 
+# window_size = 7
+# use_date_lag = TRUE
+# use_date_mean = TRUE
+# use_date_sd = TRUE
+# use_date_quantile  = TRUE
+
 line_color_bule ="#00AFC5"
 line_color_red ="#FF7042"
 
@@ -123,8 +129,18 @@ tft_data_compact <- function(input_df, step_unit="week")
 }
 
 
-tft_data_split <- function(input_df, unit, lookback, pred_len, validation=F)
+library(slider)
+quantile25 <- function(x)
 {
+	return (as.numeric(quantile(x)[2]))
+}
+quantile75 <- function(x)
+{
+	return (as.numeric(quantile(x)[4]))
+}
+tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, validation=F)
+{
+	#print(pred_len)
 	train <- NULL
 	valid <- NULL
 	test <- NULL
@@ -132,6 +148,7 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, validation=F)
 	tidx <- input_df %>%  group_by(key) %>%  mutate(tidx = row_number())
 	tidx <- tidx$tidx
 	
+
 	data_tbl <- input_df
 	if ( unit == "hour" )
 	{
@@ -253,28 +270,78 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, validation=F)
 	    data_tbl$self_adding_date_year = as.factor(lubridate::year(input_df$date))
 	    data_tbl$self_adding_date_quarter = as.factor(lubridate::quarter(input_df$date))
 	}
-   if (!use_date_year && !("self_adding_date_year" %in% names(data_tbl))) data_tbl$self_adding_date_year <- NULL
-   if (!use_date_month && !("self_adding_date_month" %in% names(data_tbl))) data_tbl$self_adding_date_month <- NULL
-   if (!use_date_week && !("self_adding_date_week" %in% names(data_tbl))) data_tbl$self_adding_date_week <- NULL
-   if (!use_date_wday && !("self_adding_date_wday" %in% names(data_tbl))) data_tbl$self_adding_date_wday <- NULL
-   if (!use_date_day && !("self_adding_date_day" %in% names(data_tbl))) data_tbl$self_adding_date_day <- NULL
-   if (!use_date_yday && !("self_adding_date_yday" %in% names(data_tbl))) data_tbl$self_adding_date_yday <- NULL
-   if (!use_date_hour && !("self_adding_date_hour" %in% names(data_tbl))) data_tbl$self_adding_date_hour <- NULL
-   if (!use_date_am && !("self_adding_date_am" %in% names(data_tbl))) data_tbl$self_adding_date_am <- NULL
-   if (!use_date_pm && !("self_adding_date_pm" %in% names(data_tbl))) data_tbl$self_adding_date_pm <- NULL
-   if (!use_date_quarter && !("self_adding_date_quarter" %in% names(data_tbl))) data_tbl$self_adding_date_quarter <- NULL
+   if (!use_date_year && ("self_adding_date_year" %in% names(data_tbl))) data_tbl$self_adding_date_year <- NULL
+   if (!use_date_month && ("self_adding_date_month" %in% names(data_tbl))) data_tbl$self_adding_date_month <- NULL
+   if (!use_date_week && ("self_adding_date_week" %in% names(data_tbl))) data_tbl$self_adding_date_week <- NULL
+   if (!use_date_wday && ("self_adding_date_wday" %in% names(data_tbl))) data_tbl$self_adding_date_wday <- NULL
+   if (!use_date_day && ("self_adding_date_day" %in% names(data_tbl))) data_tbl$self_adding_date_day <- NULL
+   if (!use_date_yday && ("self_adding_date_yday" %in% names(data_tbl))) data_tbl$self_adding_date_yday <- NULL
+   if (!use_date_hour && ("self_adding_date_hour" %in% names(data_tbl))) data_tbl$self_adding_date_hour <- NULL
+   if (!use_date_am && ("self_adding_date_am" %in% names(data_tbl))) data_tbl$self_adding_date_am <- NULL
+   if (!use_date_pm && ("self_adding_date_pm" %in% names(data_tbl))) data_tbl$self_adding_date_pm <- NULL
+   if (!use_date_quarter && ("self_adding_date_quarter" %in% names(data_tbl))) data_tbl$self_adding_date_quarter <- NULL
    
-   if (!use_date_sincosY &&  !("self_adding_date_sin_Y" %in% names(data_tbl))) data_tbl$self_adding_date_sin_Y <- NULL
-   if (!use_date_sincosY &&  !("self_adding_date_cos_Y" %in% names(data_tbl))) data_tbl$self_adding_date_cos_Y <- NULL
-   if (!use_date_sincosM &&  !("self_adding_date_sin_M" %in% names(data_tbl))) data_tbl$self_adding_date_sin_M <- NULL
-   if (!use_date_sincosM &&  !("self_adding_date_cos_M" %in% names(data_tbl))) data_tbl$self_adding_date_cos_M <- NULL
-   if (!use_date_sincosW &&  !("self_adding_date_sin_W" %in% names(data_tbl))) data_tbl$self_adding_date_sin_W <- NULL
-   if (!use_date_sincosW &&  !("self_adding_date_cos_W" %in% names(data_tbl))) data_tbl$self_adding_date_cos_W <- NULL
-   if (!use_date_sincosD &&  !("self_adding_date_sin_D" %in% names(data_tbl))) data_tbl$self_adding_date_sin_D <- NULL
-   if (!use_date_sincosD &&  !("self_adding_date_cos_D" %in% names(data_tbl))) data_tbl$self_adding_date_cos_D <- NULL
+   if (!use_date_sincosY &&  ("self_adding_date_sin_Y" %in% names(data_tbl))) data_tbl$self_adding_date_sin_Y <- NULL
+   if (!use_date_sincosY &&  ("self_adding_date_cos_Y" %in% names(data_tbl))) data_tbl$self_adding_date_cos_Y <- NULL
+   if (!use_date_sincosM &&  ("self_adding_date_sin_M" %in% names(data_tbl))) data_tbl$self_adding_date_sin_M <- NULL
+   if (!use_date_sincosM &&  ("self_adding_date_cos_M" %in% names(data_tbl))) data_tbl$self_adding_date_cos_M <- NULL
+   if (!use_date_sincosW &&  ("self_adding_date_sin_W" %in% names(data_tbl))) data_tbl$self_adding_date_sin_W <- NULL
+   if (!use_date_sincosW &&  ("self_adding_date_cos_W" %in% names(data_tbl))) data_tbl$self_adding_date_cos_W <- NULL
+   if (!use_date_sincosD &&  ("self_adding_date_sin_D" %in% names(data_tbl))) data_tbl$self_adding_date_sin_D <- NULL
+   if (!use_date_sincosD &&  ("self_adding_date_cos_D" %in% names(data_tbl))) data_tbl$self_adding_date_cos_D <- NULL
 	
-			
+	#print(window_size)
+	#print(pred_len)
+	if ( window_size > pred_len )
+	{
+	    if ( use_date_lag )
+	    {
+	    	data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_lag = lag(target, n=window_size ))
+	    	data_tbl$origin__ <- NULL
+		}
+	    if ( use_date_mean )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>% mutate(self_adding_date_mean =  slide_vec(.x = target, .f = mean, .before = window_size))
+		}
+	    if ( use_date_sd )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_sd =  slide_vec(.x = target, .f = sd, .before = window_size))
+		}
+		data_tbl <- data_tbl %>%  group_by(key) %>%
+	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
+
+	    if ( use_date_quantile )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_quantile25 =  slide_vec(.x = target, .f = quantile25, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_quantile75 =  slide_vec(.x = target, .f = quantile75, .before = window_size))
+		}
+	}else
+	{
+	    if ( use_date_lag )
+	    {
+	    	data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_lag = lag(target, n=window_size ))
+	    	data_tbl$origin__ <- NULL
+		}
+	    if ( use_date_mean )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>% mutate(self_adding_statistics_mean =  slide_vec(.x = target, .f = mean, .before = window_size))
+		}
+	    if ( use_date_sd )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_sd =  slide_vec(.x = target, .f = sd, .before = window_size))
+		}
+		data_tbl <- data_tbl %>%  group_by(key) %>%
+	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
+
+	    if ( use_date_quantile )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_quantile25 =  slide_vec(.x = target, .f = quantile25, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_quantile75 =  slide_vec(.x = target, .f = quantile75, .before = window_size))
+		}
+	}
+	
 	head(data_tbl)
+	str(data_tbl)
 	out.file <- file("tmp_tft_data_split.r", open = "w")
 
 	last_date <- max(data_tbl$date)
