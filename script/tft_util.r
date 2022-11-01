@@ -294,49 +294,49 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	#print(pred_len)
 	if ( window_size > pred_len )
 	{
-	    if ( use_date_lag )
-	    {
-	    	data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_lag = lag(target, n=window_size ))
-	    	data_tbl$origin__ <- NULL
-		}
+	    data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_lag = lag(target, n=window_size ))
 	    if ( use_date_mean )
 	    {
-			data_tbl<-data_tbl %>%  group_by(key) %>% mutate(self_adding_date_mean =  slide_vec(.x = target, .f = mean, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>% mutate(self_adding_date_mean =  slide_vec(.x = self_adding_date_lag, .f = mean, .before = window_size))
 		}
 	    if ( use_date_sd )
 	    {
-			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_sd =  slide_vec(.x = target, .f = sd, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_sd =  slide_vec(.x = self_adding_date_lag, .f = sd, .before = window_size))
 		}
 		data_tbl <- data_tbl %>%  group_by(key) %>%
 	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
 
 	    if ( use_date_quantile )
 	    {
-			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_quantile25 =  slide_vec(.x = target, .f = quantile25, .before = window_size))
-			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_quantile75 =  slide_vec(.x = target, .f = quantile75, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_quantile25 =  slide_vec(.x = self_adding_date_lag, .f = quantile25, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_quantile75 =  slide_vec(.x = self_adding_date_lag, .f = quantile75, .before = window_size))
+		}
+	    if ( !use_date_lag )
+	    {
+	    	data_tbl$self_adding_statistics_lag <- NULL
 		}
 	}else
 	{
-	    if ( use_date_lag )
-	    {
-	    	data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_lag = lag(target, n=window_size ))
-	    	data_tbl$origin__ <- NULL
-		}
+	    data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_lag = lag(target, n=window_size ))
 	    if ( use_date_mean )
 	    {
-			data_tbl<-data_tbl %>%  group_by(key) %>% mutate(self_adding_statistics_mean =  slide_vec(.x = target, .f = mean, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>% mutate(self_adding_statistics_mean =  slide_vec(.x = self_adding_statistics_lag, .f = mean, .before = window_size))
 		}
 	    if ( use_date_sd )
 	    {
-			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_sd =  slide_vec(.x = target, .f = sd, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_sd =  slide_vec(.x = self_adding_statistics_lag, .f = sd, .before = window_size))
 		}
 		data_tbl <- data_tbl %>%  group_by(key) %>%
 	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
 
 	    if ( use_date_quantile )
 	    {
-			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_quantile25 =  slide_vec(.x = target, .f = quantile25, .before = window_size))
-			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_quantile75 =  slide_vec(.x = target, .f = quantile75, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_quantile25 =  slide_vec(.x = self_adding_statistics_lag, .f = quantile25, .before = window_size))
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_quantile75 =  slide_vec(.x = self_adding_statistics_lag, .f = quantile75, .before = window_size))
+		}
+	    if ( !use_date_lag )
+	    {
+	    	data_tbl$self_adding_statistics_lag <- NULL
 		}
 	}
 	

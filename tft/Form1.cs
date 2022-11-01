@@ -1474,6 +1474,10 @@ namespace tft
             {
                 File.Delete(base_name + "_predict.png");
             }
+            if (File.Exists(base_name + "_predict_real.png"))
+            {
+                File.Delete(base_name + "_predict_real.png");
+            }
             if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_p.html"))
             {
                 File.Delete(work_dir + "\\tft_" + base_name + "_p.html");
@@ -1903,6 +1907,7 @@ namespace tft
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string webpath = "";
             if (tabControl1.SelectedIndex == 0)
             {
                 pictureBox1.Image = null;
@@ -1912,8 +1917,19 @@ namespace tft
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 pictureBox1.Refresh();
+                webpath = work_dir + "/tft_" + base_name + "_p_input_plot.html";
+                if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_p_input_plot.html"))
+                {
+                    webpath = webpath.Replace("\\", "/").Replace("//", "/");
+                    try
+                    {
+                        webView21.Source = new Uri(webpath);
+                        webView21.Refresh();
+                    }
+                    catch { }
+                }
             }
-            if(tabControl1.SelectedIndex == 1)
+            if (tabControl1.SelectedIndex == 1)
             {
                 pictureBox2.Image = null;
                 if (System.IO.File.Exists(base_name + "_p_learn_rate_plot.png"))
@@ -1922,6 +1938,17 @@ namespace tft
                     pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 pictureBox2.Refresh();
+                webpath = work_dir + "/tft_" + base_name + "_p_learn_rate_plot.html";
+                if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_p_learn_rate_plot.html"))
+                {
+                    webpath = webpath.Replace("\\", "/").Replace("//", "/");
+                    try
+                    {
+                        webView22.Source = new Uri(webpath);
+                        webView22.Refresh();
+                    }
+                    catch { }
+                }
             }
             if (tabControl1.SelectedIndex == 2)
             {
@@ -1943,6 +1970,17 @@ namespace tft
                     pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 pictureBox4.Refresh();
+                webpath = work_dir + "/tft_" + base_name + "_plt0.html";
+                if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_plt0.html"))
+                {
+                    webpath = webpath.Replace("\\", "/").Replace("//", "/");
+                    try
+                    {
+                        webView24.Source = new Uri(webpath);
+                        webView24.Refresh();
+                    }
+                    catch { }
+                }
             }
             if (tabControl1.SelectedIndex == 4)
             {
@@ -1953,6 +1991,17 @@ namespace tft
                     pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 pictureBox5.Refresh();
+                webpath = work_dir + "/tft_" + base_name + "_p.html";
+                if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_p.html"))
+                {
+                    webpath = webpath.Replace("\\", "/").Replace("//", "/");
+                    try
+                    {
+                        webView25.Source = new Uri(webpath);
+                        webView25.Refresh();
+                    }
+                    catch { }
+                }
             }
             if ( tabControl1.SelectedIndex == 5)
             {
@@ -1976,6 +2025,29 @@ namespace tft
         private void checkBox17_CheckedChanged(object sender, EventArgs e)
         {
             comboBox6.Enabled = checkBox17.Checked;
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (File.Exists("tft_predict_measure_" + base_name + ".png"))
+            {
+                interactivePlot plot = new interactivePlot();
+                try
+                {
+                    plot.pictureBox1.Image = null;
+                    plot.pictureBox1.Image = interactivePlot.CreateImage("tft_predict_measure_" + base_name + ".png");
+                    plot.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+
+                    pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
+                }
+                catch { }
+                plot.Show();
+            }
         }
 
         private void button9_Click(object sender, EventArgs e)
