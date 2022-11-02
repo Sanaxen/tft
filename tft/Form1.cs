@@ -1433,24 +1433,9 @@ namespace tft
             execute(file);
         }
 
-
-        private void button2_Click_1(object sender, EventArgs e)
+        void clear()
         {
-            if ( comboBox3.Text == "")
-            {
-                MessageBox.Show("time_colname");
-                return;
-            }
-            if (comboBox3.Text == "")
-            {
-                MessageBox.Show("target_colname");
-                return;
-            }
-
-            if (checkBox11.Checked) button8.Enabled = true;
-            button7.Enabled = true;
-
-            if ( File.Exists("tft_train_errorLog_"+base_name+".txt"))
+            if (File.Exists("tft_train_errorLog_" + base_name + ".txt"))
             {
                 File.Delete("tft_train_errorLog_" + base_name + ".txt");
             }
@@ -1478,6 +1463,18 @@ namespace tft
             {
                 File.Delete(base_name + "_predict_real.png");
             }
+            if (File.Exists(base_name + "_p_learn_rate_plot.png"))
+            {
+                File.Delete(base_name + "_p_learn_rate_plot.png");
+            }
+            if (File.Exists(base_name + "_p_input_plot.png"))
+            {
+                File.Delete(base_name + "_p_input_plot.png");
+            }
+            if (File.Exists(base_name + "_fitted_plot.png"))
+            {
+                File.Delete(base_name + "_fitted_plot.png");
+            }
             if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_p.html"))
             {
                 File.Delete(work_dir + "\\tft_" + base_name + "_p.html");
@@ -1494,6 +1491,24 @@ namespace tft
             {
                 File.Delete(work_dir + "\\tft_" + base_name + "_p.html");
             }
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if ( comboBox3.Text == "")
+            {
+                MessageBox.Show("time_colname");
+                return;
+            }
+            if (comboBox3.Text == "")
+            {
+                MessageBox.Show("target_colname");
+                return;
+            }
+
+            if (checkBox11.Checked) button8.Enabled = true;
+            button7.Enabled = true;
+
+            clear();
 
             plot_time_unit = comboBox2.Text;
             label17.Text = "";

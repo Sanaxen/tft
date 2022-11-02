@@ -692,6 +692,7 @@ namespace tft
             // 
             this.comboBox7.FormattingEnabled = true;
             this.comboBox7.Items.AddRange(new object[] {
+            "",
             "year",
             "month",
             "week",
@@ -699,7 +700,7 @@ namespace tft
             "hour",
             "minute",
             "second"});
-            this.comboBox7.Location = new System.Drawing.Point(305, 130);
+            this.comboBox7.Location = new System.Drawing.Point(313, 130);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(62, 20);
             this.comboBox7.TabIndex = 38;
@@ -1323,7 +1324,7 @@ namespace tft
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(692, 286);
+            this.tabPage3.Size = new System.Drawing.Size(692, 287);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "loss";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1333,7 +1334,7 @@ namespace tft
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox3.Location = new System.Drawing.Point(0, 32);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(692, 254);
+            this.pictureBox3.Size = new System.Drawing.Size(692, 255);
             this.pictureBox3.TabIndex = 74;
             this.pictureBox3.TabStop = false;
             // 
@@ -1432,7 +1433,7 @@ namespace tft
             this.tabPage5.Controls.Add(this.panel5);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(692, 286);
+            this.tabPage5.Size = new System.Drawing.Size(692, 287);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "predict+real";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1444,7 +1445,7 @@ namespace tft
             this.webView25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webView25.Location = new System.Drawing.Point(0, 39);
             this.webView25.Name = "webView25";
-            this.webView25.Size = new System.Drawing.Size(692, 247);
+            this.webView25.Size = new System.Drawing.Size(692, 248);
             this.webView25.TabIndex = 77;
             this.webView25.ZoomFactor = 1D;
             // 
@@ -1453,7 +1454,7 @@ namespace tft
             this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox5.Location = new System.Drawing.Point(0, 39);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(692, 247);
+            this.pictureBox5.Size = new System.Drawing.Size(692, 248);
             this.pictureBox5.TabIndex = 74;
             this.pictureBox5.TabStop = false;
             // 
