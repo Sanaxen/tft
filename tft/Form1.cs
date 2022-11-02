@@ -2029,11 +2029,6 @@ namespace tft
 
         private void button16_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button18_Click(object sender, EventArgs e)
-        {
             if (File.Exists("tft_predict_measure_" + base_name + ".png"))
             {
                 interactivePlot plot = new interactivePlot();
@@ -2048,6 +2043,10 @@ namespace tft
                 catch { }
                 plot.Show();
             }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
         }
 
         private void button9_Click(object sender, EventArgs e)

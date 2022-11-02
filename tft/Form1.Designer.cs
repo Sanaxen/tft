@@ -177,6 +177,7 @@ namespace tft
             this.checkBox19 = new System.Windows.Forms.CheckBox();
             this.checkBox20 = new System.Windows.Forms.CheckBox();
             this.checkBox21 = new System.Windows.Forms.CheckBox();
+            this.button16 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -1268,7 +1269,7 @@ namespace tft
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(692, 286);
+            this.tabPage2.Size = new System.Drawing.Size(692, 287);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "learning_rate";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1280,7 +1281,7 @@ namespace tft
             this.webView22.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webView22.Location = new System.Drawing.Point(3, 39);
             this.webView22.Name = "webView22";
-            this.webView22.Size = new System.Drawing.Size(686, 244);
+            this.webView22.Size = new System.Drawing.Size(686, 245);
             this.webView22.TabIndex = 77;
             this.webView22.ZoomFactor = 1D;
             // 
@@ -1289,7 +1290,7 @@ namespace tft
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Location = new System.Drawing.Point(3, 39);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(686, 244);
+            this.pictureBox2.Size = new System.Drawing.Size(686, 245);
             this.pictureBox2.TabIndex = 74;
             this.pictureBox2.TabStop = false;
             // 
@@ -1366,7 +1367,7 @@ namespace tft
             this.tabPage4.Controls.Add(this.panel4);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(692, 286);
+            this.tabPage4.Size = new System.Drawing.Size(692, 287);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "predict";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1378,7 +1379,7 @@ namespace tft
             this.webView24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webView24.Location = new System.Drawing.Point(0, 36);
             this.webView24.Name = "webView24";
-            this.webView24.Size = new System.Drawing.Size(692, 250);
+            this.webView24.Size = new System.Drawing.Size(692, 251);
             this.webView24.TabIndex = 78;
             this.webView24.ZoomFactor = 1D;
             // 
@@ -1389,7 +1390,7 @@ namespace tft
             this.webView23.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webView23.Location = new System.Drawing.Point(0, 36);
             this.webView23.Name = "webView23";
-            this.webView23.Size = new System.Drawing.Size(692, 250);
+            this.webView23.Size = new System.Drawing.Size(692, 251);
             this.webView23.TabIndex = 77;
             this.webView23.ZoomFactor = 1D;
             // 
@@ -1398,7 +1399,7 @@ namespace tft
             this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox4.Location = new System.Drawing.Point(0, 36);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(692, 250);
+            this.pictureBox4.Size = new System.Drawing.Size(692, 251);
             this.pictureBox4.TabIndex = 74;
             this.pictureBox4.TabStop = false;
             // 
@@ -1482,7 +1483,7 @@ namespace tft
             this.tabPage6.Controls.Add(this.panel6);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(692, 286);
+            this.tabPage6.Size = new System.Drawing.Size(692, 287);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "measure";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1490,12 +1491,13 @@ namespace tft
             // panel6
             // 
             this.panel6.AutoScroll = true;
+            this.panel6.Controls.Add(this.button16);
             this.panel6.Controls.Add(this.pictureBox6);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(692, 286);
+            this.panel6.Size = new System.Drawing.Size(692, 287);
             this.panel6.TabIndex = 0;
             // 
             // pictureBox6
@@ -1984,6 +1986,16 @@ namespace tft
             this.checkBox21.Text = "quantile(25%,75%)";
             this.checkBox21.UseVisualStyleBackColor = true;
             // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(3, 3);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 75;
+            this.button16.Text = "button16";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2218,6 +2230,7 @@ namespace tft
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox checkBox18;
         private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.Button button16;
     }
 }
 
