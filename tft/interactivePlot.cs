@@ -25,7 +25,7 @@ namespace tft
             }
             catch (Exception)
             {
-                MessageBox.Show("WebView2ランタイムがインストールされていない可能性があります。", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("The WebView2 runtime may not be installed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 //this.Close();
             }
         }

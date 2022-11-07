@@ -52,8 +52,23 @@ namespace tft
             {
                 RlibPath = sb.ToString().Replace("\\", "/");
             }
+            InitializeAsync();
         }
-
+        async void InitializeAsync()
+        {
+            try
+            {
+                await webView21.EnsureCoreWebView2Async(null);
+                await webView22.EnsureCoreWebView2Async(null);
+                await webView24.EnsureCoreWebView2Async(null);
+                await webView25.EnsureCoreWebView2Async(null);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The WebView2 runtime may not be installed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+            }
+        }
         public static System.Drawing.Image CreateImage(string filename)
         {
             System.IO.FileStream fs = new System.IO.FileStream(
@@ -72,6 +87,46 @@ namespace tft
         public string link1, link2, link3, link4, link5;
         ListBox colname_list = new ListBox();
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+
+        void clearPlot()
+        {
+            pictureBox1.Image = null;
+            pictureBox2.Image = null;
+            pictureBox3.Image = null;
+            pictureBox4.Image = null;
+            pictureBox5.Image = null;
+            pictureBox6.Image = null;
+            pictureBox1.Refresh();
+            pictureBox2.Refresh();
+            pictureBox3.Refresh();
+            pictureBox4.Refresh();
+            pictureBox5.Refresh();
+            pictureBox6.Refresh();
+            try
+            {
+                //webView21.Source = new Uri("about:blank");
+                //webView22.Source = new Uri("about:blank");
+                //webView24.Source = new Uri("about:blank");
+                //webView25.Source = new Uri("about:blank");
+                //if (webView21.CoreWebView2 != null)
+                //{
+                //    webView21.CoreWebView2.Navigate("about:blank");
+                //}
+                //if (webView22.CoreWebView2 != null)
+                //{
+                //    webView22.CoreWebView2.Navigate("about:blank");
+                //}
+                //if (webView24.CoreWebView2 != null)
+                //{
+                //    webView24.CoreWebView2.Navigate("about:blank");
+                //}
+                //if (webView25.CoreWebView2 != null)
+                //{
+                //    webView25.CoreWebView2.Navigate("about:blank");
+                //}
+            }
+            catch { }
+        }
 
         void Plot()
         {
@@ -119,6 +174,15 @@ namespace tft
                 }
                 catch { }
             }
+            try
+            {
+                //webView21.CoreWebView2.Navigate("about:blank");
+                //webView22.CoreWebView2.Navigate("about:blank");
+                //webView24.CoreWebView2.Navigate("about:blank");
+                //webView25.CoreWebView2.Navigate("about:blank");
+
+            }
+            catch { }
             if ( true )
             {
                 string webpath = work_dir + "/tft_" + base_name + "_p_input_plot.html";
@@ -128,6 +192,12 @@ namespace tft
                     try
                     {
                         webView21.Source = new Uri(webpath);
+                        if (webView21.CoreWebView2 != null)
+                        {
+                            //webView21.CoreWebView2.Navigate(webpath);
+                        }
+                        //webView21.Reload();
+                        webView21.Update();
                         webView21.Refresh();
                     }
                     catch { }
@@ -139,6 +209,12 @@ namespace tft
                     try
                     {
                         webView22.Source = new Uri(webpath);
+                        if (webView22.CoreWebView2 != null)
+                        {
+                            //webView22.CoreWebView2.Navigate(webpath);
+                        }
+                        //webView22.Reload();
+                        webView22.Update();
                         webView22.Refresh();
                     }
                     catch { }
@@ -150,6 +226,12 @@ namespace tft
                     try
                     {
                         webView24.Source = new Uri(webpath);
+                        if (webView24.CoreWebView2 != null)
+                        {
+                            //webView24.CoreWebView2.Navigate(webpath);
+                        }
+                        //webView24.Reload();
+                        webView24.Update();
                         webView24.Refresh();
                     }
                     catch { }
@@ -161,20 +243,24 @@ namespace tft
                     try
                     {
                         webView25.Source = new Uri(webpath);
+                        if (webView25.CoreWebView2 != null)
+                        {
+                            //webView25.CoreWebView2.Navigate(webpath);
+                        }
+                        //webView25.Reload();
+                        webView25.Update();
                         webView25.Refresh();
                     }
                     catch { }
                 }
             }
         }
-        void Proc_Exited(object sender, EventArgs e)
+
+        private void UpdateInvokeRequire()
         {
-            System.Threading.Thread.Sleep(50);
-            stopwatch.Stop();
             TimeSpan ts = stopwatch.Elapsed;
             label15.Text = $"{ts.Hours}H {ts.Minutes}M {ts.Seconds}S {ts.Milliseconds}ms";
             label15.Refresh();
-
             if (File.Exists(base_name + "_predict_measure.txt"))
             {
                 using (StreamReader sr = new StreamReader(base_name + "_predict_measure.txt"))
@@ -189,7 +275,7 @@ namespace tft
                 try
                 {
                     pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
-                   // pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+                    // pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
                 catch { }
             }
@@ -210,7 +296,59 @@ namespace tft
                 }
                 toolTip1.SetToolTip(label7, label7.Text);
             }
+        }
 
+        void Proc_Exited(object sender, EventArgs e)
+        {
+            System.Threading.Thread.Sleep(50);
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            if (InvokeRequired)
+            {
+                Invoke(new Action(this.UpdateInvokeRequire));
+                //Invoke(new Action(() => { label1.Text = "Stop!"; }));
+            }
+            else
+            {
+                label15.Text = $"{ts.Hours}H {ts.Minutes}M {ts.Seconds}S {ts.Milliseconds}ms";
+                label15.Refresh();
+
+                if (File.Exists(base_name + "_predict_measure.txt"))
+                {
+                    using (StreamReader sr = new StreamReader(base_name + "_predict_measure.txt"))
+                    {
+                        textBox2.Text = sr.ReadToEnd();
+                    }
+                }
+
+                pictureBox6.Image = null;
+                if (File.Exists("tft_predict_measure_" + base_name + ".png"))
+                {
+                    try
+                    {
+                        pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
+                        // pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    catch { }
+                }
+                Plot();
+
+                button3.Enabled = true;
+                button6.Enabled = true;
+                button7.Enabled = true;
+                button8.Enabled = false;
+                button9.Enabled = false;
+                if (checkBox11.Checked) button8.Enabled = true;
+
+                if (File.Exists("tft_train_errorLog_" + base_name + ".txt"))
+                {
+                    using (StreamReader sr = new StreamReader("tft_train_errorLog_" + base_name + ".txt"))
+                    {
+                        label17.Text = sr.ReadToEnd();
+                    }
+                    toolTip1.SetToolTip(label7, label7.Text);
+                }
+            }
         }
 
         public void execute(string script_file, bool wait = true)
@@ -253,7 +391,7 @@ namespace tft
             cmd += ".libPaths(c('" + RlibPath + "',.libPaths()))\r\n";
             cmd += "dir='" + work_dir.Replace("\\", "\\\\") + "'\r\n";
             cmd += "setwd(dir)\r\n";
-            cmd = "df <- read.csv(\"" + base_name  + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
+            cmd += "df <- read.csv(\"" + base_name  + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
             cmd += "x_<-ncol(df)\r\n";
             cmd += "print(x_)\r\n";
             cmd += "for ( i in 1:x_) print(names(df)[i])\r\n";
@@ -322,12 +460,19 @@ namespace tft
             {
                 File.Delete("keys.txt");
             }
-
-            string cmd = "load(\"tft_"+ base_name+".RData\")\r\n";
-            cmd += "x_<-unique(df$'"+comboBox4.Text + "')\r\n";
+            if (comboBox5.Text == "")
+            {
+                MessageBox.Show("select key!");
+                return null;
+            }
+            string cmd = ".libPaths(c('" + RlibPath + "',.libPaths()))\r\n";
+            cmd += "dir='" + work_dir.Replace("\\", "\\\\") + "'\r\n";
+            cmd += "setwd(dir)\r\n";
+            cmd += "df <- read.csv(\"" + base_name + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
+            cmd += "x_<-unique(df$'"+comboBox5.Text + "')\r\n";
             cmd += "length(x_)\r\n";
             cmd += "for ( i in 1:length(x_)) print(x_[i])\r\n";
-            string file = "tmp_get_keye.R";
+            string file = "tmp_get_keys_" + base_name + ".R";
 
             try
             {
@@ -342,7 +487,7 @@ namespace tft
             }
             catch
             {
-                if (MessageBox.Show("Cannot write in tmp_get_keys.R", "", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                if (MessageBox.Show("Cannot write in "+ file , "", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
                     return null;
             }
 
@@ -376,8 +521,8 @@ namespace tft
                         }
                         if (list.Items.Count != num)
                         {
-                            MessageBox.Show("列名に,または空白が含まれている可能性があります\n" +
-                                "正しく列名を取得できていないかも知れません", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("Does the column name contain \", \" or \"spaces\"?\n" +
+                                "ou may not be getting the column names correctly.", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         break;
                     }
@@ -399,6 +544,10 @@ namespace tft
             cmd += "suppressPackageStartupMessages(library(tidymodels))\r\n";
             cmd += "library(plotly)\r\n";
             cmd += "library(htmlwidgets)\r\n";
+            cmd += "library(scales)\r\n";
+            cmd += "library(dplyr)\r\n";
+            cmd += "library(tidyverse)\r\n";
+            cmd += "library(recipes)\r\n";
             cmd += "library(tft)\r\n";
             cmd += "set.seed(1)\r\n";
             cmd += "torch::torch_manual_seed(1)\r\n";
@@ -485,6 +634,10 @@ namespace tft
             cmd += "\r\n";
             cmd += "df <- read.csv(\"" + base_name + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
 
+            if ( comboBox8.Text != "")
+            {
+                cmd += "df <- df %>% filter("+ comboBox5.Text+" == '" + comboBox8.Text + "')\r\n";
+            }
             cmd += "train <- NULL\r\n";
             cmd += "valid <- NULL\r\n";
             cmd += "test <- NULL\r\n";
@@ -632,6 +785,7 @@ namespace tft
 
                     sw.Write("time_colname," + comboBox3.Text + "\n");
                     sw.Write("target_colname," + comboBox4.Text + "\n");
+                    sw.Write("target_key," + comboBox8.Text + "\n");
                     sw.Write("key," + comboBox5.Text + "\n");
                     sw.Write("plot unit," + comboBox2.Text + "\n");
                     sw.Write("unit," + comboBox1.Text + "\n");
@@ -888,6 +1042,11 @@ namespace tft
                         if (ss[0].IndexOf("time_colname") >= 0)
                         {
                             comboBox3.Text = ss[1].Replace("\r\n", "");
+                            continue;
+                        }
+                        if (ss[0].IndexOf("target_key") >= 0)
+                        {
+                            comboBox8.Text = ss[1].Replace("\r\n", "");
                             continue;
                         }
                         if (ss[0].IndexOf("target_colname") >= 0)
@@ -1317,6 +1476,7 @@ namespace tft
             comboBox3.Items.Clear();
             comboBox4.Items.Clear();
             comboBox5.Items.Clear();
+            comboBox8.Items.Clear();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             listBox3.Items.Clear();
@@ -1355,6 +1515,7 @@ namespace tft
             comboBox3.Text = "";
             comboBox4.Text = "";
             comboBox5.Text = "";
+            comboBox8.Text = "";
 
             label17.Text = "";
             toolTip1.SetToolTip(label7, "");
@@ -1626,6 +1787,11 @@ namespace tft
             try
             {
                 plot.webView21.Source = new Uri(webpath);
+                if (plot.webView21.CoreWebView2 != null)
+                {
+                    //plot.webView21.CoreWebView2.Navigate(webpath);
+                }
+
                 plot.webView21.Refresh();
                 webView24.Source = new Uri(webpath);
                 webView24.Refresh();
@@ -1723,6 +1889,10 @@ namespace tft
             try
             {
                 plot.webView21.Source = new Uri(webpath);
+                if (plot.webView21.CoreWebView2 != null)
+                {
+                    //plot.webView21.CoreWebView2.Navigate(webpath);
+                }
                 plot.webView21.Refresh();
                 webView25.Source = new Uri(webpath);
                 webView25.Refresh();
@@ -1817,6 +1987,10 @@ namespace tft
             try
             {
                 plot.webView21.Source = new Uri(webpath);
+                if (plot.webView21.CoreWebView2 != null)
+                {
+                    //plot.webView21.CoreWebView2.Navigate(webpath);
+                }
                 plot.webView21.Refresh();
                 webView21.Source = new Uri(webpath);
                 webView21.Refresh();
@@ -2064,6 +2238,16 @@ namespace tft
         {
         }
 
+        private void button18_Click_1(object sender, EventArgs e)
+        {
+            var keys = GetKeys();
+            if (keys == null) return;
+            for (int i = 0; i < keys.Items.Count; i++)
+            {
+                comboBox8.Items.Add(keys.Items[i]);
+            }
+        }
+
         private void button9_Click(object sender, EventArgs e)
         {
             interactivePlot plot = new interactivePlot();
@@ -2174,6 +2358,10 @@ namespace tft
             try
             {
                 plot.webView21.Source = new Uri(webpath);
+                if (plot.webView21.CoreWebView2 != null)
+                {
+                    //plot.webView21.CoreWebView2.Navigate(webpath);
+                }
                 plot.webView21.Refresh();
                 webView22.Source = new Uri(webpath);
                 webView22.Refresh();
