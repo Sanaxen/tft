@@ -110,6 +110,12 @@ namespace tft
             form1.csv_file = form1.csv_dir.Replace("\\", "/") + "/" + form1.base_name + "_V.csv";
             form1.base_name = form1.base_name + "_V";
             File.Copy(form1.csv_file, form1.base_name + ".csv", true);
+            
+            Directory.CreateDirectory(form1.base_name);
+            form1.work_dir = form1.base_dir + "\\work\\" + form1.base_name;
+            System.IO.Directory.SetCurrentDirectory(form1.work_dir);
+            File.Copy(form1.csv_file, form1.base_name + ".csv", true);
+            
             form1.listBox_remake();
 
             form1.comboBox3.Text = "date";

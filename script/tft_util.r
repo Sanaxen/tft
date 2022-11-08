@@ -633,82 +633,101 @@ tft_predict <- function(fitted, test, validation=F, base_name="")
 
 	tmp_pred <- NULL
 	n = length(unique(input_df$key))
-	if ( nrow(test)/n > pred_len )
-	{
-		s = 1
-		e = pred_len*n
-		#print(s)
-		#print(e)
-		if ( validation )
+	
+	tryCatch({
+		if ( nrow(test)/n > pred_len )
 		{
-			past <- bind_rows(train, valid)
-		}else
-		{
-			past <- train
-		}
-		tmp <- test[s:e,]
-		#print(head(tmp,12))
-		#print(nrow(tmp))
-		while(e <= nrow(test))
-		{
-			#print(e)
-			pred <- NULL
-			tryCatch({
-						pred <- predict(object = fitted, new_data = tmp, past_data = past,mode = "full")
-			}
-  			, error = function(e) { 
-				err.log <- file(paste("tft_train_errorLog_", base_name, ".txt", sep=""), open = "w")
-				writeLines(paste(Sys.time(), e, sep=" "), err.log)
-				close(err.log)
-  			 }
-			)
-			if ( is.null(pred) )
-			{
-				tmp_pred = NULL
-				break
-			} 
-			tmp$target <- pred$.pred
-			tmp_pred <- bind_rows(tmp_pred, pred[(nrow(pred)- n*length(s:e)+1):nrow(pred),])
-			
-			if ( e == nrow(test)) break
-			past <- bind_rows(past, tmp)
-			s = e + 1
-			e = (s-1) + pred_len*n
-			
-			if ( e > nrow(test))
-			{
-				e = nrow(test)
-			}
-			tmp <- test[s:e,]
-			nrow(tmp)
-			if ( length(s:e)/n < pred_len )
-			{
-				d = pred_len - length(s:e)/n
-				t = past[(nrow(past)-d*n+1):nrow(past),]
-				tmp = bind_rows(t, test[s:e,])
-				past = past[1:(nrow(past)-d*n),]
-			}
-			
+			s = 1
+			e = pred_len*n
 			#print(s)
 			#print(e)
-		}
-	}else
-	{
-		if ( validation )
-		{
-			#pred <- predict(object = fitted, new_data = test, past_data = valid)
-			pred <- predict(object = fitted, new_data = test, past_data = bind_rows(train, valid))
+			if ( validation )
+			{
+				past <- bind_rows(train, valid)
+			}else
+			{
+				past <- train
+			}
+			tmp <- test[s:e,]
+			#print(head(tmp,12))
+			#print(nrow(tmp))
+			while(e <= nrow(test))
+			{
+				#print(e)
+				pred <- NULL
+				tryCatch({
+							pred <- predict(object = fitted, new_data = tmp, past_data = past,mode = "full")
+				}
+	  			, error = function(e) { 
+					print("tft_predict error")
+					print(e)
+					err.log <- file(paste("tft_predict_errorLog_", base_name, ".txt", sep=""), open = "w")
+					writeLines(paste(Sys.time(), e, sep=" "), err.log)
+					close(err.log)
+	  			 }
+				)
+				if ( is.null(pred) )
+				{
+					tmp_pred = NULL
+					break
+				} 
+				tmp$target <- pred$.pred
+				tmp_pred <- bind_rows(tmp_pred, pred[(nrow(pred)- n*length(s:e)+1):nrow(pred),])
+				
+				if ( e == nrow(test)) break
+				past <- bind_rows(past, tmp)
+				s = e + 1
+				e = (s-1) + pred_len*n
+				
+				if ( e > nrow(test))
+				{
+					e = nrow(test)
+				}
+				tmp <- test[s:e,]
+				nrow(tmp)
+				if ( length(s:e)/n < pred_len )
+				{
+					d = pred_len - length(s:e)/n
+					t = past[(nrow(past)-d*n+1):nrow(past),]
+					tmp = bind_rows(t, test[s:e,])
+					past = past[1:(nrow(past)-d*n),]
+				}
+				
+				#print(s)
+				#print(e)
+			}
 		}else
 		{
-			pred <- predict(object = fitted, new_data = test, past_data = train)
+			if ( validation )
+			{
+				#pred <- predict(object = fitted, new_data = test, past_data = valid)
+				pred <- predict(object = fitted, new_data = test, past_data = bind_rows(train, valid), mode = "full")
+			}else
+			{
+				pred <- predict(object = fitted, new_data = test, past_data = train)
+			}
+			tmp_pred = pred
 		}
-		tmp_pred = pred
-	}
-	if ( is.null(tmp_pred) ){
-		pred = NULL
-	}else {
-		pred <- bind_cols(test[1:nrow(tmp_pred),], tmp_pred)
-	}
+	},
+	error = function(e)
+	{
+			print("tft_predict error")
+			print(e)
+			err.log <- file(paste("tft_predict_errorLog_", base_name, ".txt", sep=""), open = "w")
+			writeLines(paste(Sys.time(), e, sep=" "), err.log)
+			close(err.log)
+			
+			tmp_pred = NULL
+	},
+	finally = {
+		if ( is.null(tmp_pred) ){
+			pred = NULL
+		}else {
+			pred <- bind_cols(test[1:nrow(tmp_pred),], tmp_pred)
+		}
+	},
+    silent = TRUE
+    )
 
 	return (pred)
 }

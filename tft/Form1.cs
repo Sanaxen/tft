@@ -296,6 +296,14 @@ namespace tft
                 }
                 toolTip1.SetToolTip(label7, label7.Text);
             }
+            if (File.Exists("tft_predict_errorLog_" + base_name + ".txt"))
+            {
+                using (StreamReader sr = new StreamReader("tft_predict_errorLog_" + base_name + ".txt"))
+                {
+                    label17.Text = sr.ReadToEnd();
+                }
+                toolTip1.SetToolTip(label7, label7.Text);
+            }
         }
 
         void Proc_Exited(object sender, EventArgs e)
@@ -343,6 +351,14 @@ namespace tft
                 if (File.Exists("tft_train_errorLog_" + base_name + ".txt"))
                 {
                     using (StreamReader sr = new StreamReader("tft_train_errorLog_" + base_name + ".txt"))
+                    {
+                        label17.Text = sr.ReadToEnd();
+                    }
+                    toolTip1.SetToolTip(label7, label7.Text);
+                }
+                if (File.Exists("tft_predict_errorLog_" + base_name + ".txt"))
+                {
+                    using (StreamReader sr = new StreamReader("tft_predict_errorLog_" + base_name + ".txt"))
                     {
                         label17.Text = sr.ReadToEnd();
                     }
@@ -1599,6 +1615,10 @@ namespace tft
             if (File.Exists("tft_train_errorLog_" + base_name + ".txt"))
             {
                 File.Delete("tft_train_errorLog_" + base_name + ".txt");
+            }
+            if (File.Exists("tft_predict_errorLog_" + base_name + ".txt"))
+            {
+                File.Delete("tft_predict_errorLog_" + base_name + ".txt");
             }
             if (File.Exists("tft_predict_measure_" + base_name + ".png"))
             {

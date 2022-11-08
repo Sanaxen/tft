@@ -89,6 +89,7 @@ namespace tft
             this.button17 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -141,6 +142,8 @@ namespace tft
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button18 = new System.Windows.Forms.Button();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -178,9 +181,6 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.button18 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -964,6 +964,16 @@ namespace tft
             this.checkBox17.UseVisualStyleBackColor = true;
             this.checkBox17.CheckedChanged += new System.EventHandler(this.checkBox17_CheckedChanged);
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(348, 77);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(67, 12);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "target key";
+            this.toolTip1.SetToolTip(this.label20, "Select to target only the specified key value");
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -1565,6 +1575,24 @@ namespace tft
             this.tabPage10.Text = "target column";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(267, 74);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 23);
+            this.button18.TabIndex = 43;
+            this.button18.Text = "get keys";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click_1);
+            // 
+            // comboBox8
+            // 
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Location = new System.Drawing.Point(421, 74);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(127, 20);
+            this.comboBox8.TabIndex = 41;
+            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.label18);
@@ -1686,19 +1714,9 @@ namespace tft
             0,
             0,
             0});
-            this.numericUpDown7.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
             this.numericUpDown7.Name = "numericUpDown7";
             this.numericUpDown7.Size = new System.Drawing.Size(62, 19);
             this.numericUpDown7.TabIndex = 0;
-            this.numericUpDown7.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
             // 
             // tabPage8
             // 
@@ -2002,34 +2020,6 @@ namespace tft
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(421, 74);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(127, 20);
-            this.comboBox8.TabIndex = 41;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(348, 77);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(67, 12);
-            this.label20.TabIndex = 42;
-            this.label20.Text = "target key";
-            this.toolTip1.SetToolTip(this.label20, "Select to target only the specified key value");
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(267, 74);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(75, 23);
-            this.button18.TabIndex = 43;
-            this.button18.Text = "get keys";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click_1);
             // 
             // Form1
             // 
