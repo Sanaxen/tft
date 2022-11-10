@@ -181,6 +181,7 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
+            this.checkBox22 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -1551,6 +1552,7 @@ namespace tft
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.checkBox22);
             this.tabPage10.Controls.Add(this.button18);
             this.tabPage10.Controls.Add(this.label20);
             this.tabPage10.Controls.Add(this.comboBox8);
@@ -2021,6 +2023,17 @@ namespace tft
             this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
             // 
+            // checkBox22
+            // 
+            this.checkBox22.AutoSize = true;
+            this.checkBox22.Location = new System.Drawing.Point(578, 77);
+            this.checkBox22.Name = "checkBox22";
+            this.checkBox22.Size = new System.Drawing.Size(45, 16);
+            this.checkBox22.TabIndex = 44;
+            this.checkBox22.Text = "diff";
+            this.toolTip1.SetToolTip(this.checkBox22, "Prediction predicts the difference between the target");
+            this.checkBox22.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2259,6 +2272,7 @@ namespace tft
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.CheckBox checkBox22;
     }
 }
 

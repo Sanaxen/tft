@@ -646,6 +646,9 @@ namespace tft
             else cmd += "use_date_quantile = FALSE\r\n";
             cmd += "window_size=" + numericUpDown7.Value.ToString()+"\r\n";
 
+            if (checkBox22.Checked) cmd += "use_target_diff = TRUE\r\n";
+            else cmd += "use_target_diff = FALSE\r\n";
+
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "df <- read.csv(\"" + base_name + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
@@ -682,15 +685,24 @@ namespace tft
             {
                 cmd += "input_df$" + listBox3.Items[listBox3.SelectedIndices[i]].ToString() + "<- as.factor(" + "input_df$" + listBox3.Items[listBox3.SelectedIndices[i]].ToString() + ")\r\n";
             }
+            cmd += "na_pos <- is.na(df[,target_colname])\r\n";
+            cmd += "if ( use_target_diff ){\r\n";
+            cmd += "    input_df <- mutate_at(input_df, c('target'), ~replace(., is.na(.), mean(.,na.rm = TRUE)))\r\n";
+            cmd += "    input_df <-input_df %>%  group_by(key) %>%  mutate(target_diff = target - lag(target, n=1))\r\n";
+            cmd += "    input_df <- mutate_at(input_df, c('target_diff'), ~replace(., is.na(.), 0))\r\n";
+            cmd += "    target_colname='target_diff'\r\n";
+            cmd += "    input_df$target_org <-  input_df$target\r\n";
+            cmd += "    input_df$target <-input_df$target_diff\r\n";
+            cmd += "}\r\n";
             cmd += "str(input_df)\r\n";
             cmd += "print(table(is.na(input_df)))\r\n";
 
-            cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "')\r\n";
+            cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "', na_pos)\r\n";
 
             if (comboBox7.Text != "")
             {
                 cmd += "input_df <- tft_data_compact(input_df, step_unit='" + comboBox7.Text + "')\r\n";
-                cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "')\r\n";
+                cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "', na_pos)\r\n";
                 comboBox1.Text = comboBox7.Text;
                 cmd += "unit ='" + comboBox1.Text + "'\r\n";
             }
@@ -875,6 +887,10 @@ namespace tft
                     sw.Write("use_date_quantile,");
                     if (checkBox21.Checked) sw.Write("true\n");
                     else sw.Write("false\n");
+                    sw.Write("use_target_diff,");
+                    if (checkBox22.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+
                     sw.Write("window_size," + numericUpDown7.Value.ToString() + "\n");
 
                     sw.Write("link1,");
@@ -1351,6 +1367,18 @@ namespace tft
                             else
                             {
                                 checkBox21.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("use_target_diff") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox22.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox22.Checked = false;
                             }
                             continue;
                         }
@@ -2245,7 +2273,7 @@ namespace tft
                 {
                     plot.pictureBox1.Image = null;
                     plot.pictureBox1.Image = interactivePlot.CreateImage("tft_predict_measure_" + base_name + ".png");
-                    plot.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+                    plot.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
                     pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
                 }
