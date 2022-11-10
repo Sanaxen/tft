@@ -678,6 +678,8 @@ namespace tft
             {
                 cmd += "df2 <- df\r\n";
             }
+
+            cmd += "na_pos <- is.na(df[,target_colname])\r\n";
             cmd += "input_df <- tft_colname_conv(df2, time_colname=time_colname, target_colname=target_colname, key=key)\r\n";
             cmd += "str(input_df)\r\n";
             cmd += "\r\n";
@@ -685,9 +687,12 @@ namespace tft
             {
                 cmd += "input_df$" + listBox3.Items[listBox3.SelectedIndices[i]].ToString() + "<- as.factor(" + "input_df$" + listBox3.Items[listBox3.SelectedIndices[i]].ToString() + ")\r\n";
             }
-            cmd += "na_pos <- is.na(df[,target_colname])\r\n";
+            cmd += "n = length(unique(input_df$key))\r\n";
+            cmd += "nr = nrow(df)-(pred_len+future_test_len)*n\r\n";
+            cmd += "na_pos[1:(nr-1)] <- FALSE\r\n";
+
             cmd += "if ( use_target_diff ){\r\n";
-            cmd += "    input_df <- mutate_at(input_df, c('target'), ~replace(., is.na(.), mean(.,na.rm = TRUE)))\r\n";
+            cmd += "    input_df$target[na_pos==T] <- NA\r\n";
             cmd += "    input_df <-input_df %>%  group_by(key) %>%  mutate(target_diff = target - lag(target, n=1))\r\n";
             cmd += "    input_df <- mutate_at(input_df, c('target_diff'), ~replace(., is.na(.), 0))\r\n";
             cmd += "    target_colname='target_diff'\r\n";
@@ -697,12 +702,12 @@ namespace tft
             cmd += "str(input_df)\r\n";
             cmd += "print(table(is.na(input_df)))\r\n";
 
-            cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "', na_pos)\r\n";
+            cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "')\r\n";
 
             if (comboBox7.Text != "")
             {
                 cmd += "input_df <- tft_data_compact(input_df, step_unit='" + comboBox7.Text + "')\r\n";
-                cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "', na_pos)\r\n";
+                cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "')\r\n";
                 comboBox1.Text = comboBox7.Text;
                 cmd += "unit ='" + comboBox1.Text + "'\r\n";
             }

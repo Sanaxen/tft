@@ -90,12 +90,8 @@ tft_colname_conv <- function(df, time_colname, target_colname, key = "")
 	return (df)
 }
 
-tft_plot_input <- function(input_df, unit="week", na_pos)
+tft_plot_input <- function(input_df, unit="week")
 {
-	if ( !is.na(na_pos))
-	{
-		input_df$target[na_pos==T] <- NA
-	}
 	p <- input_df %>% 
 	  ggplot(aes(x = date, y = target, color=key))+
 	  geom_line()+
