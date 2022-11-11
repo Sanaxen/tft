@@ -356,7 +356,7 @@ namespace tft
             this.numericUpDown3.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown3.TabIndex = 7;
             this.numericUpDown3.Value = new decimal(new int[] {
-            4,
+            0,
             0,
             0,
             0});
