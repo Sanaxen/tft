@@ -90,6 +90,7 @@ namespace tft
             this.label18 = new System.Windows.Forms.Label();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.checkBox22 = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -181,7 +182,9 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.checkBox22 = new System.Windows.Forms.CheckBox();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
+            this.checkBox24 = new System.Windows.Forms.CheckBox();
+            this.checkBox25 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -356,7 +359,7 @@ namespace tft
             this.numericUpDown3.Size = new System.Drawing.Size(61, 19);
             this.numericUpDown3.TabIndex = 7;
             this.numericUpDown3.Value = new decimal(new int[] {
-            0,
+            4,
             0,
             0,
             0});
@@ -974,6 +977,17 @@ namespace tft
             this.label20.TabIndex = 42;
             this.label20.Text = "target key";
             this.toolTip1.SetToolTip(this.label20, "Select to target only the specified key value");
+            // 
+            // checkBox22
+            // 
+            this.checkBox22.AutoSize = true;
+            this.checkBox22.Location = new System.Drawing.Point(578, 77);
+            this.checkBox22.Name = "checkBox22";
+            this.checkBox22.Size = new System.Drawing.Size(45, 16);
+            this.checkBox22.TabIndex = 44;
+            this.checkBox22.Text = "diff";
+            this.toolTip1.SetToolTip(this.checkBox22, "Prediction predicts the difference between the target");
+            this.checkBox22.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -1597,6 +1611,7 @@ namespace tft
             // 
             // tabPage9
             // 
+            this.tabPage9.Controls.Add(this.checkBox25);
             this.tabPage9.Controls.Add(this.label18);
             this.tabPage9.Controls.Add(this.numericUpDown6);
             this.tabPage9.Controls.Add(this.numericUpDown5);
@@ -1646,6 +1661,8 @@ namespace tft
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkBox24);
+            this.groupBox3.Controls.Add(this.checkBox23);
             this.groupBox3.Controls.Add(this.checkBox21);
             this.groupBox3.Controls.Add(this.checkBox20);
             this.groupBox3.Controls.Add(this.checkBox19);
@@ -2023,16 +2040,37 @@ namespace tft
             this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
             // 
-            // checkBox22
+            // checkBox23
             // 
-            this.checkBox22.AutoSize = true;
-            this.checkBox22.Location = new System.Drawing.Point(578, 77);
-            this.checkBox22.Name = "checkBox22";
-            this.checkBox22.Size = new System.Drawing.Size(45, 16);
-            this.checkBox22.TabIndex = 44;
-            this.checkBox22.Text = "diff";
-            this.toolTip1.SetToolTip(this.checkBox22, "Prediction predicts the difference between the target");
-            this.checkBox22.UseVisualStyleBackColor = true;
+            this.checkBox23.AutoSize = true;
+            this.checkBox23.Location = new System.Drawing.Point(67, 90);
+            this.checkBox23.Name = "checkBox23";
+            this.checkBox23.Size = new System.Drawing.Size(45, 16);
+            this.checkBox23.TabIndex = 32;
+            this.checkBox23.Text = "min";
+            this.checkBox23.UseVisualStyleBackColor = true;
+            // 
+            // checkBox24
+            // 
+            this.checkBox24.AutoSize = true;
+            this.checkBox24.Location = new System.Drawing.Point(128, 90);
+            this.checkBox24.Name = "checkBox24";
+            this.checkBox24.Size = new System.Drawing.Size(48, 16);
+            this.checkBox24.TabIndex = 33;
+            this.checkBox24.Text = "max";
+            this.checkBox24.UseVisualStyleBackColor = true;
+            // 
+            // checkBox25
+            // 
+            this.checkBox25.AutoSize = true;
+            this.checkBox25.Checked = true;
+            this.checkBox25.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox25.Location = new System.Drawing.Point(214, 63);
+            this.checkBox25.Name = "checkBox25";
+            this.checkBox25.Size = new System.Drawing.Size(170, 16);
+            this.checkBox25.TabIndex = 43;
+            this.checkBox25.Text = "Feature Importance Plot";
+            this.checkBox25.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -2273,6 +2311,9 @@ namespace tft
         private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.CheckBox checkBox22;
+        private System.Windows.Forms.CheckBox checkBox24;
+        private System.Windows.Forms.CheckBox checkBox23;
+        private System.Windows.Forms.CheckBox checkBox25;
     }
 }
 

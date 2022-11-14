@@ -303,6 +303,14 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    {
 			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_sd =  slide_vec(.x = self_adding_date_lag, .f = sd, .before = window_size))
 		}
+	    if ( use_date_min )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_min =  slide_vec(.x = self_adding_date_lag, .f = min, .before = window_size))
+		}
+	    if ( use_date_max )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_max =  slide_vec(.x = self_adding_date_lag, .f = max, .before = window_size))
+		}
 		data_tbl <- data_tbl %>%  group_by(key) %>%
 	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
 
@@ -325,6 +333,14 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    if ( use_date_sd )
 	    {
 			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_sd =  slide_vec(.x = self_adding_statistics_lag, .f = sd, .before = window_size))
+		}
+	    if ( use_date_min )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_min =  slide_vec(.x = self_adding_statistics_lag, .f = min, .before = window_size))
+		}
+	    if ( use_date_max )
+	    {
+			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_max =  slide_vec(.x = self_adding_statistics_lag, .f = max, .before = window_size))
 		}
 		data_tbl <- data_tbl %>%  group_by(key) %>%
 	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
@@ -836,6 +852,126 @@ tft_pred_save <- function(pred, filename="pred_save.csv")
 {
 	write.csv(pred, filename)
 }
+
+#install.packages("gplots")
+#install.packages("tidymodels")
+#install.packages("rlang")
+
+# The permutation feature importance algorithm based on Fisher, Rudin, and Dominici (2018) 
+permutationFeatureImportance<- function(fitted, test, validation=F, base_name="")
+{
+	n = length(unique(input_df$key))
+
+	test_tmp <- test[1:pred_len*n,]
+	date_idx <- which( colnames(test_tmp)=='date' )
+	target_idx <- which( colnames(test_tmp)=='target' )
+	key_idx <- which( colnames(test_tmp)=='key' )
+	n = ncol(test_tmp)
+	
+	test_tmp0 <- test_tmp
+
+	pred0 <- tft_predict(fitted, test_tmp, validation=validation, base_name=base_name)
+	
+	measure <- tft_predict_measure(pred0)[[1]]
+	mse0 <- measure$MSE
+
+	FI = NULL
+	FI_s = NULL
+	sampling_n = 10
+	
+	for ( k in 1:sampling_n )
+	{
+		name = c(1:(n-3))*0
+		mse = c(1:(n-3))*0
+		preds = test_tmp$date
+
+		id = 1
+		for ( i in 1:n )
+		{
+			test_tmp <- test_tmp0
+			if ( i == target_idx ) next
+			if ( i == date_idx ) next
+			if ( i == key_idx ) next
+			test_tmp[,i] <- test_tmp[order(rnorm(nrow(test_tmp[,i]))),i]
+			
+			pred <- tft_predict(fitted, test_tmp, validation=validation, base_name=base_name)
+			preds <- cbind(preds, abs(pred$.pred - (pred$target)))
+
+			mse[id] <- tft_predict_measure(pred)[[1]]$MSE
+			name[id] <- colnames(test_tmp)[i]
+			id = id + 1
+		}
+		
+		s = 0
+		if ( k > 1 )
+		{
+			s = FI$feature_importance
+		}
+			
+		
+		FI <- data.frame(feature_importance=abs(mse-mse0)+s, name=c(name))
+		
+		colnames(preds)[1]<- c('date')
+		colnames(preds)[2:ncol(preds)]<- c(name)
+		FI_s<-as.data.frame(preds)
+		FI_s$date <- test_tmp$date
+		rownames(FI_s) <- FI_s$date
+		FI_s$date<- NULL
+		
+		if ( k > 1 )
+		{
+			FI_s = FI_s2 + FI_s
+		}
+		FI_s2 = FI_s
+	}
+	FI_s2 = FI_s2 / sampling_n
+	FI$'feature_importance' = FI$'feature_importance'/ sampling_n
+	
+	FI <- FI[order(FI$'feature_importance',decreasing=T),]
+
+ 	library(ggplot2)
+	g1 <- ggplot(FI, aes(x = reorder(name, feature_importance), y = feature_importance, fill = name))
+	g1 <- g1 + geom_bar(stat = "identity")
+	g1 <- g1 + coord_flip()
+	g1 <- g1 + xlab('covariate')
+	plot(g1)
+	ggsave(file = paste(base_name,"feature_importance.png", sep=""), plot = g1, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+
+
+
+
+	FI_s2 <- FI_s
+	for(i in 1:nrow(FI_s2))
+  	{
+  		x <- as.matrix(FI_s[i,])
+		mn = min(x)
+		mx = max(x)
+  		y <- (x - mn)/(mx-mn)
+  		FI_s2[i,] <- y
+ 	}
+ 	FI_s2$date <- test_tmp$date
+ 	
+ 	x<-horizontally_to_vertically(FI_s2, ids_cols=c('date'), key=name)
+	g2 <- ggplot(data = x, aes(x = date, y = key , fill = target)) + 
+	geom_tile()+
+	scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
+	ggsave(file = paste(base_name,"feature_importance_time.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	
+ 	FI_s2$date <- NULL
+ 	FI_s2 = t(FI_s2)
+	par(mar = c(8.5, 1.0, 1.1, 5)) #  余白の広さを行数で指定．下，左，上，右の順．
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
+
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=greenred(256))
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0,-0.001), 0, 0)))
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(0,seq(0.9,0,-0.001), 0)))
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.3,0.001))))
+	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.2,0.001))))
+
+	return( list(g1, g2))
+}
+
 
 tft_predict_measure <- function(pred)
 {

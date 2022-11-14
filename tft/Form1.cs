@@ -644,6 +644,13 @@ namespace tft
             else cmd += "use_date_sd = FALSE\r\n";
             if (checkBox21.Checked) cmd += "use_date_quantile = TRUE\r\n";
             else cmd += "use_date_quantile = FALSE\r\n";
+
+            if (checkBox23.Checked) cmd += "use_date_min = TRUE\r\n";
+            else cmd += "use_date_min = FALSE\r\n";
+
+            if (checkBox24.Checked) cmd += "use_date_max = TRUE\r\n";
+            else cmd += "use_date_max = FALSE\r\n";
+
             cmd += "window_size=" + numericUpDown7.Value.ToString()+"\r\n";
 
             if (checkBox22.Checked) cmd += "use_target_diff = TRUE\r\n";
@@ -894,6 +901,15 @@ namespace tft
                     else sw.Write("false\n");
                     sw.Write("use_target_diff,");
                     if (checkBox22.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("use_date_min,");
+                    if (checkBox23.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("use_date_max,");
+                    if (checkBox24.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+                    sw.Write("Importance,");
+                    if (checkBox25.Checked) sw.Write("true\n");
                     else sw.Write("false\n");
 
                     sw.Write("window_size," + numericUpDown7.Value.ToString() + "\n");
@@ -1387,6 +1403,42 @@ namespace tft
                             }
                             continue;
                         }
+                        if (ss[0].IndexOf("use_date_min") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox23.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox23.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("use_date_max") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox24.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox24.Checked = false;
+                            }
+                            continue;
+                        }
+                        if (ss[0].IndexOf("Importance") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox25.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox25.Checked = false;
+                            }
+                            continue;
+                        }
                         if (ss[0].IndexOf("window_size") >= 0)
                         {
                             numericUpDown7.Value = int.Parse(ss[1].Replace("\r\n", ""));
@@ -1504,10 +1556,14 @@ namespace tft
             cmd += "save.image(\"tft_" + base_name + ".RData\")\r\n";
             cmd += "load(\"tft_" + base_name + ".RData\")\r\n";
 
+            cmd += "\r\n";
+            cmd += "\r\n";
             cmd += "sink(file = \"" + base_name + "_predict_measure.txt\")\r\n";
             cmd += "tft_predict_measure(pred)\r\n";
             cmd += "sink()\r\n";
 
+            cmd += "\r\n";
+            cmd += "\r\n";
             cmd += "library(gtable)\r\n";
             cmd += "library(gridExtra)\r\n";
             cmd += "library(grid)\r\n";
@@ -1515,6 +1571,18 @@ namespace tft
             cmd += "meas <- tft_predict_measure(pred)\r\n";
             cmd += "g_ <- gridExtra::tableGrob(meas[[2]])\r\n";
             cmd += "ggsave(file = \"tft_predict_measure_"+base_name +".png\", plot = g_,dpi=100, width= 1.5*6.4,height=0.09*4.8"+ "*length(unique(input_df$key)), limitsize = FALSE)\r\n";
+
+
+            cmd += "\r\n";
+            cmd += "\r\n";
+            cmd += "fi <- permutationFeatureImportance(fitted, test, validation=F, base_name ='" + base_name + "')\r\n";
+            cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[3]], nrows = 2)\r\n";
+            cmd += "ggsave(file = \"tft_fi_plot_" + base_name + ".png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
+            cmd += "fi_plot1 <- ggplotly(fi[[2]])\r\n";
+            cmd += "fi_plot2 <- ggplotly(fi[[3]])\r\n";
+            cmd += "fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
+            cmd += "print(fi_plotly)\r\n";
+            cmd += "htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";
             return cmd;
         }
 
