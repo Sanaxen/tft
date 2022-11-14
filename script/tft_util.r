@@ -856,6 +856,8 @@ tft_pred_save <- function(pred, filename="pred_save.csv")
 #install.packages("gplots")
 #install.packages("tidymodels")
 #install.packages("rlang")
+library(ggplot2)
+library(gplots)
 
 # The permutation feature importance algorithm based on Fisher, Rudin, and Dominici (2018) 
 permutationFeatureImportance<- function(fitted, test, validation=F, base_name="")
@@ -929,7 +931,6 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	
 	FI <- FI[order(FI$'feature_importance',decreasing=T),]
 
- 	library(ggplot2)
 	g1 <- ggplot(FI, aes(x = reorder(name, feature_importance), y = feature_importance, fill = name))
 	g1 <- g1 + geom_bar(stat = "identity")
 	g1 <- g1 + coord_flip()
@@ -956,20 +957,23 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	geom_tile()+
 	scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
 	ggsave(file = paste(base_name,"feature_importance_time.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
-	
- 	FI_s2$date <- NULL
- 	FI_s2 = t(FI_s2)
-	par(mar = c(8.5, 1.0, 1.1, 5)) #  余白の広さを行数で指定．下，左，上，右の順．
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
+ 	
+ 	if ( FALSE )
+ 	{
+		
+	 	FI_s2$date <- NULL
+	 	FI_s2 = t(FI_s2)
+		#par(mar = c(8.5, 1.0, 1.1, 5)) #  余白の広さを行数で指定．下，左，上，右の順．
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
 
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=greenred(256))
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0,-0.001), 0, 0)))
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(0,seq(0.9,0,-0.001), 0)))
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.3,0.001))))
-	heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.2,0.001))))
-
-	return( list(g1, g2))
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=greenred(256))
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0,-0.001), 0, 0)))
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(0,seq(0.9,0,-0.001), 0)))
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.3,0.001))))
+		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.2,0.001))))
+	}
+	return( list(n, g1, g2))
 }
 
 
