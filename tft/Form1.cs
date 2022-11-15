@@ -84,7 +84,7 @@ namespace tft
         public string csv_file;
         public string csv_dir;
         public string base_name = "";
-        public string link1, link2, link3, link4, link5;
+        public string link1, link2, link3, link4, link5, link6;
         ListBox colname_list = new ListBox();
         System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
@@ -135,6 +135,8 @@ namespace tft
             pictureBox3.Image = null;
             pictureBox4.Image = null;
             pictureBox5.Image = null;
+            pictureBox7.Image = null;
+            pictureBox8.Image = null;
             if (System.IO.File.Exists(base_name + "_p_input_plot.png"))
             {
                 pictureBox1.Image = interactivePlot.CreateImage(base_name + "_p_input_plot.png");
@@ -171,6 +173,22 @@ namespace tft
                 try
                 {
                     pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
+                }
+                catch { }
+            }
+            if (File.Exists(base_name + "_feature_importance.png"))
+            {
+                try
+                {
+                    pictureBox7.Image = CreateImage( base_name + "_feature_importance.png");
+                }
+                catch { }
+            }
+            if (File.Exists(base_name + "_feature_importance_time.png"))
+            {
+                try
+                {
+                    pictureBox8.Image = CreateImage(base_name + "_feature_importance_time.png");
                 }
                 catch { }
             }
@@ -336,6 +354,24 @@ namespace tft
                     {
                         pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
                         // pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+                    }
+                    catch { }
+                }
+                pictureBox7.Image = null;
+                if (File.Exists(base_name+"_feature_importance.png"))
+                {
+                    try
+                    {
+                        pictureBox7.Image = CreateImage(base_name + "_feature_importance.png");
+                    }
+                    catch { }
+                }
+                pictureBox8.Image = null;
+                if (File.Exists(base_name + "_feature_importance_time.png"))
+                {
+                    try
+                    {
+                        pictureBox8.Image = CreateImage(base_name + "_feature_importance_time.png");
                     }
                     catch { }
                 }
@@ -924,6 +960,8 @@ namespace tft
                     sw.Write(link4 + "\n");
                     sw.Write("link5,");
                     sw.Write(link5 + "\n");
+                    sw.Write("link6,");
+                    sw.Write(link6 + "\n");
 
                     sw.Write("predict_measure,");
                     sw.Write(textBox2.Text + "\r\n");
@@ -1059,6 +1097,11 @@ namespace tft
                         if (ss[0].IndexOf("link5") >= 0)
                         {
                             link5 = ss[1].Replace("\r\n", "");
+                            continue;
+                        }
+                        if (ss[0].IndexOf("link6") >= 0)
+                        {
+                            link6 = ss[1].Replace("\r\n", "");
                             continue;
                         }
                         if (ss[0].IndexOf("n_epochs") >= 0)
@@ -1575,9 +1618,9 @@ namespace tft
 
             cmd += "\r\n";
             cmd += "\r\n";
-            cmd += "fi <- permutationFeatureImportance(fitted, test, validation=F, base_name ='" + base_name + "')\r\n";
-            cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[3]], nrows = 2)\r\n";
-            cmd += "ggsave(file = \"tft_fi_plot_" + base_name + ".png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
+            cmd += "fi <- permutationFeatureImportance(fitted, test, validation=validation, base_name ='" + base_name + "')\r\n";
+            cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[3]], ncol = 1)\r\n";
+            cmd += "ggsave(file = \"tft_" + base_name + "_fi.png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
             cmd += "fi_plot1 <- ggplotly(fi[[2]])\r\n";
             cmd += "fi_plot2 <- ggplotly(fi[[3]])\r\n";
             cmd += "fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
@@ -1622,6 +1665,8 @@ namespace tft
             link4 = "";
             linkLabel5.LinkVisited = false;
             link5 = "";
+            linkLabel6.LinkVisited = false;
+            link6 = "";
 
             //button3.Enabled = false;
             //button6.Enabled = false;
@@ -2366,6 +2411,98 @@ namespace tft
             for (int i = 0; i < keys.Items.Count; i++)
             {
                 comboBox8.Items.Add(keys.Items[i]);
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            if (File.Exists( base_name + "_feature_importance.png"))
+            {
+                interactivePlot plot = new interactivePlot();
+                try
+                {
+                    plot.pictureBox1.Image = null;
+                    plot.pictureBox1.Image = interactivePlot.CreateImage(base_name + "_feature_importance.png");
+                    plot.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    pictureBox6.Image = CreateImage(base_name + "_feature_importance.png");
+                }
+                catch { }
+                plot.Show();
+            }
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (link6 == "") return;
+            try
+            {
+                System.Diagnostics.Process.Start(link6, null);
+            }
+            catch { }
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            string webpath = work_dir + "/tft_" + base_name + "_fi.html";
+            if (System.IO.File.Exists(work_dir + "\\tft_" + base_name + "_fi.html"))
+            {
+                webpath = webpath.Replace("\\", "/").Replace("//", "/");
+
+                link6 = webpath;
+                linkLabel6.Visible = true;
+                linkLabel6.LinkVisited = true;
+                linkLabel6.Refresh();
+            }
+            else
+            {
+                //return;
+            }
+
+            interactivePlot plot = new interactivePlot();
+
+            try
+            {
+                plot.pictureBox1.Image = null;
+                if (System.IO.File.Exists("tft_" + base_name + "_fi.png"))
+                {
+
+                    plot.pictureBox1.Image = interactivePlot.CreateImage("tft_" + base_name + "_fi.png");
+                    plot.pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    tabControl1.SelectedIndex = 6;
+                }
+            }
+            catch { }
+
+            try
+            {
+                plot.webView21.Source = new Uri(webpath);
+                if (plot.webView21.CoreWebView2 != null)
+                {
+                    //plot.webView21.CoreWebView2.Navigate(webpath);
+                }
+                plot.webView21.Refresh();
+            }
+            catch { }
+
+            plot.Show();
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(base_name + "_feature_importance_time.png"))
+            {
+                interactivePlot plot = new interactivePlot();
+                try
+                {
+                    plot.pictureBox1.Image = null;
+                    plot.pictureBox1.Image = interactivePlot.CreateImage(base_name + "_feature_importance_time.png");
+                    plot.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    pictureBox6.Image = CreateImage(base_name + "_feature_importance_time.png");
+                }
+                catch { }
+                plot.Show();
             }
         }
 

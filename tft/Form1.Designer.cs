@@ -141,14 +141,22 @@ namespace tft
             this.panel6 = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.button20 = new System.Windows.Forms.Button();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.button18 = new System.Windows.Forms.Button();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.checkBox25 = new System.Windows.Forms.CheckBox();
             this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox24 = new System.Windows.Forms.CheckBox();
+            this.checkBox23 = new System.Windows.Forms.CheckBox();
             this.checkBox21 = new System.Windows.Forms.CheckBox();
             this.checkBox20 = new System.Windows.Forms.CheckBox();
             this.checkBox19 = new System.Windows.Forms.CheckBox();
@@ -182,9 +190,13 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.checkBox23 = new System.Windows.Forms.CheckBox();
-            this.checkBox24 = new System.Windows.Forms.CheckBox();
-            this.checkBox25 = new System.Windows.Forms.CheckBox();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.splitter17 = new System.Windows.Forms.Splitter();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.splitter18 = new System.Windows.Forms.Splitter();
+            this.panel25 = new System.Windows.Forms.Panel();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.button21 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -216,6 +228,9 @@ namespace tft
             this.tabPage6.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.tabPage13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -239,6 +254,9 @@ namespace tft
             this.panel18.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel19.SuspendLayout();
+            this.panel23.SuspendLayout();
+            this.panel24.SuspendLayout();
+            this.panel25.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -1234,6 +1252,7 @@ namespace tft
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 311);
             this.tabControl1.Name = "tabControl1";
@@ -1548,6 +1567,59 @@ namespace tft
             this.pictureBox6.TabIndex = 74;
             this.pictureBox6.TabStop = false;
             // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(0, 0);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 81;
+            this.button19.Text = "window";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(244, 195);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox7.TabIndex = 80;
+            this.pictureBox7.TabStop = false;
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.AutoScroll = true;
+            this.tabPage13.Controls.Add(this.panel25);
+            this.tabPage13.Controls.Add(this.splitter18);
+            this.tabPage13.Controls.Add(this.panel24);
+            this.tabPage13.Controls.Add(this.splitter17);
+            this.tabPage13.Controls.Add(this.panel23);
+            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(692, 287);
+            this.tabPage13.TabIndex = 7;
+            this.tabPage13.Text = "feature importance";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(0, 0);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(75, 23);
+            this.button20.TabIndex = 77;
+            this.button20.Text = "window";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(265, 192);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox8.TabIndex = 76;
+            this.pictureBox8.TabStop = false;
+            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage10);
@@ -1634,6 +1706,18 @@ namespace tft
             this.tabPage9.Text = "parameter";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
+            // checkBox25
+            // 
+            this.checkBox25.AutoSize = true;
+            this.checkBox25.Checked = true;
+            this.checkBox25.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox25.Location = new System.Drawing.Point(214, 63);
+            this.checkBox25.Name = "checkBox25";
+            this.checkBox25.Size = new System.Drawing.Size(170, 16);
+            this.checkBox25.TabIndex = 43;
+            this.checkBox25.Text = "Feature Importance Plot";
+            this.checkBox25.UseVisualStyleBackColor = true;
+            // 
             // numericUpDown6
             // 
             this.numericUpDown6.Location = new System.Drawing.Point(102, 147);
@@ -1675,6 +1759,26 @@ namespace tft
             this.groupBox3.TabIndex = 43;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "basic statistic";
+            // 
+            // checkBox24
+            // 
+            this.checkBox24.AutoSize = true;
+            this.checkBox24.Location = new System.Drawing.Point(128, 90);
+            this.checkBox24.Name = "checkBox24";
+            this.checkBox24.Size = new System.Drawing.Size(48, 16);
+            this.checkBox24.TabIndex = 33;
+            this.checkBox24.Text = "max";
+            this.checkBox24.UseVisualStyleBackColor = true;
+            // 
+            // checkBox23
+            // 
+            this.checkBox23.AutoSize = true;
+            this.checkBox23.Location = new System.Drawing.Point(67, 90);
+            this.checkBox23.Name = "checkBox23";
+            this.checkBox23.Size = new System.Drawing.Size(45, 16);
+            this.checkBox23.TabIndex = 32;
+            this.checkBox23.Text = "min";
+            this.checkBox23.UseVisualStyleBackColor = true;
             // 
             // checkBox21
             // 
@@ -2040,37 +2144,78 @@ namespace tft
             this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
             // 
-            // checkBox23
+            // panel23
             // 
-            this.checkBox23.AutoSize = true;
-            this.checkBox23.Location = new System.Drawing.Point(67, 90);
-            this.checkBox23.Name = "checkBox23";
-            this.checkBox23.Size = new System.Drawing.Size(45, 16);
-            this.checkBox23.TabIndex = 32;
-            this.checkBox23.Text = "min";
-            this.checkBox23.UseVisualStyleBackColor = true;
+            this.panel23.Controls.Add(this.button21);
+            this.panel23.Controls.Add(this.linkLabel6);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(0, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(692, 35);
+            this.panel23.TabIndex = 0;
             // 
-            // checkBox24
+            // splitter17
             // 
-            this.checkBox24.AutoSize = true;
-            this.checkBox24.Location = new System.Drawing.Point(128, 90);
-            this.checkBox24.Name = "checkBox24";
-            this.checkBox24.Size = new System.Drawing.Size(48, 16);
-            this.checkBox24.TabIndex = 33;
-            this.checkBox24.Text = "max";
-            this.checkBox24.UseVisualStyleBackColor = true;
+            this.splitter17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter17.Location = new System.Drawing.Point(0, 35);
+            this.splitter17.Name = "splitter17";
+            this.splitter17.Size = new System.Drawing.Size(692, 3);
+            this.splitter17.TabIndex = 1;
+            this.splitter17.TabStop = false;
             // 
-            // checkBox25
+            // panel24
             // 
-            this.checkBox25.AutoSize = true;
-            this.checkBox25.Checked = true;
-            this.checkBox25.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox25.Location = new System.Drawing.Point(214, 63);
-            this.checkBox25.Name = "checkBox25";
-            this.checkBox25.Size = new System.Drawing.Size(170, 16);
-            this.checkBox25.TabIndex = 43;
-            this.checkBox25.Text = "Feature Importance Plot";
-            this.checkBox25.UseVisualStyleBackColor = true;
+            this.panel24.AutoScroll = true;
+            this.panel24.Controls.Add(this.button19);
+            this.panel24.Controls.Add(this.pictureBox7);
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel24.Location = new System.Drawing.Point(0, 38);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(342, 249);
+            this.panel24.TabIndex = 2;
+            // 
+            // splitter18
+            // 
+            this.splitter18.Location = new System.Drawing.Point(342, 38);
+            this.splitter18.Name = "splitter18";
+            this.splitter18.Size = new System.Drawing.Size(10, 249);
+            this.splitter18.TabIndex = 3;
+            this.splitter18.TabStop = false;
+            // 
+            // panel25
+            // 
+            this.panel25.AutoScroll = true;
+            this.panel25.Controls.Add(this.button20);
+            this.panel25.Controls.Add(this.pictureBox8);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel25.Location = new System.Drawing.Point(352, 38);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(340, 249);
+            this.panel25.TabIndex = 4;
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Location = new System.Drawing.Point(103, 11);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(61, 12);
+            this.linkLabel6.TabIndex = 55;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "importance";
+            this.toolTip1.SetToolTip(this.linkLabel6, "predict+real");
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            // 
+            // button21
+            // 
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button21.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button21.Location = new System.Drawing.Point(12, 6);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(83, 23);
+            this.button21.TabIndex = 56;
+            this.button21.Text = "importance";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // Form1
             // 
@@ -2121,6 +2266,9 @@ namespace tft
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.tabPage13.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
@@ -2154,6 +2302,12 @@ namespace tft
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             this.panel19.ResumeLayout(false);
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
+            this.panel24.ResumeLayout(false);
+            this.panel24.PerformLayout();
+            this.panel25.ResumeLayout(false);
+            this.panel25.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2314,6 +2468,18 @@ namespace tft
         private System.Windows.Forms.CheckBox checkBox24;
         private System.Windows.Forms.CheckBox checkBox23;
         private System.Windows.Forms.CheckBox checkBox25;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.Button button20;
+        public System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.Button button19;
+        public System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel panel25;
+        private System.Windows.Forms.Splitter splitter18;
+        private System.Windows.Forms.Panel panel24;
+        private System.Windows.Forms.Splitter splitter17;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.LinkLabel linkLabel6;
+        private System.Windows.Forms.Button button21;
     }
 }
 

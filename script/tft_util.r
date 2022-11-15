@@ -936,7 +936,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	g1 <- g1 + coord_flip()
 	g1 <- g1 + xlab('covariate')
 	plot(g1)
-	ggsave(file = paste(base_name,"feature_importance.png", sep=""), plot = g1, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	ggsave(file = paste(base_name,"_feature_importance.png", sep=""), plot = g1, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
 
 
 
@@ -953,10 +953,12 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
  	FI_s2$date <- test_tmp$date
  	
  	x<-horizontally_to_vertically(FI_s2, ids_cols=c('date'), key=name)
-	g2 <- ggplot(data = x, aes(x = date, y = key , fill = target)) + 
+ 	x$importance <- x$target
+ 	x$target <- NULL
+	g2 <- ggplot(data = x, aes(x = date, y = key , fill = importance)) + 
 	geom_tile()+
 	scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
-	ggsave(file = paste(base_name,"feature_importance_time.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	ggsave(file = paste(base_name,"_feature_importance_time.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
  	
  	if ( FALSE )
  	{
