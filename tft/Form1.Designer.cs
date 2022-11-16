@@ -1216,6 +1216,7 @@ namespace tft
             // 
             // button14
             // 
+            this.button14.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.button14.Location = new System.Drawing.Point(153, 6);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(111, 23);

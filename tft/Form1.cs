@@ -173,6 +173,7 @@ namespace tft
                 try
                 {
                     pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
+                    pictureBox6.Refresh();
                 }
                 catch { }
             }
@@ -181,6 +182,7 @@ namespace tft
                 try
                 {
                     pictureBox7.Image = CreateImage( base_name + "_feature_importance.png");
+                    pictureBox7.Refresh();
                 }
                 catch { }
             }
@@ -189,6 +191,7 @@ namespace tft
                 try
                 {
                     pictureBox8.Image = CreateImage(base_name + "_feature_importance_time.png");
+                    pictureBox8.Refresh();
                 }
                 catch { }
             }
@@ -354,6 +357,7 @@ namespace tft
                     {
                         pictureBox6.Image = CreateImage("tft_predict_measure_" + base_name + ".png");
                         // pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+                        pictureBox6.Refresh();
                     }
                     catch { }
                 }
@@ -363,6 +367,7 @@ namespace tft
                     try
                     {
                         pictureBox7.Image = CreateImage(base_name + "_feature_importance.png");
+                        pictureBox7.Refresh();
                     }
                     catch { }
                 }
@@ -372,6 +377,7 @@ namespace tft
                     try
                     {
                         pictureBox8.Image = CreateImage(base_name + "_feature_importance_time.png");
+                        pictureBox8.Refresh();
                     }
                     catch { }
                 }
@@ -1619,10 +1625,10 @@ namespace tft
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "fi <- permutationFeatureImportance(fitted, test, validation=validation, base_name ='" + base_name + "')\r\n";
-            cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[3]], ncol = 1)\r\n";
+            cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[5]], ncol = 1)\r\n";
             cmd += "ggsave(file = \"tft_" + base_name + "_fi.png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
             cmd += "fi_plot1 <- ggplotly(fi[[2]])\r\n";
-            cmd += "fi_plot2 <- ggplotly(fi[[3]])\r\n";
+            cmd += "fi_plot2 <- ggplotly(fi[[5]])\r\n";
             cmd += "fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
             cmd += "print(fi_plotly)\r\n";
             cmd += "htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";

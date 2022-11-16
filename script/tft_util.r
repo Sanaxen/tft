@@ -879,7 +879,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 
 	FI = NULL
 	FI_s = NULL
-	sampling_n = 10
+	sampling_n = 1
 	
 	for ( k in 1:sampling_n )
 	{
@@ -958,7 +958,30 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	g2 <- ggplot(data = x, aes(x = date, y = key , fill = importance)) + 
 	geom_tile()+
 	scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
-	ggsave(file = paste(base_name,"_feature_importance_time.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	ggsave(file = paste(base_name,"_feature_importance_time1.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+ 	
+	FI_s$date <- NULL
+	FI_s <- (FI_s - min(FI_s))/(max(FI_s) - min(FI_s))
+ 	FI_s$date <- test_tmp$date
+ 	x<-horizontally_to_vertically(FI_s, ids_cols=c('date'), key=name)
+ 	x$importance <- x$target
+ 	x$target <- NULL
+
+	g3 <- x %>% 
+	  ggplot(aes(x = date, y = importance, color=key))+
+	  geom_line()+
+	  scale_x_datetime(breaks = date_breaks(unit), labels = date_format("%Y-%m-%d %H")) +
+	  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+	  
+	g4 <- ggplot(x, aes(x = date, y = importance, fill = key))
+	g4 <- g4 + geom_bar(stat = "identity", position = "fill")
+	g4 <- g4 + scale_y_continuous(labels = percent)
+	plot(g4)	  
+	
+	g5 <- ggplot(x, aes(x = date, y = importance, fill = key))
+	g5 <- g5 + geom_bar(stat = "identity")
+	plot(g5)	
+	ggsave(file = paste(base_name,"_feature_importance_time.png", sep=""), plot = g4, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
  	
  	if ( FALSE )
  	{
@@ -975,7 +998,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.3,0.001))))
 		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.2,0.001))))
 	}
-	return( list(n, g1, g2))
+	return( list(n, g1, g2, g3, g4, g5))
 }
 
 
