@@ -9,10 +9,13 @@ At the core of this application, tft is ![](./images/554068490.png) https://gith
 It relies heavily on https://github.com/mlverse/tft, a wonderful library implemented in R developed at  
 
 <img src="./images/image03.gif" width=80%>  
----
+<hr>  
+
 ### Feature importance Plot  
 The permutation feature importance algorithm based on Fisher, Rudin, and Dominici (2018)  
 <img src="./images/image01.png" width=80%>  
+<hr>  
+
 # Requirements  
 
 [webview2](https://developer.microsoft.com/ja-jp/microsoft-edge/webview2/)  
