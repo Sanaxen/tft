@@ -769,6 +769,11 @@ namespace tft
 
             cmd += "data_tbl <- tft_data_split(input_df, unit=unit, lookback, pred_len, future_test_len, validation)\r\n";
             cmd += "source('tmp_tft_data_split.r')\r\n";
+            cmd += "#train_org <- train\r\n";
+            cmd += "#valid_org <- valid\r\n";
+            cmd += "test_org <- test\r\n";
+            cmd += "data_tbl$date_org <- NULL\r\n";
+            cmd += "source('tmp_tft_data_split.r')\r\n";
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "write.csv(data_tbl,'" + base_name + "_Reshaped.csv', row.names = FALSE)\r\n";
@@ -1624,14 +1629,17 @@ namespace tft
 
             cmd += "\r\n";
             cmd += "\r\n";
-            cmd += "fi <- permutationFeatureImportance(fitted, test, validation=validation, base_name ='" + base_name + "')\r\n";
-            cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[5]], ncol = 1)\r\n";
-            cmd += "ggsave(file = \"tft_" + base_name + "_fi.png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
-            cmd += "fi_plot1 <- ggplotly(fi[[2]])\r\n";
-            cmd += "fi_plot2 <- ggplotly(fi[[5]])\r\n";
-            cmd += "fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
-            cmd += "print(fi_plotly)\r\n";
-            cmd += "htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";
+            if (checkBox25.Checked)
+            {
+                cmd += "fi <- permutationFeatureImportance(fitted, test, validation=validation, base_name ='" + base_name + "')\r\n";
+                cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[5]], ncol = 1)\r\n";
+                cmd += "ggsave(file = \"tft_" + base_name + "_fi.png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
+                cmd += "fi_plot1 <- ggplotly(fi[[2]])\r\n";
+                cmd += "fi_plot2 <- ggplotly(fi[[5]])\r\n";
+                cmd += "fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
+                cmd += "print(fi_plotly)\r\n";
+                cmd += "htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";
+            }
             return cmd;
         }
 

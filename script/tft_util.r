@@ -356,6 +356,19 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 		}
 	}
 	
+	data_tbl$date_org <- data_tbl$date
+	if ( unit == "month" )
+	{
+		data_tbl$date <- lubridate::as_date(as.POSIXct(data_tbl$date))
+		data_tbl$date = lubridate::ymd(data_tbl$date[1]) + lubridate::days((tidx-1)*30)
+	}
+	if ( unit == "year" )
+	{
+		data_tbl$date <- lubridate::as_date(as.POSIXct(data_tbl$date))
+		data_tbl$date = lubridate::ymd(data_tbl$date[1]) + lubridate::days((tidx-1)*365)
+	}
+	#data_tbl$date_org <- as.factor(data_tbl$date_org)
+	
 	head(data_tbl)
 	str(data_tbl)
 	out.file <- file("tmp_tft_data_split.r", open = "w")
@@ -750,12 +763,15 @@ tft_predict <- function(fitted, test, validation=F, base_name="")
 
 tft_predict_plot <- function(pred, timestep="week", use_real_data = FALSE)
 {
-	n = 6*lookback
-	if ( nrow(train) <= n ) n = 5*lookback
-	if ( nrow(train) <= n ) n = 4*lookback
-	if ( nrow(train) <= n ) n = 3*lookback
-	if ( nrow(train) <= n ) n = lookback/2
+	nkey = length(unique(input_df$key))
+
+	n = 6*lookback*nkey
+	if ( nrow(train)/nkey <= n ) n = 5*lookback*nkey
+	if ( nrow(train)/nkey <= n ) n = 4*lookback*nkey
+	if ( nrow(train)/nkey <= n ) n = 3*lookback*nkey
+	if ( nrow(train)/nkey <= n ) n = (lookback/2)*nkey
 	
+	if ( nrow(train)/nkey <= 1000 ) n =  nrow(train)
 	t <- train
 
 	if ( !is.null(valid) )
@@ -850,6 +866,7 @@ tft_predict_check <- function(pred, timestep="day")
 
 tft_pred_save <- function(pred, filename="pred_save.csv")
 {
+	pred$date <- test_org$date_org
 	write.csv(pred, filename)
 }
 
@@ -936,7 +953,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	g1 <- g1 + coord_flip()
 	g1 <- g1 + xlab('covariate')
 	plot(g1)
-	ggsave(file = paste(base_name,"_feature_importance.png", sep=""), plot = g1, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	ggsave(file = paste(base_name,"_feature_importance.png", sep=""), plot = g1, dpi = 100, width = 6.4*length(name)/40, height = 4.8*length(name)/10)
 
 
 
@@ -958,7 +975,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	g2 <- ggplot(data = x, aes(x = date, y = key , fill = importance)) + 
 	geom_tile()+
 	scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
-	ggsave(file = paste(base_name,"_feature_importance_time1.png", sep=""), plot = g2, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	ggsave(file = paste(base_name,"_feature_importance_time1.png", sep=""), plot = g2, dpi = 100, width = 6.4*length(name)/40, height = 4.8*length(name)/10)
  	
 	FI_s$date <- NULL
 	FI_s <- (FI_s - min(FI_s))/(max(FI_s) - min(FI_s))
@@ -981,7 +998,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	g5 <- ggplot(x, aes(x = date, y = importance, fill = key))
 	g5 <- g5 + geom_bar(stat = "identity")
 	plot(g5)	
-	ggsave(file = paste(base_name,"_feature_importance_time.png", sep=""), plot = g4, dpi = 100, width = 6.4, height = 4.8*length(name)/10)
+	ggsave(file = paste(base_name,"_feature_importance_time.png", sep=""), plot = g4, dpi = 100, width = 6.4*length(name)/40, height = 4.8*length(name)/10)
  	
  	if ( FALSE )
  	{
