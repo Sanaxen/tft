@@ -421,6 +421,11 @@ namespace tft
             pInfo.FileName = textBox1.Text + "\\x64\\Rscript.exe";
             pInfo.Arguments = "" + script_file;
 
+            if ( !File.Exists(pInfo.FileName))
+            {
+                MessageBox.Show(pInfo.FileName + " is not found.\nPlease confirm that "+ textBox1.Text + " is specified as the file path, which is correct.");
+                return;
+            }
             //Process p = Process.Start(pInfo);
             Process p = new Process();
             p.StartInfo = pInfo;
@@ -687,6 +692,9 @@ namespace tft
             if (checkBox21.Checked) cmd += "use_date_quantile = TRUE\r\n";
             else cmd += "use_date_quantile = FALSE\r\n";
 
+            if (checkBox22.Checked) cmd += "use_target_diff = TRUE\r\n";
+            else cmd += "use_target_diff = FALSE\r\n";
+
             if (checkBox23.Checked) cmd += "use_date_min = TRUE\r\n";
             else cmd += "use_date_min = FALSE\r\n";
 
@@ -695,8 +703,8 @@ namespace tft
 
             cmd += "window_size=" + numericUpDown7.Value.ToString()+"\r\n";
 
-            if (checkBox22.Checked) cmd += "use_target_diff = TRUE\r\n";
-            else cmd += "use_target_diff = FALSE\r\n";
+            if (checkBox25.Checked) cmd += "use_feature_importance_plot = TRUE\r\n";
+            else cmd += "use_feature_importance_plot = FALSE\r\n";
 
             cmd += "\r\n";
             cmd += "\r\n";
@@ -1629,17 +1637,18 @@ namespace tft
 
             cmd += "\r\n";
             cmd += "\r\n";
-            if (checkBox25.Checked)
+            cmd += "if (use_feature_importance_plot){\r\n";
             {
-                cmd += "fi <- permutationFeatureImportance(fitted, test, validation=validation, base_name ='" + base_name + "')\r\n";
-                cmd += "fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[5]], ncol = 1)\r\n";
-                cmd += "ggsave(file = \"tft_" + base_name + "_fi.png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
-                cmd += "fi_plot1 <- ggplotly(fi[[2]])\r\n";
-                cmd += "fi_plot2 <- ggplotly(fi[[5]])\r\n";
-                cmd += "fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
-                cmd += "print(fi_plotly)\r\n";
-                cmd += "htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";
+                cmd += "    fi <- permutationFeatureImportance(fitted, test, validation=validation, base_name ='" + base_name + "')\r\n";
+                cmd += "    fi_plot <- gridExtra::grid.arrange(fi[[2]], fi[[5]], ncol = 1)\r\n";
+                cmd += "    ggsave(file = \"tft_" + base_name + "_fi.png\", plot = fi_plot,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*fi[[1]], limitsize = FALSE)\r\n";
+                cmd += "    fi_plot1 <- ggplotly(fi[[2]])\r\n";
+                cmd += "    fi_plot2 <- ggplotly(fi[[5]])\r\n";
+                cmd += "    fi_plotly <- subplot(fi_plot1, fi_plot2, nrows = 2)\r\n";
+                cmd += "    print(fi_plotly)\r\n";
+                cmd += "    htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";
             }
+            cmd += "}\r\n";
             return cmd;
         }
 
@@ -1716,8 +1725,12 @@ namespace tft
             work_dir = base_dir + "\\work\\"+ base_name;
             System.IO.Directory.SetCurrentDirectory(work_dir);
 
+            if (csv_dir != Path.GetDirectoryName(work_dir + base_name + ".csv"))
+            {
+                File.Copy(csv_file, base_name + ".csv", true);
+            }
 
-            File.Copy(csv_file, base_name + ".csv", true);
+            this.Text = "[" + base_name + "]";
 
             listBox_remake();
 
@@ -1833,6 +1846,34 @@ namespace tft
                 File.Delete(work_dir + "\\tft_" + base_name + "_p.html");
             }
         }
+
+        private string train_predict_script_output()
+        {
+            string cmd = tft_init();
+            cmd += tft_train();
+            cmd += "\r\n";
+            cmd += "\r\n";
+            cmd += tft_test();
+
+            save();
+
+            string file = "tft_" + base_name + ".R";
+            try
+            {
+                using (System.IO.StreamWriter sw = new StreamWriter(file, false, System.Text.Encoding.GetEncoding("shift_jis")))
+                {
+                    sw.Write(cmd);
+                }
+            }
+            catch
+            {
+                if (MessageBox.Show("Cannot write in " + file, "", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
+                    return "";
+            }
+
+            return file;
+        }
+
         private void button2_Click_1(object sender, EventArgs e)
         {
             if ( comboBox3.Text == "")
@@ -1855,28 +1896,9 @@ namespace tft
             label17.Text = "";
             toolTip1.SetToolTip(label7, "");
 
-            string cmd = tft_init();
-            cmd += tft_train();
-            cmd += "\r\n";
-            cmd += "\r\n";
-            cmd += tft_test();
+            string file = train_predict_script_output();
 
-            save();
-
-            string file = "tft_"+base_name +".R";
-            try
-            {
-                using (System.IO.StreamWriter sw = new StreamWriter(file, false, System.Text.Encoding.GetEncoding("shift_jis")))
-                {
-                    sw.Write(cmd);
-                }
-            }
-            catch
-            {
-                if (MessageBox.Show("Cannot write in "+file , "", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.OK)
-                    return;
-            }
-
+            if (file == "") return;
             execute(file, false);
         }
 
@@ -1888,6 +1910,7 @@ namespace tft
         private void button4_Click(object sender, EventArgs e)
         {
             save();
+            train_predict_script_output();
         }
 
         private void button3_Click(object sender, EventArgs e)
