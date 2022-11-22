@@ -91,6 +91,7 @@ namespace tft
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.checkBox22 = new System.Windows.Forms.CheckBox();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
             this.label13 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -141,11 +142,17 @@ namespace tft
             this.panel6 = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.button19 = new System.Windows.Forms.Button();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.panel25 = new System.Windows.Forms.Panel();
             this.button20 = new System.Windows.Forms.Button();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.splitter18 = new System.Windows.Forms.Splitter();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.button19 = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.splitter17 = new System.Windows.Forms.Splitter();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.button21 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.button18 = new System.Windows.Forms.Button();
@@ -190,13 +197,16 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.splitter17 = new System.Windows.Forms.Splitter();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.splitter18 = new System.Windows.Forms.Splitter();
-            this.panel25 = new System.Windows.Forms.Panel();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.button21 = new System.Windows.Forms.Button();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.label25 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -228,9 +238,12 @@ namespace tft
             this.tabPage6.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.tabPage13.SuspendLayout();
+            this.panel25.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.panel24.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel23.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tabPage9.SuspendLayout();
@@ -254,9 +267,11 @@ namespace tft
             this.panel18.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel19.SuspendLayout();
-            this.panel23.SuspendLayout();
-            this.panel24.SuspendLayout();
-            this.panel25.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -1007,6 +1022,18 @@ namespace tft
             this.toolTip1.SetToolTip(this.checkBox22, "Prediction predicts the difference between the target");
             this.checkBox22.UseVisualStyleBackColor = true;
             // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Location = new System.Drawing.Point(103, 11);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(61, 12);
+            this.linkLabel6.TabIndex = 55;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "importance";
+            this.toolTip1.SetToolTip(this.linkLabel6, "predict+real");
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -1568,25 +1595,6 @@ namespace tft
             this.pictureBox6.TabIndex = 74;
             this.pictureBox6.TabStop = false;
             // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(0, 0);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 81;
-            this.button19.Text = "window";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(244, 195);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox7.TabIndex = 80;
-            this.pictureBox7.TabStop = false;
-            // 
             // tabPage13
             // 
             this.tabPage13.AutoScroll = true;
@@ -1601,6 +1609,17 @@ namespace tft
             this.tabPage13.TabIndex = 7;
             this.tabPage13.Text = "feature importance";
             this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // panel25
+            // 
+            this.panel25.AutoScroll = true;
+            this.panel25.Controls.Add(this.button20);
+            this.panel25.Controls.Add(this.pictureBox8);
+            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel25.Location = new System.Drawing.Point(352, 38);
+            this.panel25.Name = "panel25";
+            this.panel25.Size = new System.Drawing.Size(340, 249);
+            this.panel25.TabIndex = 4;
             // 
             // button20
             // 
@@ -1621,9 +1640,79 @@ namespace tft
             this.pictureBox8.TabIndex = 76;
             this.pictureBox8.TabStop = false;
             // 
+            // splitter18
+            // 
+            this.splitter18.Location = new System.Drawing.Point(342, 38);
+            this.splitter18.Name = "splitter18";
+            this.splitter18.Size = new System.Drawing.Size(10, 249);
+            this.splitter18.TabIndex = 3;
+            this.splitter18.TabStop = false;
+            // 
+            // panel24
+            // 
+            this.panel24.AutoScroll = true;
+            this.panel24.Controls.Add(this.button19);
+            this.panel24.Controls.Add(this.pictureBox7);
+            this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel24.Location = new System.Drawing.Point(0, 38);
+            this.panel24.Name = "panel24";
+            this.panel24.Size = new System.Drawing.Size(342, 249);
+            this.panel24.TabIndex = 2;
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(0, 0);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 81;
+            this.button19.Text = "window";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(244, 195);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox7.TabIndex = 80;
+            this.pictureBox7.TabStop = false;
+            // 
+            // splitter17
+            // 
+            this.splitter17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter17.Location = new System.Drawing.Point(0, 35);
+            this.splitter17.Name = "splitter17";
+            this.splitter17.Size = new System.Drawing.Size(692, 3);
+            this.splitter17.TabIndex = 1;
+            this.splitter17.TabStop = false;
+            // 
+            // panel23
+            // 
+            this.panel23.Controls.Add(this.button21);
+            this.panel23.Controls.Add(this.linkLabel6);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(0, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(692, 35);
+            this.panel23.TabIndex = 0;
+            // 
+            // button21
+            // 
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button21.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button21.Location = new System.Drawing.Point(12, 6);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(83, 23);
+            this.button21.TabIndex = 56;
+            this.button21.Text = "importance";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.tabPage10);
+            this.tabControl2.Controls.Add(this.tabPage12);
             this.tabControl2.Controls.Add(this.tabPage9);
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
@@ -2145,78 +2234,146 @@ namespace tft
             this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
             // 
-            // panel23
+            // tabPage12
             // 
-            this.panel23.Controls.Add(this.button21);
-            this.panel23.Controls.Add(this.linkLabel6);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(0, 0);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(692, 35);
-            this.panel23.TabIndex = 0;
+            this.tabPage12.Controls.Add(this.label25);
+            this.tabPage12.Controls.Add(this.numericUpDown11);
+            this.tabPage12.Controls.Add(this.numericUpDown10);
+            this.tabPage12.Controls.Add(this.numericUpDown9);
+            this.tabPage12.Controls.Add(this.numericUpDown8);
+            this.tabPage12.Controls.Add(this.label24);
+            this.tabPage12.Controls.Add(this.label23);
+            this.tabPage12.Controls.Add(this.label22);
+            this.tabPage12.Controls.Add(this.label21);
+            this.tabPage12.Location = new System.Drawing.Point(4, 22);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(692, 209);
+            this.tabPage12.TabIndex = 5;
+            this.tabPage12.Text = "model";
+            this.tabPage12.UseVisualStyleBackColor = true;
             // 
-            // splitter17
+            // label21
             // 
-            this.splitter17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter17.Location = new System.Drawing.Point(0, 35);
-            this.splitter17.Name = "splitter17";
-            this.splitter17.Size = new System.Drawing.Size(692, 3);
-            this.splitter17.TabIndex = 1;
-            this.splitter17.TabStop = false;
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(13, 18);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(109, 12);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "hidden_state_size";
             // 
-            // panel24
+            // label22
             // 
-            this.panel24.AutoScroll = true;
-            this.panel24.Controls.Add(this.button19);
-            this.panel24.Controls.Add(this.pictureBox7);
-            this.panel24.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel24.Location = new System.Drawing.Point(0, 38);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(342, 249);
-            this.panel24.TabIndex = 2;
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 44);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(50, 12);
+            this.label22.TabIndex = 1;
+            this.label22.Text = "dropout";
             // 
-            // splitter18
+            // label23
             // 
-            this.splitter18.Location = new System.Drawing.Point(342, 38);
-            this.splitter18.Name = "splitter18";
-            this.splitter18.Size = new System.Drawing.Size(10, 249);
-            this.splitter18.TabIndex = 3;
-            this.splitter18.TabStop = false;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(16, 74);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(128, 12);
+            this.label23.TabIndex = 2;
+            this.label23.Text = "num_attention_heads";
             // 
-            // panel25
+            // label24
             // 
-            this.panel25.AutoScroll = true;
-            this.panel25.Controls.Add(this.button20);
-            this.panel25.Controls.Add(this.pictureBox8);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel25.Location = new System.Drawing.Point(352, 38);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(340, 249);
-            this.panel25.TabIndex = 4;
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(16, 101);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(102, 12);
+            this.label24.TabIndex = 3;
+            this.label24.Text = "num_lstm_layers";
             // 
-            // linkLabel6
+            // numericUpDown8
             // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Location = new System.Drawing.Point(103, 11);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(61, 12);
-            this.linkLabel6.TabIndex = 55;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "importance";
-            this.toolTip1.SetToolTip(this.linkLabel6, "predict+real");
-            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            this.numericUpDown8.Location = new System.Drawing.Point(167, 16);
+            this.numericUpDown8.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Minimum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Size = new System.Drawing.Size(57, 19);
+            this.numericUpDown8.TabIndex = 4;
+            this.numericUpDown8.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             // 
-            // button21
+            // numericUpDown9
             // 
-            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button21.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button21.Location = new System.Drawing.Point(12, 6);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(83, 23);
-            this.button21.TabIndex = 56;
-            this.button21.Text = "importance";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.button21_Click);
+            this.numericUpDown9.Location = new System.Drawing.Point(167, 42);
+            this.numericUpDown9.Name = "numericUpDown9";
+            this.numericUpDown9.Size = new System.Drawing.Size(57, 19);
+            this.numericUpDown9.TabIndex = 5;
+            this.numericUpDown9.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown10
+            // 
+            this.numericUpDown10.Location = new System.Drawing.Point(167, 74);
+            this.numericUpDown10.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Name = "numericUpDown10";
+            this.numericUpDown10.Size = new System.Drawing.Size(57, 19);
+            this.numericUpDown10.TabIndex = 6;
+            this.numericUpDown10.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown11
+            // 
+            this.numericUpDown11.Location = new System.Drawing.Point(167, 101);
+            this.numericUpDown11.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.numericUpDown11.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown11.Name = "numericUpDown11";
+            this.numericUpDown11.Size = new System.Drawing.Size(57, 19);
+            this.numericUpDown11.TabIndex = 7;
+            this.numericUpDown11.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(230, 48);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(43, 12);
+            this.label25.TabIndex = 8;
+            this.label25.Text = "/100.0";
             // 
             // Form1
             // 
@@ -2267,9 +2424,15 @@ namespace tft
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.tabPage13.ResumeLayout(false);
+            this.panel25.ResumeLayout(false);
+            this.panel25.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.panel24.ResumeLayout(false);
+            this.panel24.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.tabControl2.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();
@@ -2303,12 +2466,12 @@ namespace tft
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             this.panel19.ResumeLayout(false);
-            this.panel23.ResumeLayout(false);
-            this.panel23.PerformLayout();
-            this.panel24.ResumeLayout(false);
-            this.panel24.PerformLayout();
-            this.panel25.ResumeLayout(false);
-            this.panel25.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2481,6 +2644,16 @@ namespace tft
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.LinkLabel linkLabel6;
         private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.NumericUpDown numericUpDown11;
+        private System.Windows.Forms.NumericUpDown numericUpDown10;
+        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown numericUpDown8;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
     }
 }
 

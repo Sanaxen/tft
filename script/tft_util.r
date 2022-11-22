@@ -26,6 +26,12 @@
 # use_date_sd = TRUE
 # use_date_quantile  = TRUE
 
+#  hidden_state_size = 8,
+#  learn_rate = learn_rate, 
+#  dropout = 0.15, 
+#  num_attention_heads = 1, 
+#  num_lstm_layers = 1
+
 line_color_bule ="#00AFC5"
 line_color_red ="#FF7042"
 
@@ -499,11 +505,11 @@ lookup_lr <- function(spec, train, accelerator = accelerator_default, steps = 10
 {
 	model <- temporal_fusion_transformer(
 	  spec, 
-	  hidden_state_size = 8,
+	  hidden_state_size = hidden_state_size,
 	  learn_rate = learn_rate, 
-	  dropout = 0.15, 
-	  num_attention_heads = 1, 
-	  num_lstm_layers = 1
+	  dropout = dropout, 
+	  num_attention_heads = num_attention_heads, 
+	  num_lstm_layers = num_lstm_layers
 	)
 	#Find the optimal learning rate for the model
 	result<- NULL
@@ -554,11 +560,11 @@ tft_train_ <- function(spec, accelerator = accelerator_default, base_name = "", 
 	#Fitting a model
 	model <- temporal_fusion_transformer(
 	  spec, 
-	  hidden_state_size = 8,
+	  hidden_state_size = hidden_state_size,
 	  learn_rate =  0.001, 
-	  dropout = 0.15, 
-	  num_attention_heads = 1, 
-	  num_lstm_layers = 1
+	  dropout = dropout, 
+	  num_attention_heads = num_attention_heads, 
+	  num_lstm_layers = num_lstm_layers
 	)
 
 	fitted<- NULL

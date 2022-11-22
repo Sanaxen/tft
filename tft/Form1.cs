@@ -634,6 +634,11 @@ namespace tft
             cmd += "lookback=" + numericUpDown5.Value.ToString() + "\r\n";
 
             cmd += "future_test_len = " + numericUpDown6.Value.ToString() + "\r\n";
+            
+            cmd += "hidden_state_size=" + numericUpDown8.Value.ToString() + "\r\n";
+            cmd += "dropout=" + numericUpDown9.Value.ToString() + "*0.01\r\n";
+            cmd += "num_attention_heads=" + numericUpDown10.Value.ToString() + "\r\n";
+            cmd += "num_lstm_layers=" + numericUpDown11.Value.ToString() + "\r\n";
 
             cmd += "time_colname='" + comboBox3.Text + "'\r\n";
             cmd += "target_colname='" + comboBox4.Text + "'\r\n";
@@ -968,6 +973,10 @@ namespace tft
                     else sw.Write("false\n");
 
                     sw.Write("window_size," + numericUpDown7.Value.ToString() + "\n");
+                    sw.Write("hidden_state_size," + numericUpDown8.Value.ToString() + "\n");
+                    sw.Write("dropout," + numericUpDown9.Value.ToString() + "\n");
+                    sw.Write("num_attention_heads," + numericUpDown10.Value.ToString() + "\n");
+                    sw.Write("num_lstm_layers," + numericUpDown11.Value.ToString() + "\n");
 
                     sw.Write("link1,");
                     sw.Write(link1 + "\n");
@@ -1504,6 +1513,26 @@ namespace tft
                         if (ss[0].IndexOf("window_size") >= 0)
                         {
                             numericUpDown7.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("hidden_state_size") >= 0)
+                        {
+                            numericUpDown8.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("dropout") >= 0)
+                        {
+                            numericUpDown9.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("num_attention_heads") >= 0)
+                        {
+                            numericUpDown10.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("num_lstm_layers") >= 0)
+                        {
+                            numericUpDown11.Value = int.Parse(ss[1].Replace("\r\n", ""));
                             continue;
                         }
                     }
