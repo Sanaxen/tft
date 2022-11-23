@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 using System.Text;
 using System.Runtime.InteropServices;
+using Microsoft.Web.WebView2.Core;
 
 namespace tft
 {
@@ -29,6 +30,75 @@ namespace tft
         public string RlibPath = "";
 
         public string plot_time_unit = "";
+
+        private void webView21_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (webView21.CoreWebView2 != null)
+            {
+                //Web画面からVB/C＃へのホストオブジェクトにアクセスする必要がなければ
+                webView21.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+
+                //Webコンテンツ(JavaScript)からVB／C＃側へのメッセージを処理する必要がなければ
+                //webView21.CoreWebView2.Settings.IsWebMessageEnabled = false;
+
+                //Web画面でJavaScriptを使用したくなければ
+                //webView21.CoreWebView2.Settings.IsScriptEnabled = false;
+
+                //alertやpromptなどのダイアログを表示したくなければ
+                webView21.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
+            }
+        }
+        private void webView22_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (webView22.CoreWebView2 != null)
+            {
+                //Web画面からVB/C＃へのホストオブジェクトにアクセスする必要がなければ
+                webView21.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+
+                //Webコンテンツ(JavaScript)からVB／C＃側へのメッセージを処理する必要がなければ
+                //webView22.CoreWebView2.Settings.IsWebMessageEnabled = false;
+
+                //Web画面でJavaScriptを使用したくなければ
+                //webView22.CoreWebView2.Settings.IsScriptEnabled = false;
+
+                //alertやpromptなどのダイアログを表示したくなければ
+                webView22.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
+            }
+        }
+        private void webView24_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (webView24.CoreWebView2 != null)
+            {
+                //Web画面からVB/C＃へのホストオブジェクトにアクセスする必要がなければ
+                webView24.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+
+                //Webコンテンツ(JavaScript)からVB／C＃側へのメッセージを処理する必要がなければ
+                //webView24.CoreWebView2.Settings.IsWebMessageEnabled = false;
+
+                //Web画面でJavaScriptを使用したくなければ
+                //webView24.CoreWebView2.Settings.IsScriptEnabled = false;
+
+                //alertやpromptなどのダイアログを表示したくなければ
+                webView24.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
+            }
+        }
+        private void webView25_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (webView25.CoreWebView2 != null)
+            {
+                //Web画面からVB/C＃へのホストオブジェクトにアクセスする必要がなければ
+                webView25.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+
+                //Webコンテンツ(JavaScript)からVB／C＃側へのメッセージを処理する必要がなければ
+                //webView25.CoreWebView2.Settings.IsWebMessageEnabled = false;
+
+                //Web画面でJavaScriptを使用したくなければ
+                //webView25.CoreWebView2.Settings.IsScriptEnabled = false;
+
+                //alertやpromptなどのダイアログを表示したくなければ
+                webView25.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
+            }
+        }
         public Form1()
         {
             InitializeComponent();
@@ -53,6 +123,10 @@ namespace tft
                 RlibPath = sb.ToString().Replace("\\", "/");
             }
             InitializeAsync();
+            webView21.NavigationCompleted += webView21_NavigationCompleted;
+            webView22.NavigationCompleted += webView22_NavigationCompleted;
+            webView24.NavigationCompleted += webView24_NavigationCompleted;
+            webView25.NavigationCompleted += webView25_NavigationCompleted;
         }
         async void InitializeAsync()
         {
