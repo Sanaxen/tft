@@ -187,14 +187,14 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    data_tbl$self_adding_date_pm = as.factor(lubridate::pm(input_df$date))
 	    data_tbl$self_adding_date_yday = as.factor(lubridate::yday(input_df$date))
 	    data_tbl$self_adding_date_quarter = as.factor(lubridate::quarter(input_df$date))
-	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/8760)
-	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/8760)
-	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/730.001)
-	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/730.001)
-	    data_tbl$self_adding_date_sin_W = sin(2*pi*tidx/168.0)
-	    data_tbl$self_adding_date_cos_W = cos(2*pi*tidx/168.0)
-	    data_tbl$self_adding_date_sin_D = sin(2*pi*tidx/24.0)
-	    data_tbl$self_adding_date_cos_D = cos(2*pi*tidx/24.0)
+	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/(8760*periodicityY))
+	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/(8760*periodicityY))
+	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/(730.001*periodicityM))
+	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/(730.001*periodicityM))
+	    data_tbl$self_adding_date_sin_W = sin(2*pi*tidx/(168.0*periodicityW))
+	    data_tbl$self_adding_date_cos_W = cos(2*pi*tidx/(168.0*periodicityW))
+	    data_tbl$self_adding_date_sin_D = sin(2*pi*tidx/(24.0*periodicityD))
+	    data_tbl$self_adding_date_cos_D = cos(2*pi*tidx/(24.0*periodicityD))
 	}
 	
 	# as.Date()("1960-04-01"->"1960-03-31") -> lubridate::as_date()("1960-04-01"->"1960-04-01")
@@ -215,12 +215,17 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    data_tbl$self_adding_date_day = as.factor(lubridate::day(input_df$date))
 	    data_tbl$self_adding_date_yday = as.factor(lubridate::yday(input_df$date))
 	    data_tbl$self_adding_date_quarter = as.factor(lubridate::quarter(input_df$date))
-	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/365)
-	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/365)
-	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/30.4167)
-	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/30.4167)
-	    data_tbl$self_adding_date_sin_W = sin(2*tidx/7)
-	    data_tbl$self_adding_date_cos_W = cos(2*tidx/7)
+	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/(365*periodicityY))
+	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/(365*periodicityY))
+	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/(30.4167*periodicityM))
+	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/(30.4167*periodicityM))
+	    data_tbl$self_adding_date_sin_W = sin(2*tidx/(7*periodicityW))
+	    data_tbl$self_adding_date_cos_W = cos(2*tidx/(7*periodicityW))
+	    if ( periodicityD > 1 )
+	    {
+		    data_tbl$self_adding_date_sin_D = sin(2*pi*tidx/(periodicityD))
+		    data_tbl$self_adding_date_cos_D = cos(2*pi*tidx/(periodicityD))
+		}
 	}
 	if ( unit == "week" )
 	{
@@ -239,10 +244,15 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    data_tbl$self_adding_date_week = as.factor(lubridate::week(input_df$date))
 	    data_tbl$self_adding_date_yday = as.factor(lubridate::yday(input_df$date))
 	    data_tbl$self_adding_date_quarter = as.factor(lubridate::quarter(input_df$date))
-	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/52.1429)
-	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/52.1429)
-	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/4.34524)
-	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/4.34524)
+	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/(52.1429*periodicityY))
+	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/(52.1429*periodicityY))
+	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/(4.34524*periodicityM))
+	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/(4.34524*periodicityM))
+	    if ( periodicityW > 1 )
+	    {
+		    data_tbl$self_adding_date_sin_W = sin(2*pi*tidx/(periodicityW))
+		    data_tbl$self_adding_date_cos_W = cos(2*pi*tidx/(periodicityW))
+		}
 	}
 	if ( unit == "month" )
 	{
@@ -259,8 +269,13 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    data_tbl$self_adding_date_month = as.factor(lubridate::month(input_df$date))
 	    data_tbl$self_adding_date_yday = as.factor(lubridate::yday(input_df$date))
 	    data_tbl$self_adding_date_quarter = as.factor(lubridate::quarter(input_df$date))
-	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/12)
-	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/12)
+	    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/(12*periodicityY))
+	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/(12*periodicityY))
+	    if ( periodicityM > 1 )
+	    {
+		    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/(periodicityM))
+		    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/(periodicityM))
+		}
 	}
 	if ( unit == "year" )
 	{
@@ -275,6 +290,11 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 		  )
 	    data_tbl$self_adding_date_year = as.factor(lubridate::year(input_df$date))
 	    data_tbl$self_adding_date_quarter = as.factor(lubridate::quarter(input_df$date))
+	    if ( periodicityY > 1 )
+	    {
+		    data_tbl$self_adding_date_sin_Y = sin(2*pi*tidx/(periodicityY))
+		    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/(periodicityY))
+		}
 	}
    if (!use_date_year && ("self_adding_date_year" %in% names(data_tbl))) data_tbl$self_adding_date_year <- NULL
    if (!use_date_month && ("self_adding_date_month" %in% names(data_tbl))) data_tbl$self_adding_date_month <- NULL
@@ -296,9 +316,15 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
    if (!use_date_sincosD &&  ("self_adding_date_sin_D" %in% names(data_tbl))) data_tbl$self_adding_date_sin_D <- NULL
    if (!use_date_sincosD &&  ("self_adding_date_cos_D" %in% names(data_tbl))) data_tbl$self_adding_date_cos_D <- NULL
 	
+	if ( use_date_first_derivative )
+	{
+	    data_tbl <-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_diff = target - lag(target, n=1))
+	    #data_tbl <- mutate_at(data_tbl, c('self_adding_date_diff'), ~replace(., is.na(.), 0))
+	}
+	
 	#print(window_size)
 	#print(pred_len)
-	if ( window_size > pred_len )
+	if ( window_size >= pred_len )
 	{
 	    data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_lag = lag(target, n=window_size ))
 	    if ( use_date_mean )
@@ -317,6 +343,7 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    {
 			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_max =  slide_vec(.x = self_adding_date_lag, .f = max, .before = window_size))
 		}
+		
 		data_tbl <- data_tbl %>%  group_by(key) %>%
 	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
 
@@ -348,6 +375,7 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    {
 			data_tbl<-data_tbl %>%  group_by(key) %>%  mutate(self_adding_statistics_max =  slide_vec(.x = self_adding_statistics_lag, .f = max, .before = window_size))
 		}
+		
 		data_tbl <- data_tbl %>%  group_by(key) %>%
 	  		mutate(across(where(is.numeric), ~ replace_na(.x, mean(.x,na.rm = TRUE)))) 	
 
@@ -363,15 +391,22 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	}
 	
 	data_tbl$date_org <- data_tbl$date
+	
+	num_day = 1
+	unit2 = unit
 	if ( unit == "month" )
 	{
+		unit2="day"
+		num_day = 30
 		data_tbl$date <- lubridate::as_date(as.POSIXct(data_tbl$date))
-		data_tbl$date = lubridate::ymd(data_tbl$date[1]) + lubridate::days((tidx-1)*30)
+		data_tbl$date = lubridate::ymd(data_tbl$date[1]) + lubridate::days((tidx-1)*num_day)
 	}
 	if ( unit == "year" )
 	{
+		unit2="day"
+		num_day = 365
 		data_tbl$date <- lubridate::as_date(as.POSIXct(data_tbl$date))
-		data_tbl$date = lubridate::ymd(data_tbl$date[1]) + lubridate::days((tidx-1)*365)
+		data_tbl$date = lubridate::ymd(data_tbl$date[1]) + lubridate::days((tidx-1)*num_day)
 	}
 	#data_tbl$date_org <- as.factor(data_tbl$date_org)
 	
@@ -383,28 +418,31 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	writeLines("last_date <- max(data_tbl$date)", out.file)
 
 	lubridate_namespace = "lubridate::"
-	if ( unit == "month" ) lubridate_namespace = ""
+	
 	
 	#As your tft_dataset_spec() includes known covariates, 
 	#you must provide them for the model to train. 
 	#So the minimum number of observations must be lookback + horizon.
+	
+	s = sprintf("num_day=%d", s = num_day)
+	writeLines(s, out.file)
 	if (validation)
 	{
-		s = sprintf("train <- data_tbl %%>%% filter(date <= (last_date - %s%ss((lookback+future_test_len+pred_len))))", lubridate_namespace, unit)
+		s = sprintf("train <- data_tbl %%>%% filter(date <= (last_date - %s%ss(num_day*(lookback+future_test_len+pred_len))))", lubridate_namespace, unit2)
 		writeLines(s, out.file)
 		
-		s = sprintf("valid <- data_tbl %%>%% filter(date > (last_date - %s%ss((lookback+future_test_len+pred_len))),date <= (last_date - %s%ss((future_test_len+pred_len))))", lubridate_namespace, unit, lubridate_namespace, unit)
+		s = sprintf("valid <- data_tbl %%>%% filter(date > (last_date - %s%ss(num_day*(lookback+future_test_len+pred_len))),date <= (last_date - %s%ss(num_day*(future_test_len+pred_len))))", lubridate_namespace, unit2, lubridate_namespace, unit2)
 		writeLines(s, out.file)
 
-		s = sprintf("test <- data_tbl %%>%% filter(date > (last_date - %s%ss((future_test_len+pred_len))))", lubridate_namespace, unit)
+		s = sprintf("test <- data_tbl %%>%% filter(date > (last_date - %s%ss(num_day*(future_test_len+pred_len))))", lubridate_namespace, unit2)
 		writeLines(s, out.file)
 		
 	}else
 	{
-		s = sprintf("train <- data_tbl %%>%% filter(date <= (last_date - %s%ss((future_test_len+pred_len))))", lubridate_namespace, unit)
+		s = sprintf("train <- data_tbl %%>%% filter(date <= (last_date - %s%ss(num_day*(future_test_len+pred_len))))", lubridate_namespace, unit2)
 		writeLines(s, out.file)
 		
-		s = sprintf("test <- data_tbl %%>%% filter(date > (last_date - %s%ss((future_test_len+pred_len))))", lubridate_namespace, unit)
+		s = sprintf("test <- data_tbl %%>%% filter(date > (last_date - %s%ss(num_day*(future_test_len+pred_len))))", lubridate_namespace, unit2)
 		writeLines(s, out.file)
 	
 		valid <- NULL
@@ -767,6 +805,44 @@ tft_predict <- function(fitted, test, validation=F, base_name="")
 	return (pred)
 }
 
+tft_predict_and_past1 <- function(pred, invdiff=FALSE, return_pred = FALSE)
+{
+    begin_dt <- max(train$date)
+    x <- train %>% filter(date == begin_dt)
+    if ( validation )
+    {
+        begin_dt <- max(valid$date)
+        x <- valid %>% filter(date == begin_dt)
+    }
+    if ( invdiff )
+    {
+	    x <- x %>%  group_by(key) %>%  mutate(.pred_lower = x$target_org )
+	    x <- x %>%  group_by(key) %>%  mutate(.pred = x$target_org )
+	    x <- x %>%  group_by(key) %>%  mutate(.pred_upper = x$target_org )
+    }else
+    {
+	    x <- x %>%  group_by(key) %>%  mutate(.pred_lower = x$target )
+	    x <- x %>%  group_by(key) %>%  mutate(.pred = x$target )
+	    x <- x %>%  group_by(key) %>%  mutate(.pred_upper = x$target )
+	}
+    y <- bind_rows(x, pred)
+    
+    if ( invdiff )
+    {
+	    y$.pred_lower <- cumsum(y$.pred_lower)
+	    y$.pred <- cumsum(y$.pred)
+	    y$.pred_upper <- cumsum(y$.pred_upper)
+    }
+    
+    if ( return_pred )
+    {
+	    y <- y %>% filter(date > begin_dt)
+    }
+
+    return (y)
+}
+
+
 tft_predict_plot <- function(pred, timestep="week", use_real_data = FALSE)
 {
 	nkey = length(unique(input_df$key))
@@ -845,6 +921,7 @@ tft_predict_plot_ymd <- function(pred, cutoff_ymd="2019-01-01")
 tft_predict_check <- function(pred, timestep="day")
 {
 	plt <- NULL
+	
 	if ( unit == "week" || unit == "month" || unit == "day")
 	{
 		plt <- pred %>% 

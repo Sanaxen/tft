@@ -713,6 +713,11 @@ namespace tft
             cmd += "dropout=" + numericUpDown9.Value.ToString() + "*0.01\r\n";
             cmd += "num_attention_heads=" + numericUpDown10.Value.ToString() + "\r\n";
             cmd += "num_lstm_layers=" + numericUpDown11.Value.ToString() + "\r\n";
+            
+            cmd += "periodicityY=" + numericUpDown12.Value.ToString() + "\r\n";
+            cmd += "periodicityM=" + numericUpDown13.Value.ToString() + "\r\n";
+            cmd += "periodicityW=" + numericUpDown14.Value.ToString() + "\r\n";
+            cmd += "periodicityD=" + numericUpDown15.Value.ToString() + "\r\n";
 
             cmd += "time_colname='" + comboBox3.Text + "'\r\n";
             cmd += "target_colname='" + comboBox4.Text + "'\r\n";
@@ -770,10 +775,18 @@ namespace tft
             else cmd += "use_date_sd = FALSE\r\n";
             if (checkBox21.Checked) cmd += "use_date_quantile = TRUE\r\n";
             else cmd += "use_date_quantile = FALSE\r\n";
+            if (checkBox26.Checked) cmd += "use_date_first_derivative = TRUE\r\n";
+            else cmd += "use_date_first_derivative = FALSE\r\n";
+            //
 
             if (checkBox22.Checked) cmd += "use_target_diff = TRUE\r\n";
             else cmd += "use_target_diff = FALSE\r\n";
 
+            if (checkBox26.Checked && checkBox22.Checked)
+            {
+                checkBox26.Checked = false;
+                cmd += "use_date_first_derivative = FALSE\r\n";
+            }
             if (checkBox23.Checked) cmd += "use_date_min = TRUE\r\n";
             else cmd += "use_date_min = FALSE\r\n";
 
@@ -1016,6 +1029,10 @@ namespace tft
                     if (checkBox14.Checked) sw.Write("true\n");
                     else sw.Write("false\n");
 
+                    sw.Write("use_date_first_derivative,");
+                    if (checkBox26.Checked) sw.Write("true\n");
+                    else sw.Write("false\n");
+
                     sw.Write("accelerator,");
                     if (checkBox17.Checked) sw.Write("true\n");
                     else sw.Write("false\n");
@@ -1051,6 +1068,11 @@ namespace tft
                     sw.Write("dropout," + numericUpDown9.Value.ToString() + "\n");
                     sw.Write("num_attention_heads," + numericUpDown10.Value.ToString() + "\n");
                     sw.Write("num_lstm_layers," + numericUpDown11.Value.ToString() + "\n");
+
+                    sw.Write("periodicityY," + numericUpDown12.Value.ToString() + "\n");
+                    sw.Write("periodicityM," + numericUpDown13.Value.ToString() + "\n");
+                    sw.Write("periodicityW," + numericUpDown14.Value.ToString() + "\n");
+                    sw.Write("periodicityD," + numericUpDown15.Value.ToString() + "\n");
 
                     sw.Write("link1,");
                     sw.Write(link1 + "\n");
@@ -1106,6 +1128,10 @@ namespace tft
                 file = setting_file;
             }
 
+            string rexe1 = textBox1.Text + "\\x64\\Rscript.exe";
+            string rexe = rexe1;
+
+            bool rpath_chg = false;
             System.IO.StreamReader sr = new System.IO.StreamReader(file, Encoding.GetEncoding("SHIFT_JIS"));
             if (sr != null)
             {
@@ -1173,7 +1199,17 @@ namespace tft
 
                         if (ss[0].IndexOf("r_path") >= 0)
                         {
-                            textBox1.Text = ss[1].Replace("\r\n", "");
+                            string path = ss[1].Replace("\r\n", "");
+                            rexe = path + "\\x64\\Rscript.exe";
+
+                            if (!File.Exists(rexe))
+                            {
+                                continue;
+                            }else
+                            {
+                                rpath_chg = true;
+                            }
+                            textBox1.Text = path;                            
                             continue;
                         }
                         if (ss[0].IndexOf("link1") >= 0)
@@ -1236,6 +1272,27 @@ namespace tft
                             numericUpDown6.Value = int.Parse(ss[1].Replace("\r\n", ""));
                             continue;
                         }
+                        if (ss[0].IndexOf("periodicityY") >= 0)
+                        {
+                            numericUpDown12.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("periodicityM") >= 0)
+                        {
+                            numericUpDown13.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("periodicityW") >= 0)
+                        {
+                            numericUpDown14.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("periodicityD") >= 0)
+                        {
+                            numericUpDown15.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+
                         //
                         if (ss[0].IndexOf("time_colname") >= 0)
                         {
@@ -1415,7 +1472,19 @@ namespace tft
                                 checkBox16.Checked = false;
                             }
                             continue;
-                        }   
+                        }
+                        if (ss[0].IndexOf("use_date_first_derivative") >= 0)
+                        {
+                            if (ss[1].Replace("\r\n", "") == "true")
+                            {
+                                checkBox26.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox26.Checked = false;
+                            }
+                            continue;
+                        }                        //
 
                         if (ss[0].IndexOf("predict_measure") >= 0)
                         {
@@ -1613,6 +1682,15 @@ namespace tft
                 }
             }
             if (sr != null) sr.Close();
+            if ( !rpath_chg)
+            {
+                MessageBox.Show(rexe + " is not found.\nThe path of the loaded setting was ignored.");
+                if (!File.Exists(rexe))
+                {
+                    MessageBox.Show("Please reconfigure the path where 'Rscript.exe' exists.");
+                    return;
+                }
+            }
             Plot();
         }
 
@@ -1752,6 +1830,14 @@ namespace tft
                 cmd += "    htmlwidgets::saveWidget(as_widget(fi_plotly), \"tft_" + base_name + "_fi.html\", selfcontained = F)\r\n";
             }
             cmd += "}\r\n";
+
+            cmd += "\r\n";
+            cmd += "\r\n";
+            cmd += "if ( use_target_diff ){\r\n";
+            cmd += "    y <- tft_predict_and_past1(pred, invdiff=T, return_pred=T)\r\n";
+            cmd += "    tft_pred_save(y, filename=\"" + base_name + "_pred_save2.csv\")\r\n";
+            cmd += "}\r\n";
+
             return cmd;
         }
 
@@ -2626,6 +2712,14 @@ namespace tft
             catch { }
 
             plot.Show();
+        }
+
+        private void numericUpDown7_Validated(object sender, EventArgs e)
+        {
+            if (numericUpDown7.Value < numericUpDown4.Value)
+            {
+                MessageBox.Show("I suspect a data leakage. be careful.\nFeatures [window]");
+            }
         }
 
         private void button20_Click(object sender, EventArgs e)
