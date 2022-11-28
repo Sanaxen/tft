@@ -686,6 +686,11 @@ namespace tft
             cmd += "library(tidyverse)\r\n";
             cmd += "library(recipes)\r\n";
             cmd += "library(tft)\r\n";
+            if ( textBox3.Text != "")
+            {
+                cmd += "library(lineNotify)\r\n";
+                cmd += "Sys.setenv(LINE_API_TOKEN=\"" + textBox3.Text + "\")\r\n";
+            }
             cmd += "set.seed(1)\r\n";
             cmd += "torch::torch_manual_seed(1)\r\n";
             cmd += "\r\n";
@@ -1793,6 +1798,10 @@ namespace tft
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "ggsave(file = \"" + base_name + "_predict_real.png\", plot = p, dpi = 100, width = 6.4, height = 4.8)\r\n";
+            if ( textBox3.Text != "")
+            {
+                cmd += "notify_ggplot(base_name, unit=\"in\", plot = p)\r\n";
+            }
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "#saveRDS(fitted, file=\"" + base_name + "_fitted.rd\")\r\n";

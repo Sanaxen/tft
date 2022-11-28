@@ -212,6 +212,10 @@ namespace tft
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.panel21 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -281,6 +285,8 @@ namespace tft
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
+            this.tabPage14.SuspendLayout();
+            this.panel21.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -964,7 +970,7 @@ namespace tft
             "6",
             "7",
             "8"});
-            this.comboBox6.Location = new System.Drawing.Point(412, 3);
+            this.comboBox6.Location = new System.Drawing.Point(392, 2);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(61, 20);
             this.comboBox6.TabIndex = 70;
@@ -1000,7 +1006,7 @@ namespace tft
             // checkBox17
             // 
             this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(358, 5);
+            this.checkBox17.Location = new System.Drawing.Point(338, 4);
             this.checkBox17.Name = "checkBox17";
             this.checkBox17.Size = new System.Drawing.Size(48, 16);
             this.checkBox17.TabIndex = 69;
@@ -1731,6 +1737,7 @@ namespace tft
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
             this.tabControl2.Controls.Add(this.tabPage11);
+            this.tabControl2.Controls.Add(this.tabPage14);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
@@ -2488,6 +2495,41 @@ namespace tft
             0,
             0});
             // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(122, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(393, 19);
+            this.textBox3.TabIndex = 71;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(10, 9);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(106, 12);
+            this.label26.TabIndex = 72;
+            this.label26.Text = "LINE_API_TOKEN";
+            // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.panel21);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(692, 209);
+            this.tabPage14.TabIndex = 6;
+            this.tabPage14.Text = "LINE";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.label26);
+            this.panel21.Controls.Add(this.textBox3);
+            this.panel21.Location = new System.Drawing.Point(11, 7);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(527, 100);
+            this.panel21.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2589,6 +2631,9 @@ namespace tft
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
+            this.tabPage14.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2776,6 +2821,10 @@ namespace tft
         private System.Windows.Forms.NumericUpDown numericUpDown14;
         private System.Windows.Forms.NumericUpDown numericUpDown13;
         private System.Windows.Forms.NumericUpDown numericUpDown12;
+        private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

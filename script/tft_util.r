@@ -861,6 +861,10 @@ tft_predict_plot <- function(pred, timestep="week", use_real_data = FALSE)
 		t <- bind_rows(train, valid)
 	}
 
+	if ( pred_len < 2 )
+	{
+		pred <- tft_predict_and_past1(pred, invdiff=use_target_diff)
+	}
 	pred2 <- pred %>% mutate(target = NA_real_)	
 	if (use_real_data)
 	{
@@ -921,6 +925,10 @@ tft_predict_plot_ymd <- function(pred, cutoff_ymd="2019-01-01")
 tft_predict_check <- function(pred, timestep="day")
 {
 	plt <- NULL
+	if ( pred_len < 2 )
+	{
+		pred <- tft_predict_and_past1(pred, invdiff=use_target_diff)
+	}
 	
 	if ( unit == "week" || unit == "month" || unit == "day")
 	{
