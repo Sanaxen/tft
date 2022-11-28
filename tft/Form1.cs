@@ -1800,7 +1800,7 @@ namespace tft
             cmd += "ggsave(file = \"" + base_name + "_predict_real.png\", plot = p, dpi = 100, width = 6.4, height = 4.8)\r\n";
             if ( textBox3.Text != "")
             {
-                cmd += "notify_ggplot(base_name, unit=\"in\", plot = p)\r\n";
+                cmd += "notify_ggplot(\""+base_name+"\", unit=\"in\", plot = p)\r\n";
             }
             cmd += "\r\n";
             cmd += "\r\n";
