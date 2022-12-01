@@ -68,6 +68,7 @@ install.packages("prodlim" repos = "http://cran.us.r-project.org"))
 install.packages("listenv" repos = "http://cran.us.r-project.org"))
 install.packages("rlang", repos = "http://cran.us.r-project.org")
 install.packages("gplots", repos = "http://cran.us.r-project.org")
+devtools::install_github("fisproject/lineNotify", force=T)
 
 remotes::install_github("mlverse/tft")
 ```

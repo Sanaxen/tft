@@ -2755,6 +2755,7 @@ namespace tft
 
             try
             {
+                plot.webView21.Hide();
                 plot.pictureBox1.Image = null;
                 pictureBox3.Image = null;
                 if (System.IO.File.Exists(base_name + "_fitted_plot.png"))
