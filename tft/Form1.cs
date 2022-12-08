@@ -862,8 +862,8 @@ namespace tft
             {
                 cmd += "input_df <- tft_data_compact(input_df, step_unit='" + comboBox7.Text + "')\r\n";
                 cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "')\r\n";
-                comboBox1.Text = comboBox7.Text;
-                cmd += "unit ='" + comboBox1.Text + "'\r\n";
+                //comboBox1.Text = comboBox7.Text;
+                cmd += "unit ='" + comboBox7.Text + "'\r\n";
             }
             cmd += "\r\n";
             cmd += "ggsave(file = \"" + base_name + "_p_input_plot.png\", plot = input_plot, dpi = 100, width = 6.4, height = 4.8)\r\n";
@@ -1765,6 +1765,11 @@ namespace tft
         {
             string cmd = "";
 
+            if (comboBox7.Text != "")
+            {
+                cmd += "unit ='" + comboBox7.Text + "'\r\n";
+            }
+
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "# cpp_torch_tensor_dtype(self$ptr) error: external pointer is not valid\r\n";
@@ -2656,6 +2661,7 @@ namespace tft
                 interactivePlot plot = new interactivePlot();
                 try
                 {
+                    plot.webView21.Hide();
                     plot.pictureBox1.Image = null;
                     plot.pictureBox1.Image = interactivePlot.CreateImage(base_name + "_feature_importance.png");
                     plot.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -2738,6 +2744,7 @@ namespace tft
                 interactivePlot plot = new interactivePlot();
                 try
                 {
+                    plot.webView21.Hide();
                     plot.pictureBox1.Image = null;
                     plot.pictureBox1.Image = interactivePlot.CreateImage(base_name + "_feature_importance_time.png");
                     plot.pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
