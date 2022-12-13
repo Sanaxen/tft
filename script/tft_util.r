@@ -968,22 +968,32 @@ library(ggplot2)
 library(gplots)
 
 # The permutation feature importance algorithm based on Fisher, Rudin, and Dominici (2018) 
-permutationFeatureImportance<- function(fitted, test, validation=F, base_name="")
+permutationFeatureImportance<- function(fitted, test, validation=F, base_name="", maxvar=-1)
 {
-	n = length(unique(input_df$key))
-
-	test_tmp <- test[1:pred_len*n,]
+	nkey = length(unique(input_df$key))
+#cat("nkey")
+#print(nkey)
+#cat("pred_len")
+#print(pred_len)
+	test_tmp <- test[1:(pred_len*nkey),]
 	date_idx <- which( colnames(test_tmp)=='date' )
 	target_idx <- which( colnames(test_tmp)=='target' )
 	key_idx <- which( colnames(test_tmp)=='key' )
 	n = ncol(test_tmp)
-	
+#	print(n)
+	#n = ifelse(n > 10, 10, n)
+	#print(n)
+#cat("test_tmp")
+#print(test_tmp)
+
 	test_tmp0 <- test_tmp
 
 	pred0 <- tft_predict(fitted, test_tmp, validation=validation, base_name=base_name)
-	
+	print(pred0)
+	print(tft_predict_measure(pred0))
 	measure <- tft_predict_measure(pred0)[[1]]
-	mse0 <- measure$MSE
+	mse0 <- (measure$MSE)
+	print(mse0)
 
 	FI = NULL
 	FI_s = NULL
@@ -993,7 +1003,8 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	{
 		name = c(1:(n-3))*0
 		mse = c(1:(n-3))*0
-		preds = test_tmp$date
+		preds = data.frame( date=(test_tmp$date), key=test_tmp$key)
+	#print(preds)
 
 		id = 1
 		for ( i in 1:n )
@@ -1005,9 +1016,10 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 			test_tmp[,i] <- test_tmp[order(rnorm(nrow(test_tmp[,i]))),i]
 			
 			pred <- tft_predict(fitted, test_tmp, validation=validation, base_name=base_name)
-			preds <- cbind(preds, abs(pred$.pred - (pred$target)))
+			preds <- cbind(preds, (abs(pred$.pred - (pred$target))))
+	#print(preds)
 
-			mse[id] <- tft_predict_measure(pred)[[1]]$MSE
+			mse[id] <- mean(tft_predict_measure(pred)[[1]]$MSE)
 			name[id] <- colnames(test_tmp)[i]
 			id = id + 1
 		}
@@ -1017,28 +1029,57 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 		{
 			s = FI$feature_importance
 		}
-			
+		colnames(preds)<- c("date","key",name)
+		preds <- preds %>% 
+		  group_by(date) %>% 
+		  summarise(across(where(is.numeric), .fns = ~mean(as.numeric(.x), na.rm = TRUE)), .groups = "drop")
+#summarise(across(where(is.numeric), ~ mean(.x), .groups = "drop"))
 		
 		FI <- data.frame(feature_importance=abs(mse-mse0)+s, name=c(name))
+	#cat("FI")
+	#print(FI)
 		
-		colnames(preds)[1]<- c('date')
-		colnames(preds)[2:ncol(preds)]<- c(name)
+		#colnames(preds)[1]<- c('date')
+		#colnames(preds)[2:ncol(preds)]<- c(name)
 		FI_s<-as.data.frame(preds)
-		FI_s$date <- test_tmp$date
+	#cat("FI_s")
+	#print(FI_s)
+		#FI_s$date <- preds$date
 		rownames(FI_s) <- FI_s$date
 		FI_s$date<- NULL
+	#cat("FI_s")
+	#print(FI_s)
 		
 		if ( k > 1 )
 		{
 			FI_s = FI_s2 + FI_s
 		}
+	cat("FI_s")
+	print(FI_s)
 		FI_s2 = FI_s
 	}
-	FI_s2 = FI_s2 / sampling_n
+	FI_s2 <- FI_s2[,order(FI$'feature_importance',decreasing=T)]
+	#cat("FI_s2")
+	#print(FI_s2)
+	#print(nrow(FI_s2))
+	#print(ncol(FI_s2))
+	
+	if (maxvar > 0 )
+	{
+		FI_s2 <- FI_s2[,1:(ifelse(ncol(FI_s2)>maxvar, maxvar,ncol(FI_s2) ))]
+	#cat("FI_s2")
+	#print(FI_s2)
+	}
+	
+	FI_s2[,2:ncol(FI_s2)] = FI_s2[,2:ncol(FI_s2)] / sampling_n
 	FI$'feature_importance' = FI$'feature_importance'/ sampling_n
 	
 	FI <- FI[order(FI$'feature_importance',decreasing=T),]
-
+	if (maxvar > 0 )
+	{
+		FI <- FI[1:(ifelse(nrow(FI)>maxvar, maxvar,nrow(FI) )),]
+	}
+	
 	g1 <- ggplot(FI, aes(x = reorder(name, feature_importance), y = feature_importance, fill = name))
 	g1 <- g1 + geom_bar(stat = "identity")
 	g1 <- g1 + coord_flip()
@@ -1047,39 +1088,51 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 	ggsave(file = paste(base_name,"_feature_importance.png", sep=""), plot = g1, dpi = 100, width = 6.4*length(name)/40, height = 4.8*length(name)/10, limitsize = FALSE)
 
 
-
+	tmp <- FI_s
 
 	FI_s2 <- FI_s
+	if (maxvar > 0 )
+	{
+		FI_s2 <- FI_s2[,1:(ifelse(ncol(FI_s2)>maxvar, maxvar,ncol(FI_s2) ))]
+	}
 	for(i in 1:nrow(FI_s2))
   	{
-  		x <- as.matrix(FI_s[i,])
+  		x <- as.matrix(FI_s2[i,1:ncol(FI_s2)])
 		mn = min(x)
 		mx = max(x)
   		y <- (x - mn)/(mx-mn)
-  		FI_s2[i,] <- y
+  		FI_s2[i,1:ncol(FI_s2)] <- y
  	}
- 	FI_s2$date <- test_tmp$date
+	FI_s2$date <- preds$date
  	
- 	x<-horizontally_to_vertically(FI_s2, ids_cols=c('date'), key=name)
- 	x$importance <- x$target
- 	x$target <- NULL
-	g2 <- ggplot(data = x, aes(x = date, y = key , fill = importance)) + 
-	geom_tile()+
-	scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
-	ggsave(file = paste(base_name,"_feature_importance_time1.png", sep=""), plot = g2, dpi = 100, width = 6.4*length(name)/40, height = 4.8*length(name)/10, limitsize = FALSE)
+ 	g2 = NULL
+ 	#x<-horizontally_to_vertically(FI_s2, ids_cols=c('date'), key=name)
+ 	#x$importance <- x$target
+ 	#x$target <- NULL
+	#g2 <- ggplot(data = x, aes(x = date, y = key , fill = importance)) + 
+	#geom_tile()+
+	#scale_fill_gradient2(low = "springgreen4", mid = "yellow", high = "red", midpoint = 0.5)
+	#ggsave(file = paste(base_name,"_feature_importance_time1.png", sep=""), plot = g2, dpi = 100, width = 6.4*length(name)/40, height = 4.8*length(name)/10, limitsize = FALSE)
  	
+ 	tmp <- FI_s
 	FI_s$date <- NULL
+	if (maxvar > 0 )
+	{
+		FI_s <- FI_s[,1:(ifelse(ncol(FI_s)>maxvar, maxvar,ncol(FI_s) ))]
+	}
 	FI_s <- (FI_s - min(FI_s))/(max(FI_s) - min(FI_s))
- 	FI_s$date <- test_tmp$date
- 	x<-horizontally_to_vertically(FI_s, ids_cols=c('date'), key=name)
+ 	FI_s$date <- preds$date
+	
+ 	x<-horizontally_to_vertically(FI_s, ids_cols=c('date'), key=colnames(FI_s)[1:(length(colnames(FI_s))-1)])
  	x$importance <- x$target
  	x$target <- NULL
 
-	g3 <- x %>% 
-	  ggplot(aes(x = date, y = importance, color=key))+
-	  geom_line()+
-	  scale_x_datetime(breaks = date_breaks(unit), labels = date_format("%Y-%m-%d %H")) +
-	  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+	g3=NULL
+	#g3 <- x %>% 
+	#  ggplot(aes(x = date, y = importance, color=key))+
+	#  geom_line()+
+	#  scale_x_datetime(breaks = date_breaks(unit), labels = date_format("%Y-%m-%d %H")) +
+	#  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 	  
 	g4 <- ggplot(x, aes(x = date, y = importance, fill = key))
 	g4 <- g4 + geom_bar(stat = "identity", position = "fill")
@@ -1106,7 +1159,8 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.3,0.001))))
 		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=c(rgb(seq(0.9,0.2,-0.001),0, seq(0.0,0.2,0.001))))
 	}
-	return( list(n, g1, g2, g3, g4, g5))
+	fi <- list(n, g1, g2, g3, g4, g5)
+	return( fi )
 }
 
 
@@ -1122,7 +1176,7 @@ tft_predict_measure <- function(pred)
              MSEL=sum((log(1+target)-log(1+.pred))^2)/count,
              RMSEL=sqrt(sum((log(1+target)-log(1+.pred))^2)/count))
 
-	summary2 <- pred %>%  group_by(key) %>%
+	summary2 <- pred %>%  group_by(date,key) %>%
 	summarise(count = n(),
              MSE=sum(target-.pred)^2/count,
              RMSE=sqrt(sum(target-.pred)^2/count),
