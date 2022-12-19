@@ -95,6 +95,7 @@ namespace tft
             this.label13 = new System.Windows.Forms.Label();
             this.button13 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox26 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label15 = new System.Windows.Forms.Label();
@@ -105,6 +106,10 @@ namespace tft
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.listBox4 = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
@@ -173,15 +178,19 @@ namespace tft
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBox24 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
             this.checkBox23 = new System.Windows.Forms.CheckBox();
             this.checkBox21 = new System.Windows.Forms.CheckBox();
             this.checkBox20 = new System.Windows.Forms.CheckBox();
             this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -207,15 +216,8 @@ namespace tft
             this.panel20 = new System.Windows.Forms.Panel();
             this.splitter15 = new System.Windows.Forms.Splitter();
             this.panel19 = new System.Windows.Forms.Panel();
-            this.checkBox26 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.panel21 = new System.Windows.Forms.Panel();
+            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -223,6 +225,10 @@ namespace tft
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -267,6 +273,8 @@ namespace tft
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.tabPage11.SuspendLayout();
+            this.tabPage14.SuspendLayout();
+            this.panel21.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -281,12 +289,7 @@ namespace tft
             this.panel18.SuspendLayout();
             this.panel20.SuspendLayout();
             this.panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
-            this.tabPage14.SuspendLayout();
-            this.panel21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -1093,6 +1096,16 @@ namespace tft
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Features to add";
             // 
+            // checkBox26
+            // 
+            this.checkBox26.AutoSize = true;
+            this.checkBox26.Location = new System.Drawing.Point(12, 144);
+            this.checkBox26.Name = "checkBox26";
+            this.checkBox26.Size = new System.Drawing.Size(45, 16);
+            this.checkBox26.TabIndex = 34;
+            this.checkBox26.Text = "diff";
+            this.checkBox26.UseVisualStyleBackColor = true;
+            // 
             // checkBox16
             // 
             this.checkBox16.AutoSize = true;
@@ -1209,6 +1222,94 @@ namespace tft
             this.groupBox2.TabIndex = 67;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "period";
+            // 
+            // numericUpDown15
+            // 
+            this.numericUpDown15.Location = new System.Drawing.Point(100, 89);
+            this.numericUpDown15.Maximum = new decimal(new int[] {
+            182,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Name = "numericUpDown15";
+            this.numericUpDown15.Size = new System.Drawing.Size(48, 19);
+            this.numericUpDown15.TabIndex = 29;
+            this.numericUpDown15.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown14
+            // 
+            this.numericUpDown14.Location = new System.Drawing.Point(100, 63);
+            this.numericUpDown14.Maximum = new decimal(new int[] {
+            182,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Name = "numericUpDown14";
+            this.numericUpDown14.Size = new System.Drawing.Size(48, 19);
+            this.numericUpDown14.TabIndex = 28;
+            this.numericUpDown14.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown13
+            // 
+            this.numericUpDown13.Location = new System.Drawing.Point(100, 38);
+            this.numericUpDown13.Maximum = new decimal(new int[] {
+            182,
+            0,
+            0,
+            0});
+            this.numericUpDown13.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown13.Name = "numericUpDown13";
+            this.numericUpDown13.Size = new System.Drawing.Size(48, 19);
+            this.numericUpDown13.TabIndex = 27;
+            this.numericUpDown13.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown12
+            // 
+            this.numericUpDown12.Location = new System.Drawing.Point(100, 14);
+            this.numericUpDown12.Maximum = new decimal(new int[] {
+            182,
+            0,
+            0,
+            0});
+            this.numericUpDown12.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown12.Name = "numericUpDown12";
+            this.numericUpDown12.Size = new System.Drawing.Size(48, 19);
+            this.numericUpDown12.TabIndex = 26;
+            this.numericUpDown12.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // checkBox12
             // 
@@ -1984,6 +2085,8 @@ namespace tft
             // 
             // tabPage7
             // 
+            this.tabPage7.Controls.Add(this.label27);
+            this.tabPage7.Controls.Add(this.numericUpDown16);
             this.tabPage7.Controls.Add(this.groupBox3);
             this.tabPage7.Controls.Add(this.groupBox1);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
@@ -2021,6 +2124,28 @@ namespace tft
             this.checkBox24.TabIndex = 33;
             this.checkBox24.Text = "max";
             this.checkBox24.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.Location = new System.Drawing.Point(6, 35);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(62, 19);
+            this.numericUpDown7.TabIndex = 0;
+            this.numericUpDown7.Validated += new System.EventHandler(this.numericUpDown7_Validated);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 17);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(48, 12);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "window";
             // 
             // checkBox23
             // 
@@ -2062,15 +2187,6 @@ namespace tft
             this.checkBox19.Text = "mean";
             this.checkBox19.UseVisualStyleBackColor = true;
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 17);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(48, 12);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "window";
-            // 
             // checkBox18
             // 
             this.checkBox18.AutoSize = true;
@@ -2080,19 +2196,6 @@ namespace tft
             this.checkBox18.TabIndex = 28;
             this.checkBox18.Text = "lag";
             this.checkBox18.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown7
-            // 
-            this.numericUpDown7.Location = new System.Drawing.Point(6, 35);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(62, 19);
-            this.numericUpDown7.TabIndex = 0;
-            this.numericUpDown7.Validated += new System.EventHandler(this.numericUpDown7_Validated);
             // 
             // tabPage8
             // 
@@ -2116,6 +2219,41 @@ namespace tft
             this.tabPage11.TabIndex = 4;
             this.tabPage11.Text = "log";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.panel21);
+            this.tabPage14.Location = new System.Drawing.Point(4, 22);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(692, 209);
+            this.tabPage14.TabIndex = 6;
+            this.tabPage14.Text = "LINE";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // panel21
+            // 
+            this.panel21.Controls.Add(this.label26);
+            this.panel21.Controls.Add(this.textBox3);
+            this.panel21.Location = new System.Drawing.Point(11, 7);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(527, 100);
+            this.panel21.TabIndex = 0;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(10, 9);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(106, 12);
+            this.label26.TabIndex = 72;
+            this.label26.Text = "LINE_API_TOKEN";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(122, 6);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(393, 19);
+            this.textBox3.TabIndex = 71;
             // 
             // panel7
             // 
@@ -2397,138 +2535,27 @@ namespace tft
             this.panel19.Size = new System.Drawing.Size(700, 235);
             this.panel19.TabIndex = 0;
             // 
-            // checkBox26
+            // numericUpDown16
             // 
-            this.checkBox26.AutoSize = true;
-            this.checkBox26.Location = new System.Drawing.Point(12, 144);
-            this.checkBox26.Name = "checkBox26";
-            this.checkBox26.Size = new System.Drawing.Size(45, 16);
-            this.checkBox26.TabIndex = 34;
-            this.checkBox26.Text = "diff";
-            this.checkBox26.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown12
-            // 
-            this.numericUpDown12.Location = new System.Drawing.Point(100, 14);
-            this.numericUpDown12.Maximum = new decimal(new int[] {
-            182,
+            this.numericUpDown16.Location = new System.Drawing.Point(543, 39);
+            this.numericUpDown16.Maximum = new decimal(new int[] {
+            10000,
             0,
             0,
             0});
-            this.numericUpDown12.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown12.Name = "numericUpDown12";
-            this.numericUpDown12.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDown12.TabIndex = 26;
-            this.numericUpDown12.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.numericUpDown16.Name = "numericUpDown16";
+            this.numericUpDown16.Size = new System.Drawing.Size(120, 19);
+            this.numericUpDown16.TabIndex = 44;
             // 
-            // numericUpDown13
+            // label27
             // 
-            this.numericUpDown13.Location = new System.Drawing.Point(100, 38);
-            this.numericUpDown13.Maximum = new decimal(new int[] {
-            182,
-            0,
-            0,
-            0});
-            this.numericUpDown13.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown13.Name = "numericUpDown13";
-            this.numericUpDown13.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDown13.TabIndex = 27;
-            this.numericUpDown13.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown14
-            // 
-            this.numericUpDown14.Location = new System.Drawing.Point(100, 63);
-            this.numericUpDown14.Maximum = new decimal(new int[] {
-            182,
-            0,
-            0,
-            0});
-            this.numericUpDown14.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDown14.TabIndex = 28;
-            this.numericUpDown14.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown15
-            // 
-            this.numericUpDown15.Location = new System.Drawing.Point(100, 89);
-            this.numericUpDown15.Maximum = new decimal(new int[] {
-            182,
-            0,
-            0,
-            0});
-            this.numericUpDown15.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown15.Name = "numericUpDown15";
-            this.numericUpDown15.Size = new System.Drawing.Size(48, 19);
-            this.numericUpDown15.TabIndex = 29;
-            this.numericUpDown15.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(122, 6);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(393, 19);
-            this.textBox3.TabIndex = 71;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(10, 9);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(106, 12);
-            this.label26.TabIndex = 72;
-            this.label26.Text = "LINE_API_TOKEN";
-            // 
-            // tabPage14
-            // 
-            this.tabPage14.Controls.Add(this.panel21);
-            this.tabPage14.Location = new System.Drawing.Point(4, 22);
-            this.tabPage14.Name = "tabPage14";
-            this.tabPage14.Size = new System.Drawing.Size(692, 209);
-            this.tabPage14.TabIndex = 6;
-            this.tabPage14.Text = "LINE";
-            this.tabPage14.UseVisualStyleBackColor = true;
-            // 
-            // panel21
-            // 
-            this.panel21.Controls.Add(this.label26);
-            this.panel21.Controls.Add(this.textBox3);
-            this.panel21.Location = new System.Drawing.Point(11, 7);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(527, 100);
-            this.panel21.TabIndex = 0;
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(541, 24);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(126, 12);
+            this.label27.TabIndex = 45;
+            this.label27.Text = "See past covariates";
+            this.toolTip1.SetToolTip(this.label27, "make a known covariate look past a specified amount of time");
             // 
             // Form1
             // 
@@ -2550,6 +2577,10 @@ namespace tft
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -2601,12 +2632,16 @@ namespace tft
             this.tabPage9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage11.ResumeLayout(false);
             this.tabPage11.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel13.ResumeLayout(false);
@@ -2627,13 +2662,7 @@ namespace tft
             this.panel20.ResumeLayout(false);
             this.panel20.PerformLayout();
             this.panel19.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
-            this.tabPage14.ResumeLayout(false);
-            this.panel21.ResumeLayout(false);
-            this.panel21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2825,6 +2854,8 @@ namespace tft
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.NumericUpDown numericUpDown16;
     }
 }
 

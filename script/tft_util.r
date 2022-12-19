@@ -134,6 +134,24 @@ tft_data_compact <- function(input_df, step_unit="week")
 	 return (input_df)
 }
 
+covariate_sift <- function(input_df, key, sift = 12, covariate_known=NULL)
+{
+	covariate_sift = sift
+
+	if (is.null(covariate_known))
+	{
+		return(input_df)
+	}
+	input_df2 <- input_df %>%  group_by(key) %>%
+	  mutate( across(.cols = covariate_known, .fns = ~{ lag(., sift)}))
+
+	na_date <- input_df2$date[covariate_sift*length(unique(input_df$key))]
+	input_df3 <- input_df2 %>% filter(date > na_date)
+	
+	return(input_df3)
+}
+
+
 
 library(slider)
 quantile25 <- function(x)

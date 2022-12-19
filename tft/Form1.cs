@@ -848,6 +848,9 @@ namespace tft
             cmd += "if ( use_target_diff ){\r\n";
             cmd += "    input_df$target[na_pos==T] <- NA\r\n";
             cmd += "    input_df <-input_df %>%  group_by(key) %>%  mutate(target_diff = target - lag(target, n=1))\r\n";
+            cmd += "\r\n";
+            cmd += "    na_date <- input_df$date[length(unique(input_df$key))]\r\n";
+            cmd += "    input_df <- input_df %>% filter(date > na_date)\r\n";
             cmd += "    input_df <- mutate_at(input_df, c('target_diff'), ~replace(., is.na(.), 0))\r\n";
             cmd += "    target_colname='target_diff'\r\n";
             cmd += "    input_df$target_org <-  input_df$target\r\n";
@@ -855,6 +858,47 @@ namespace tft
             cmd += "}\r\n";
             cmd += "str(input_df)\r\n";
             cmd += "print(table(is.na(input_df)))\r\n";
+
+
+            if (listBox1.SelectedItems.Count >= 1)
+            {
+                cmd += "covariate_known=c(\r\n";
+                cmd += "              '" + listBox1.SelectedItems[0].ToString() + "'";
+                for (int i = 1; i < listBox1.SelectedItems.Count; i++)
+                {
+                    cmd += ", ";
+                    cmd += "'" + listBox1.SelectedItems[i].ToString() + "'";
+                    if ( i % 10 == 0)
+                    {
+                        cmd += "\r\n              ";
+                    }
+                }
+                cmd += ")\r\n";
+            }else
+            {
+                cmd += "covariate_known=NULL\r\n";
+            }
+
+            if (listBox2.SelectedItems.Count >= 1)
+            {
+                cmd += "\r\n";
+                cmd += "covariate_static=c(\r\n";
+                cmd += "              '" + listBox2.SelectedItems[0].ToString() + "'";
+                for (int i = 1; i < listBox2.SelectedItems.Count; i++)
+                {
+                    cmd += ", ";
+                    cmd += "'" + listBox2.SelectedItems[i].ToString() + "'";
+                    if ( i % 10 == 0 )
+                    {
+                        cmd += "\r\n              ";
+                    }
+                }
+                cmd += ")\r\n";
+            }
+            else
+            {
+                cmd += "covariate_static=NULL\r\n";
+            }
 
             cmd += "input_plot <- tft_plot_input(input_df, unit='" + comboBox2.Text + "')\r\n";
 
@@ -872,6 +916,11 @@ namespace tft
             cmd += "print(p_input_plot)\r\n";
             cmd += "htmlwidgets::saveWidget(as_widget(p_input_plot), \"tft_" + base_name + "_p_input_plot.html\", selfcontained = F)\r\n";
 
+            cmd += "\r\n";
+            if (numericUpDown16.Value > 0)
+            {
+                cmd += "input_df <- covariate_sift(input_df, key, sift = "+ numericUpDown16.Value.ToString()+ ", covariate_known =covariate_known)\r\n";
+            }
             cmd += "data_tbl <- tft_data_split(input_df, unit=unit, lookback, pred_len, future_test_len, validation)\r\n";
             cmd += "source('tmp_tft_data_split.r')\r\n";
             cmd += "#train_org <- train\r\n";
@@ -885,34 +934,9 @@ namespace tft
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "rec <- tft_make_recipe(train, validation=validation)\r\n";
-            cmd += "tft_make_spec(train, rec, covariate_known=c(\r\n";
-
-            if (listBox1.SelectedItems.Count >= 1)
-            {
-                cmd += "'" + listBox1.SelectedItems[0].ToString() + "'";
-                for (int i = 1; i < listBox1.SelectedItems.Count; i++)
-                {
-                    cmd += ", ";
-                    cmd += "'" + listBox1.SelectedItems[i].ToString() + "'";
-                }
-            }
-            if (listBox2.SelectedItems.Count >= 1)
-            {
-                cmd += "),\r\n";
-                cmd += "covariate_static=c(\r\n";
-                cmd += "'" + listBox2.SelectedItems[0].ToString() + "'";
-                for (int i = 1; i < listBox2.SelectedItems.Count; i++)
-                {
-                    cmd += ", ";
-                    cmd += "'" + listBox2.SelectedItems[i].ToString() + "'";
-                }
-                cmd += ")\r\n";
-            }else
-            {
-                cmd += ")\r\n";
-            }
+            cmd += "tft_make_spec(train, rec, covariate_known=covariate_known, covariate_static=covariate_static)\r\n";
             //
-            cmd += ")\r\n";
+            cmd += "\r\n";
             cmd += "source('tmp_tft_make_spec.r')\r\n";
             cmd += "print(spec)\r\n";
             cmd += "save.image(\"tft_" + base_name + ".RData\")\r\n";
@@ -1078,6 +1102,7 @@ namespace tft
                     sw.Write("periodicityM," + numericUpDown13.Value.ToString() + "\n");
                     sw.Write("periodicityW," + numericUpDown14.Value.ToString() + "\n");
                     sw.Write("periodicityD," + numericUpDown15.Value.ToString() + "\n");
+                    sw.Write("see_past_covariates," + numericUpDown16.Value.ToString() + "\n");
 
                     sw.Write("link1,");
                     sw.Write(link1 + "\n");
@@ -1295,6 +1320,11 @@ namespace tft
                         if (ss[0].IndexOf("periodicityD") >= 0)
                         {
                             numericUpDown15.Value = int.Parse(ss[1].Replace("\r\n", ""));
+                            continue;
+                        }
+                        if (ss[0].IndexOf("see_past_covariates") >= 0)
+                        {
+                            numericUpDown16.Value = int.Parse(ss[1].Replace("\r\n", ""));
                             continue;
                         }
 
