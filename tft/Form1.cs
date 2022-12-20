@@ -1856,10 +1856,16 @@ namespace tft
             cmd += "library(grid)\r\n";
             cmd += "library(ggplot2)\r\n";
             cmd += "meas <- tft_predict_measure(pred)\r\n";
-            cmd += "g_ <- gridExtra::tableGrob(meas[[2]])\r\n";
-            cmd += "ggsave(file = \"tft_predict_measure_"+base_name +".png\", plot = g_,dpi=100, width= 1.5*6.4,height=0.09*4.8"+ "*length(unique(input_df$key)), limitsize = FALSE)\r\n";
-
-
+            cmd += "g1_ <- gridExtra::tableGrob(meas[[1]])\r\n";
+            cmd += "ggsave(file = \"tft_predict_measure_"+base_name +".png\", plot = g1_,dpi=100, width= 1.5*6.4,height=0.09*4.8"+ "*length(unique(input_df$key)), limitsize = FALSE)\r\n";
+            cmd += "\r\n";
+            cmd += "m <- meas[[2]] %>%\r\n";
+            cmd += "    group_by(date) %>%\r\n";
+            cmd += "    summarise(across(everything(), .fns = ~mean(as.numeric(.x), na.rm = TRUE)), .groups = \"drop\")\r\n";
+            cmd += "g2_ <- gridExtra::tableGrob(m)\r\n";
+            cmd += "ggsave(file = \"tft_predict_measure_" + base_name + "_time.png\", plot = g2_,dpi=100, width= 1.5*6.4,height=0.09*4.8" + "*pred_len, limitsize = FALSE)\r\n";
+            cmd += "g_ <- gridExtra::grid.arrange(g1_, g2_, nrow = 2)\r\n";
+            cmd += "plot(g_)\r\n";
             cmd += "\r\n";
             cmd += "\r\n";
             cmd += "if (use_feature_importance_plot){\r\n";
@@ -2657,6 +2663,7 @@ namespace tft
             if (File.Exists("tft_predict_measure_" + base_name + ".png"))
             {
                 interactivePlot plot = new interactivePlot();
+                plot.webView21.Hide();
                 try
                 {
                     plot.pictureBox1.Image = null;
