@@ -41,6 +41,57 @@ accelerator_default = luz::accelerator(
     cuda_index = torch::cuda_current_device()
   )
 
+estimate_frequency <- function( tgt )
+{
+	n_size = nrow(tgt)
+
+	ggplot(tgt, aes(x=date,y=target))+geom_line()
+
+	abs_fft <- abs(fft(tgt$target)^2)
+	df_ft <- as.data.frame(abs_fft)
+	df_ft$time <- c(1:n_size)
+	ggplot(df_ft, aes(x=time,y=abs_fft))+geom_line()
+
+	df_ft$abs_fft[nrow(df_ft)]
+	df_ft$abs_fft[1]
+	for ( i in 2:nrow(df_ft) )
+	{
+		if ( df_ft$abs_fft[nrow(df_ft)] < df_ft$abs_fft[i] )
+		{
+			next
+		}
+		df_ft <- df_ft[i:nrow(df_ft),]
+		break
+	}
+	#ggplot(df_ft, aes(x=time,y=abs_fft))+geom_line()
+	
+	df_ft2 <- df_ft[1:floor(n_size/2),]
+	#plt <- ggplot(df_ft2, aes(x =time, y=abs_fft)) + geom_line()+labs(x="time",y="y")
+
+	#print(plt)
+	df_ft2$wlen <- n_size *2 / (df_ft2$time-1)
+
+
+	df_ft2 <- df_ft2[sort(df_ft2$abs_fft,decreasing = T,index=T)$ix,]
+	#print(df_ft2)
+	frequency = c( df_ft2$wlen[1], df_ft2$wlen[2], df_ft2$wlen[3], df_ft2$wlen[4])
+
+	return (frequency)
+}
+
+frequency_array <- function(data_tbl)
+{
+	key_names <- unique(data_tbl$key)
+	frequency = c()
+	for ( i in 1:length(key_names))
+	{
+		tgt <- data_tbl %>%  filter(key==key_names[1])
+		frequency <- c(frequency, estimate_frequency(tgt))
+	}
+	frequency <-unique(frequency)
+	
+	return (frequency)
+}
 
 tft_colname_conv <- function(df, time_colname, target_colname, key = "")
 {
@@ -338,6 +389,19 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	{
 	    data_tbl <-data_tbl %>%  group_by(key) %>%  mutate(self_adding_date_diff = target - lag(target, n=1))
 	    #data_tbl <- mutate_at(data_tbl, c('self_adding_date_diff'), ~replace(., is.na(.), 0))
+	}
+	
+	if ( TRUE )
+	{
+		frequencys <- frequency_array(data_tbl)
+		
+		for ( k in 1:length(frequencys))
+		{
+			sname <- sprintf("self_adding_date_sin%.3f", frequencys[k])
+			cname <- sprintf("self_adding_date_cos%.3f", frequencys[k])
+			data_tbl[,sname] <- sin(2*pi*tidx/(frequencys[k]))
+			data_tbl[,cname] <- cos(2*pi*tidx/(frequencys[k]))
+		}
 	}
 	
 	#print(window_size)
