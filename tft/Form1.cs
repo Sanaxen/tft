@@ -30,6 +30,7 @@ namespace tft
         public string RlibPath = "";
 
         public string plot_time_unit = "";
+        public string encoding = "sjis";
 
         private void webView21_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
@@ -525,6 +526,7 @@ namespace tft
             }
 
             string cmd = "";
+            cmd += "options(encoding=\"" + encoding +"\")\r\n";
             cmd += ".libPaths(c('" + RlibPath + "',.libPaths()))\r\n";
             cmd += "dir='" + work_dir.Replace("\\", "\\\\") + "'\r\n";
             cmd += "setwd(dir)\r\n";
@@ -602,7 +604,9 @@ namespace tft
                 MessageBox.Show("select key!");
                 return null;
             }
-            string cmd = ".libPaths(c('" + RlibPath + "',.libPaths()))\r\n";
+            string cmd = "";
+            cmd += "options(encoding=\"" + encoding + "\")\r\n";
+            cmd +=  ".libPaths(c('" + RlibPath + "',.libPaths()))\r\n";
             cmd += "dir='" + work_dir.Replace("\\", "\\\\") + "'\r\n";
             cmd += "setwd(dir)\r\n";
             cmd += "df <- read.csv(\"" + base_name + ".csv\", header=T, stringsAsFactors = F, na.strings = c(\"\", \"NA\"))\r\n";
@@ -673,6 +677,7 @@ namespace tft
         public string tft_header_ru()
         {
             string cmd = "";
+            cmd += "options(encoding=\"" + encoding + "\")\r\n";
             cmd += ".libPaths(c('" + RlibPath + "',.libPaths()))\r\n";
             cmd += "dir='" + work_dir.Replace("\\", "\\\\") + "'\r\n";
             cmd += "setwd(dir)\r\n";
@@ -1999,6 +2004,7 @@ namespace tft
         {
             string cmd = "";
 
+            cmd += "options(encoding=\"" + encoding + "\")\r\n";
             cmd += "load(\"tft_" + base_name + ".RData\")\r\n";
             cmd += "tft_predict_measure(pred)\r\n";
 

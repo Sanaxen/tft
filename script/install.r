@@ -12,6 +12,8 @@ install.packages("plotly", repo="http://cran.r-project.org", lib=install_libpath
 install.packages("tidyverse", repo="http://cran.r-project.org", lib=install_libpath) 
 install.packages("gtools", repo="http://cran.r-project.org", lib=install_libpath) 
 install.packages("labeling", repo="http://cran.r-project.org", lib=install_libpath) 
+install.packages("reshape2", repo="http://cran.r-project.org", lib=install_libpath) 
+
 
 install.packages("remotes", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
 install.packages("rlang", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
