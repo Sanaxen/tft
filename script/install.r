@@ -1,5 +1,11 @@
-install_libpath='C:/Users/bccat/Desktop/DDS2/DDS2/Temporal Fusion Transformers (TFT)/tft/script'
-.libPaths(c(install_libpath,.libPaths()))
+org_libpath <- .libPaths()
+
+curdir = getwd()
+
+
+install_libpath = paste(curdir, "/lib", sep="")
+
+.libPaths( c(install_libpath))
 
 install.packages("bit64", repo="http://cran.r-project.org", lib=install_libpath) 
 install.packages("R6", repo="http://cran.r-project.org", lib=install_libpath) 
