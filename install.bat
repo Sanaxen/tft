@@ -1,3 +1,3 @@
 call init.bat
 
-"%RPATH%\R" CMD BATCH --slave --vanilla ../script/install.r
+"%RPATH%\Rscript.exe" ./script/install.r

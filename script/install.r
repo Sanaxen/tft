@@ -1,11 +1,12 @@
-org_libpath <- .libPaths()
+curdir <- getwd()
+print(curdir)
 
-curdir = getwd()
+install_libpath <- paste(curdir, "/lib", sep="")
+print(install_libpath)
 
+.libPaths(c(install_libpath,.libPaths()))
+print(.libPaths())
 
-install_libpath = paste(curdir, "/lib", sep="")
-
-.libPaths( c(install_libpath))
 
 install.packages("bit64", repo="http://cran.r-project.org", lib=install_libpath) 
 install.packages("R6", repo="http://cran.r-project.org", lib=install_libpath) 
@@ -39,8 +40,6 @@ Sys.setenv("CUDA_PATH"  = "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA
 install.packages("torch", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
 #remotes::install_github("mlverse/torch")
 
-library(torch)
-torch::torch_manual_seed(1)
 
 remotes::install_github("mlverse/tft", lib=install_libpath)
 
@@ -49,4 +48,6 @@ install.packages("slider", repos = "http://cran.us.r-project.org", lib=install_l
 install.packages("gplots", repos = "http://cran.us.r-project.org", lib=install_libpath)
 
 
+library(torch)
+torch::torch_manual_seed(1)
 
