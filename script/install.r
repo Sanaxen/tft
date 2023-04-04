@@ -30,15 +30,17 @@ install.packages("rlang", repos = "http://cran.us.r-project.org",dependencies=TR
 install.packages("luz", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
 
 # CPU
-Sys.setenv("CUDA_PATH"  = "")
-Sys.setenv("CUDA_HOME"  = "")
-install.packages("torch", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
+#Sys.setenv("CUDA_PATH"  = "")
+#Sys.setenv("CUDA_HOME"  = "")
+#install.packages("torch", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
+#remotes::install_github("mlverse/torch", force = TRUE)
 
 # CUDA
 Sys.setenv(CUDA="11.3")
+Sys.setenv("CUDA_HOME"  = "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v11.3")
 Sys.setenv("CUDA_PATH"  = "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v11.3")
 install.packages("torch", repos = "http://cran.us.r-project.org",dependencies=TRUE, lib=install_libpath)
-#remotes::install_github("mlverse/torch")
+#remotes::install_github("mlverse/torch", force = TRUE)
 
 
 remotes::install_github("mlverse/tft", lib=install_libpath)

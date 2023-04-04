@@ -1,0 +1,105 @@
+9
+ds
+target
+x1
+x2
+x3
+x4
+x5
+x6
+x7
+4
+5
+6
+7
+8
+0
+0
+9
+0
+1
+2
+3
+4
+5
+6
+7
+8
+r_path,c:\Program Files\R\R-4.2.3\bin
+n_epochs,10
+n_batch_size,64
+n_num_workers,0
+pred_len,12
+lookback,48
+future_test_len,0
+time_colname,ds
+target_colname,target
+target_key,
+key,
+plot unit,month
+unit,hour
+time compression,
+learn_rate,true
+validation,true
+use_date_year,false
+use_date_month,false
+use_date_week,true
+use_date_day,true
+use_date_wday,false
+use_date_yday,0
+use_date_hour,true
+use_date_am,false
+use_date_pm,false
+use_date_quarter,false
+use_date_sincos_Y,false
+use_date_sincos_M,false
+use_date_sincos_W,true
+use_date_sincos_D,true
+use_date_first_derivative,false
+accelerator,true
+GPU id,default
+use_date_lag,false
+use_date_mean,false
+use_date_sd,false
+use_date_quantile,false
+use_target_diff,false
+use_date_min,false
+use_date_max,false
+Importance,true
+window_size,0
+hidden_state_size,8
+dropout,15
+num_attention_heads,1
+num_lstm_layers,1
+periodicityY,1
+periodicityM,1
+periodicityW,1
+periodicityD,1
+see_past_covariates,0
+link1,
+link2,
+link3,
+link4,
+link5,
+link6,
+predict_measure,# A tibble: 1 x 9  key   count    MSE  RMSE   MAE    MER  MAPE     MSEL  RMSEL  <fct> <int>  <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl>  <dbl>1 0        12 17375.  132.  56.4 0.0191  2.34 0.000724 0.0269# A tibble: 1 x 9  key   count    MSE  RMSE   MAE    MER  MAPE     MSEL  RMSEL
+  <fct> <int>  <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl>  <dbl>
+1 0        12 17375.  132.  56.4 0.0191  2.34 0.000724 0.0269
+[[1]]
+# A tibble: 1 x 9
+  key   count    MSE  RMSE   MAE    MER  MAPE     MSEL  RMSEL
+  <fct> <int>  <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl>  <dbl>
+1 0        12 17375.  132.  56.4 0.0191  2.34 0.000724 0.0269
+
+[[2]]
+# A tibble: 1 x 9
+  key   count    MSE  RMSE   MAE    MER  MAPE     MSEL  RMSEL
+  <fct> <int>  <dbl> <dbl> <dbl>  <dbl> <dbl>    <dbl>  <dbl>
+1 0        12 17375.  132.  56.4 0.0191  2.34 0.000724 0.0269
+
+
+
+
+
+
+
