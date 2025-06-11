@@ -54,7 +54,7 @@ namespace tft
             if (webView22.CoreWebView2 != null)
             {
                 //Web画面からVB/C＃へのホストオブジェクトにアクセスする必要がなければ
-                webView21.CoreWebView2.Settings.AreHostObjectsAllowed = false;
+                webView22.CoreWebView2.Settings.AreHostObjectsAllowed = false;
 
                 //Webコンテンツ(JavaScript)からVB／C＃側へのメッセージを処理する必要がなければ
                 //webView22.CoreWebView2.Settings.IsWebMessageEnabled = false;
