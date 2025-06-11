@@ -187,7 +187,7 @@ tft_data_compact <- function(input_df, step_unit="week")
 
 covariate_sift <- function(input_df, key, sift = 12, covariate_known=NULL)
 {
-	covariate_sift = sift
+	sift_val = sift
 
 	if (is.null(covariate_known))
 	{
@@ -196,7 +196,7 @@ covariate_sift <- function(input_df, key, sift = 12, covariate_known=NULL)
 	input_df2 <- input_df %>%  group_by(key) %>%
 	  mutate( across(.cols = covariate_known, .fns = ~{ lag(., sift)}))
 
-	na_date <- input_df2$date[covariate_sift*length(unique(input_df$key))]
+	na_date <- input_df2$date[sift_val*length(unique(input_df$key))]
 	input_df3 <- input_df2 %>% filter(date > na_date)
 	
 	return(input_df3)
@@ -288,8 +288,8 @@ tft_data_split <- function(input_df, unit, lookback, pred_len, future_test_len, 
 	    data_tbl$self_adding_date_cos_Y = cos(2*pi*tidx/(365*periodicityY))
 	    data_tbl$self_adding_date_sin_M = sin(2*pi*tidx/(30.4167*periodicityM))
 	    data_tbl$self_adding_date_cos_M = cos(2*pi*tidx/(30.4167*periodicityM))
-	    data_tbl$self_adding_date_sin_W = sin(2*tidx/(7*periodicityW))
-	    data_tbl$self_adding_date_cos_W = cos(2*tidx/(7*periodicityW))
+	    data_tbl$self_adding_date_sin_W = sin(2*pi*tidx/(7*periodicityW))
+	    data_tbl$self_adding_date_cos_W = cos(2*pi*tidx/(7*periodicityW))
 	    if ( periodicityD > 1 )
 	    {
 		    data_tbl$self_adding_date_sin_D = sin(2*pi*tidx/(periodicityD))
@@ -549,10 +549,10 @@ tft_make_recipe <- function(train, validation=F, ...)
 	#Rows with missing values are deleted (step_naomit)
 	
 	#jp
-	#Œ‡‘¹’l‚ð•½‹Ï‚Å•âŠÔ(step_impute_mean)
-	#“¯ˆê’l‚Ì—ñ‚ðíœ(step_zv)
-	#‚Ù‚Æ‚ñ‚Ç“¯ˆê’l‚Ì—ñ‚ðíœ(step_nzv)
-	#Œ‡‘¹’l‚ª‚ ‚és‚ðíœ(step_naomit)
+	#æ¬ æå€¤ã‚’å¹³å‡ã§è£œé–“(step_impute_mean)
+	#åŒä¸€å€¤ã®åˆ—ã‚’å‰Šé™¤(step_zv)
+	#ã»ã¨ã‚“ã©åŒä¸€å€¤ã®åˆ—ã‚’å‰Šé™¤(step_nzv)
+	#æ¬ æå€¤ãŒã‚ã‚‹è¡Œã‚’å‰Šé™¤(step_naomit)
 	
 	rec <- recipe(target ~ ., data = train) %>% 
 	  step_impute_mean(all_numeric_predictors()) %>%
@@ -1231,7 +1231,7 @@ permutationFeatureImportance<- function(fitted, test, validation=F, base_name=""
 		
 	 	FI_s2$date <- NULL
 	 	FI_s2 = t(FI_s2)
-		#par(mar = c(8.5, 1.0, 1.1, 5)) #  —]”’‚ÌL‚³‚ðs”‚ÅŽw’èD‰ºC¶CãC‰E‚Ì‡D
+		#par(mar = c(8.5, 1.0, 1.1, 5)) #  ä½™ç™½ã®åºƒã•ã‚’è¡Œæ•°ã§æŒ‡å®šï¼Žä¸‹ï¼Œå·¦ï¼Œä¸Šï¼Œå³ã®é †ï¼Ž
 		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
 
 		heatmap(as.matrix(FI_s2),Colv = NA, Rowv=NA, scale='col',col=bluered(256))
@@ -1273,8 +1273,8 @@ tft_predict_measure <- function(pred)
     return(list(summary1,summary2))
 }
 
-#ids_cols:en:Column name string to be fixed (jp:ŒÅ’è‚·‚é—ñ–¼•¶Žš—ñ) example: c("date_time", "deg_C", "relative_humidity")
-#key_cols:en:Column name strings lined up for each column you want to arrange vertically (jp:c‚É•À‚×‚½‚¢—ñ–ˆ‚É•À‚ñ‚Å‚¢‚é—ñ–¼•¶Žš—ñ) example:c("target_carbon_monoxide", "target_benzene","target_nitrogen_oxides")
+#ids_cols:en:Column name string to be fixed (jp:å›ºå®šã™ã‚‹åˆ—åæ–‡å­—åˆ—) example: c("date_time", "deg_C", "relative_humidity")
+#key_cols:en:Column name strings lined up for each column you want to arrange vertically (jp:ç¸¦ã«ä¸¦ã¹ãŸã„åˆ—æ¯Žã«ä¸¦ã‚“ã§ã„ã‚‹åˆ—åæ–‡å­—åˆ—) example:c("target_carbon_monoxide", "target_benzene","target_nitrogen_oxides")
 horizontally_to_vertically <- function(df, ids_cols, key_cols)
 {
 	df2 <- reshape2::melt(df, id.vars=ids_cols, measure.vars=key_cols, 
@@ -1283,8 +1283,8 @@ horizontally_to_vertically <- function(df, ids_cols, key_cols)
 	return (df2)
 }
 
-#ids_cols:en:Column name string to be fixed (jp:ŒÅ’è‚·‚é—ñ–¼•¶Žš—ñ) example: c("date_time", "deg_C", "relative_humidity")
-#key: en:Column name string you want to lay down (jp:‰¡‚É‚µ‚½‚¢—ñ–¼•¶Žš—ñ)
+#ids_cols:en:Column name string to be fixed (jp:å›ºå®šã™ã‚‹åˆ—åæ–‡å­—åˆ—) example: c("date_time", "deg_C", "relative_humidity")
+#key: en:Column name string you want to lay down (jp:æ¨ªã«ã—ãŸã„åˆ—åæ–‡å­—åˆ—)
 vertically_to_horizontally <- function(df, ids_cols, key="key")
 {
 	fomuler = ids_cols[1]
